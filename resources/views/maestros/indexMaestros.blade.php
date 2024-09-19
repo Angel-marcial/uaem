@@ -54,7 +54,7 @@
     <div class="btn-contenedor">   
         <div class="col-md-5">   
             <h5 class="{{ session('correoEnviado') ? '' : 'hidden' }}">Validar Correo</h5>
-            <div class="{{ session('correoEnviado') ? '' : 'hidden' }} contenedor margenes-contenedor">
+            <div class=" contenedor margenes-contenedor">
                 <form action="{{ url('codigo-seguridad') }}" method="POST" onsubmit="return deshabilitarBotonCodigo(this)">
                     <label class="form-label titulos margenes-contenedor">Codigo de seguridad</label>
                     @csrf
