@@ -53,7 +53,7 @@ class EmailsController extends Controller
 
     public function enviarCorreoMaestros(Request $request)
     {
-        //'/^[a-zA-Z0-9._%+-]+@gmail\.com$/';
+        //$correoMaestro= '/^[\w.-]+@profesor\.uaemex\.mx$/';  
         $correoMaestro = '/^[\w.-]++@gmail\.com$/';     
 
 

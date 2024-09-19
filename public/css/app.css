@@ -99,12 +99,12 @@ h5{
 
 /* Cambio de color cuando se presiona */
 .btn-custom:active {
-    background-color: #004494;
+    background-color: var(--color-dorado);
 }
 
 /* Cambio de color cuando está enfocado (con teclado, por ejemplo) */
 .btn-custom:focus {
-    background-color: #0069d9; 
+    background-color: var(--color-dorado); 
     outline: none;
 }
 

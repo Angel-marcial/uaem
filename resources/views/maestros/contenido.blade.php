@@ -42,7 +42,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
         <script src="{{ asset('js/botones.js') }}"></script>
         <script src="{{ asset('js/validaciones.js') }}"></script>
-        
+        <script src="{{ asset('js/maestros/maestro.js') }}"></script>
     </body>
 
 </html>

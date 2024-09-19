@@ -27,6 +27,8 @@
         @endif
 
     @endif
+    
+    <div class="alert alert-danger" id="errorDiv" style="display:none;"></div>
 
     <div class="btn-contenedor">   
         <div class="col-md-5">
@@ -97,7 +99,7 @@
             <h5 class="{{ session('codigoAprobado') ? '' : 'hidden' }}">Datos del Profesor</h5>
             <div class=" contenedor margenes-contenedor">
                 
-                <form action="{{ url('guardar-maestros') }}" method="POST" onsubmit="return deshabilitarBotonGuardar(this)">
+                <form action="{{ url('guardar-maestros') }}" method="POST" onsubmit="return maestro(this)">
                     @csrf
                     <div class="margenes-contenedor">
 
@@ -139,7 +141,7 @@
 
                                     </div>
                                 </div>
-
+                            <!--
                                 <label for="espacio" class="form-label titulos">Martes:</label>
                                 <div class="col-6">
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Entrada:</label>
@@ -219,6 +221,7 @@
                                         <input type="time" class="form-control text-contenedor " id="salidaSabado" name="salidaSabado" placeholder="00:00" required>
                                     </div>
                                 </div>
+                            -->
 
 
                             </div>
