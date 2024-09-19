@@ -137,17 +137,17 @@
 
                             <div>
                                 <label for="nombres" class="form-label titulos margenes-contenedor">Nombres</label>
-                                <input type="text" class="form-control text-contenedor " id="nombres" name="nombres" placeholder="Angel Geovanni" oninput="validarTextos(this)" required>
+                                <input type="text" class="form-control text-contenedor " id="nombres" name="nombres" placeholder="Nombres" required oninput="validarTextos(this)">
                             </div>
 
                             <div>
                                 <label for="apellidoPaterno" class="form-label titulos margenes-contenedor">Apellido Paterno</label>
-                                <input type="text" class="form-control text-contenedor " id="apellidoPaterno" name="apellidoPaterno" placeholder="Lopez" oninput="validarTextos(this)" required>
+                                <input type="text" class="form-control text-contenedor " id="apellidoPaterno" name="apellidoPaterno" placeholder="Apellido Paterno" required oninput="validarTextos(this)">
                             </div>
 
                             <div>
                                 <label for="apellidoMaterno" class="form-label titulos margenes-contenedor">Apellido Materno</label>
-                                <input type="text" class="form-control text-contenedor " id="apellidoMaterno" name="apellidoMaterno" placeholder="Lopez" oninput="validarTextos(this)" required>
+                                <input type="text" class="form-control text-contenedor " id="apellidoMaterno" name="apellidoMaterno" placeholder="Apellido Materno" required oninput="validarTextos(this)">
                             </div>
 
                             <div>

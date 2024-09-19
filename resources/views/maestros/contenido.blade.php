@@ -7,7 +7,7 @@
 
     Descripción: Este archivo PHP contiene las dependencias, fuentes y links que usuara la interfaz maestros
 -->
-
+ 
 <!DOCTYPE html>
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -41,6 +41,7 @@
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
         <script src="{{ asset('js/botones.js') }}"></script>
+        <script src="{{ asset('js/validaciones.js') }}"></script>
         
     </body>
 
