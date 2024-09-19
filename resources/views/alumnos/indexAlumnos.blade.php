@@ -59,7 +59,7 @@
         <div class="btn-contenedor">   
             <div class="col-md-5">   
                 <h5 class="{{ session('correoEnviado') ? '' : 'hidden' }}">Validar Correo</h5>
-                <div class="contenedor margenes-contenedor">
+                <div class="{{ session('correoEnviado') ? '' : 'hidden' }} contenedor margenes-contenedor">
                    
                     <form action="{{ url('codigo-seguridad') }}" method="POST" onsubmit="return deshabilitarBotonCodigo(this)">
                         <label class="form-label titulos margenes-contenedor">Codigo de seguridad</label>
@@ -103,7 +103,7 @@
             <div class="col-md-5">   
 
                 <h5 class="{{ session('codigoAprobado') ? '' : 'hidden' }}">Datos del alumno</h5>
-                <div class=" contenedor margenes-contenedor">
+                <div class="{{ session('codigoAprobado') ? '' : 'hidden' }} contenedor margenes-contenedor">
                     
                     <form action="{{ url('guardar-alumnos') }}" method="POST" onsubmit="return alumno(this)">
                         @csrf
