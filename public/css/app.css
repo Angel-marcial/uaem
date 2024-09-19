@@ -1,0 +1,164 @@
+/* 
+*
+*Codice
+*Nombre del Código: app.css
+*Fecha de Creación: 15/08/2024 revisado por Angel Geovanni Marcial Morales
+*
+*Modificaciones:
+*
+*Descripción: Este archivo css cuenta con los estilos para al app, incluyendo colores y tipografias. 
+*/
+
+:root {
+    --color-verde: #256218;
+    --color-verde-claro: #60866D;
+    --color-balnco: #ffff;
+    --color-gris: #F2F2F2;
+    --color-dorado: #96881B;
+}
+
+h5{
+    margin-top: 30px;
+    margin: 10px;
+    font-family: 'Archivo', sans-serif;
+    color: var(--color-verde);
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* color de la cabecera */
+.custom-bg {
+    background-color: var(--color-verde-claro) !important;  
+}
+
+/* formato de el textod e la cabecera */
+.cabecera {
+    font-family: 'Archivo', sans-serif;
+    color: var(--color-balnco);  
+}
+
+/* ajuste de titulos */
+.titulos{
+    margin-top: 10px;
+    font-family: 'Archivo', sans-serif;
+    text-align: center;
+    color: var(--color-verde);
+}
+
+/* opropiedades de los contenedores de formularios */
+.contenedor {
+    background-color: var(--color-gris);
+    border-radius: 20px;
+    border: 2px solid var(--color-verde);
+}
+
+.margenes-contenedor {
+    margin: 5px;
+}
+
+.prueba{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;
+}
+
+
+.text-contenedor{
+    
+    border: 2px solid var(--color-dorado);
+    
+}
+
+/* propiedades del contenedor del boton */
+.btn-contenedor {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente, si es necesario */
+}
+
+/* Propiedades del boton */
+.btn-custom {
+    
+    background-color: var(--color-verde); /* Color inicial */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; 
+}
+
+/* Cambio de color cuando se pasa el ratón */
+.btn-custom:hover {
+    background-color: var(--color-verde-claro) /* Color cuando se pasa el ratón */
+}
+
+/* Cambio de color cuando se presiona */
+.btn-custom:active {
+    background-color: #004494;
+}
+
+/* Cambio de color cuando está enfocado (con teclado, por ejemplo) */
+.btn-custom:focus {
+    background-color: #0069d9; 
+    outline: none;
+}
+
+/* propiedades del boton de link*/
+.btn-link {
+    color: var(--color-verde);
+    margin-bottom: 20px;
+}
+
+.btn-link-barra {
+    margin-top: 10px;
+    text-align: left;
+    padding-left: 10px;
+    font-family: 'Archivo', sans-serif;
+    color: var(--color-verde);
+    font-size: 17px;
+}
+
+.btn-cabecera
+{
+    background-color: var(--color-balnco);
+}
+
+
+
+.input-group {
+    display: flex;
+    gap: 10px; /* Espacio entre las cajas de texto */
+    flex-wrap: wrap; /* Permite que las cajas se ajusten si no caben en una línea */
+}
+
+.input-item {
+    flex: 1; /* Hace que cada caja de texto ocupe espacio igual */
+    width: 37px; /* Ancho fijo de 100 píxeles */
+    height: 37px; /* Alto fijo de 30 píxeles */
+    margin-right: 1px; /* Espacio entre cajas, opcional */
+    text-align: center;
+}
+
+
+
+/* Ocultar flechitas en campos numéricos para la mayoría de los navegadores */
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+/* Ocultar flechitas en campos numéricos para Chrome, Safari, y Edge */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Ocultar flechitas en campos numéricos para Internet Explorer */
+input[type="number"] {
+    -ms-appearance: textfield;
+}
