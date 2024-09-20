@@ -15,8 +15,9 @@ La Unidad Académica Profesional Tianguistenco agradece su compromiso y lealtad.
 
 sus datos de inicio de sesión son los siguientes:
 
-Usuario: {{ $correo }}.
-Contraseña: {{ $password }}.
+Usuario: {{ $correo }}
+</br>
+Contraseña: {{ $password }}
 
 ¡No compartas tus datos con nadie!
 ¡No responda a este mensaje!
