@@ -52,6 +52,7 @@ function alumno(form)
         errorDiv.style.display = "none";
         errorDiv.textContent = "";
     }
+
     //apellido paterno
     if(!regexPalabra.test(paterno.value))
     {
@@ -64,6 +65,7 @@ function alumno(form)
         errorDiv.style.display = "none";
         errorDiv.textContent = "";
     }
+
     //apellido materno
     if(!regexPalabra.test(materno.value) )
     {
