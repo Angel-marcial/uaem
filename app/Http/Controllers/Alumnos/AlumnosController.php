@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Alumnos;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Emails\credencialesController;
+use App\Http\Controllers\Emails\EmailsController;
 use Illuminate\Http\Request;
 use App\Models\Alumno;
 use Google\Cloud\Storage\Connection\Rest;
@@ -12,10 +13,11 @@ class AlumnosController extends Controller
     
     public function guardarAlumnos(Request $request)
     {
+        $EmailsController = new EmailsController();
+        $correo = $EmailsController->correo();
         $carrera = $request->input('carreras');
         $nombre = $request->input('nombres');
-        $correo = $request->input('correo');
-
+        
         $carreras = [
             'ingenieria-software' => 1,
             'ingenieria-industrial' => 2,
@@ -37,18 +39,19 @@ class AlumnosController extends Controller
         }
 
         Alumno::create([
-            'carrera_id' => $match,
+            'id_carrera' => $match,
             'cuenta' => $request->input('numeroCuenta'),
             'nombre' => $request->input('nombres'),
             'paterno' => $request->input('apellidoPaterno'),
             'materno' => $request->input('apellidoMaterno'),
-            'correo' => $request->input('correo'),
             'telefono' => $request->input('telefono'),
         ]);
 
         $credencialesController = new credencialesController();
         $password = $credencialesController->generarPassword();
-        $credencialesController -> enviarCredencialesAlumno($nombre, $correo, $password);
+        $credencialesController -> enviarCredencialesAlumno($nombre,$correo,$password);
+
+
 
         return redirect('/index')->with('status', 'Alumno creado exitosamente. !Se ha enviando un correo con los datos de inicio de sesión!');
     }
@@ -83,7 +86,6 @@ class AlumnosController extends Controller
             'nombre' => $request->input('nombres'),
             'paterno' => $request->input('apellidoPaterno'),
             'materno' => $request->input('apellidoMaterno'),
-            'correo' => $request->input('correo'),
             'telefono' => $request->input('telefono'),
         ]);
 

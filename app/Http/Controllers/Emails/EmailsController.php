@@ -19,6 +19,7 @@ class EmailsController extends Controller
 
         $destinatario = $request->input('correo');
 
+        /*
         $correos = Alumno::pluck('correo');
 
         foreach($correos as $correo)
@@ -29,6 +30,7 @@ class EmailsController extends Controller
                 ->with('correoEnviado',false);
             }
         }
+        */
 
         if(preg_match($correoAlumno,$destinatario))
         {
@@ -36,7 +38,7 @@ class EmailsController extends Controller
             $codigo = random_int(1000000, 9999999);
             $request->session()->put('codigo', $codigo);
             $nombre = 'Alumno'; 
-
+            $request->session()->put('destinatario', $destinatario);
             Mail::to($destinatario)->send(new MiCorreo($nombre, $codigo));
 
             return redirect('index-alumnos')->with('status', 'se ha enviado un codigo de verificacion al correo: '. $destinatario)
@@ -48,7 +50,6 @@ class EmailsController extends Controller
             return redirect('index-alumnos')->with('status', 'El correo proporcionado no es valido: '. $destinatario)
             ->with('correoEnviado',false);
         }
-
     }
 
     public function enviarCorreoMaestros(Request $request)
@@ -111,4 +112,8 @@ class EmailsController extends Controller
 
     }
 
+    public function correo()
+    {
+        return $correo = session()->get('destinatario');
+    }
 }

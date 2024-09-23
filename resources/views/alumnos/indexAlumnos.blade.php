@@ -150,12 +150,7 @@
                                 <input type="text" class="form-control text-contenedor " id="apellidoMaterno" name="apellidoMaterno" placeholder="Apellido Materno" required oninput="validarTextos(this)">
                             </div>
 
-                            <div>
-                                <label for="correo" class="form-label titulos margenes-contenedor">Correo</label>
-                                <input type="text" class="form-control text-contenedor " id="correo" name="correo" placeholder="Ej: alumno@alumno.uaemex.mx" required>
-                            </div>
 
-                        
                             <div>
                                 <label for="telefono" class="form-label titulos margenes-contenedor">Telefono</label>
                                 <input type="number" class="form-control text-contenedor " id="telefono" name="telefono" placeholder="7200000000" oninput="validarTelefono(this)" required>

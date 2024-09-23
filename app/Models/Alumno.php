@@ -1,7 +1,7 @@
 <?php
 /*
 *Codice
-*Nombre del Código: Alumno.blade.php
+*Nombre del Código: Alumno.php
 *Fecha de Creación: 29/09/2024 revisado por Angel Geovanni Marcial Morales
 *
 *Modificaciones:
@@ -25,7 +25,6 @@ class Alumno extends Model
         'nombre',
         'paterno',
         'materno',
-        'correo',
         'telefono'
     ];
 }

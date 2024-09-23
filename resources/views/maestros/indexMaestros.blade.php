@@ -117,6 +117,11 @@
                             <label for="apellidoMaterno" class="form-label titulos margenes-contenedor">Apellido Materno</label>
                             <input type="text" class="form-control text-contenedor " id="apellidoMaterno" name="apellidoMaterno" placeholder="Apellido Materno" required oninput="validarTextos(this)">
                         </div>
+
+                        <div>
+                            <label for="telefono" class="form-label titulos margenes-contenedor">Telefono</label>
+                            <input type="number" class="form-control text-contenedor " id="telefono" name="telefono" placeholder="7200000000" oninput="validarTelefono(this)" required>
+                        </div>
                         
                         <h5>Horario</h5>
 
@@ -141,7 +146,7 @@
 
                                     </div>
                                 </div>
-                            <!--
+                                
                                 <label for="espacio" class="form-label titulos">Martes:</label>
                                 <div class="col-6">
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Entrada:</label>
@@ -157,7 +162,7 @@
                                         <input type="time" class="form-control text-contenedor" id="salidaMartes" name="salidaMartes" placeholder="00:00" required>
                                     </div>
                                 </div>
-
+                                
                                 <label for="espacio" class="form-label titulos">Miercoles:</label>
                                 <div class="col-6">
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Entrada:</label>
@@ -170,7 +175,7 @@
                                 <div class="col-6">
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Salida:</label>
                                     <div class="">
-                                        <input type="time" class="form-control text-contenedor" id="salidamiercoles" name="salidaMiercoles" placeholder="00:00" required>
+                                        <input type="time" class="form-control text-contenedor" id="salidaMiercoles" name="salidaMiercoles" placeholder="00:00" required>
                                     </div>
                                 </div>
 
@@ -221,7 +226,8 @@
                                         <input type="time" class="form-control text-contenedor " id="salidaSabado" name="salidaSabado" placeholder="00:00" required>
                                     </div>
                                 </div>
-                            -->
+                            
+                            
 
 
                             </div>
