@@ -20,7 +20,7 @@ class EmailsController extends Controller
         $destinatario = $request->input('correo');
 
         /*
-        $correos = Alumno::pluck('correo');
+        $correo s = Alumno::pluck('correo');
 
         foreach($correos as $correo)
         {

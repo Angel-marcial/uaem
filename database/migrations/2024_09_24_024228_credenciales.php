@@ -14,19 +14,15 @@ return new class extends Migration
         Schema::create('credenciales', function(Blueprint $table)
         {
             $table->id();                // Crea una columna de tipo BIGINT con auto-incremento como clave primaria
-            $table->Integer('id_usuario');
-            $table->integer('correo');
+            $table->Integer('id_usuario')->unique();
+            $table->string('correo');
             $table->string('password');    // Crea una columna de tipo VARCHAR para el nombre
             $table->string('rol');
             $table->timestamps();        // Crea columnas created_at y updated_at
             // Definir la clave foránea
             $table->foreign('id_usuario')
             ->references('id')
-            ->on('alumnos');  
-            $table->foreign('id_usuario')
-            ->references('id')
-            ->on('maestros');  
-
+            ->on('usuarios');  
         });
     }
 

@@ -14,15 +14,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Credenciales extends Model
+class Credenciales1 extends Model
 {
     use HasFactory;
 
     protected $table = 'credenciales'; // Define el nombre de la tabla
     protected $fillable = [
+        'id_usuario',
         'correo',
         'password',
-        'rol',
-        'id_usuario'
+        'rol'
     ];
 }

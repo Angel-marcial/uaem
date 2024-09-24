@@ -14,8 +14,6 @@ function alumno(form)
     var regexPalabra = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
     var regexAlumno = /^[\w.-]+@alumno\.uaemex\.mx$/;
     
-
-
     var errorDiv = document.getElementById("errorDiv");
     var carrera = document.getElementById("carreras");
 
@@ -23,7 +21,6 @@ function alumno(form)
     var nombres = form.querySelector('#nombres');
     var paterno = form.querySelector('#apellidoPaterno');
     var materno = form.querySelector('#apellidoMaterno');
-    var correo = form.querySelector('#correo');
     var telefono = form.querySelector('#telefono');
     var boton = form.querySelector('#guardar');
 
@@ -79,18 +76,19 @@ function alumno(form)
         errorDiv.textContent = "";
     }
 
-    //Correo alumno
-    if(!regexAlumno.test(correo.value))
+    //telefono
+    if(telefono.value.length !== 10)
     {
         errorDiv.style.display = "block";
-        errorDiv.textContent = "El correo proporcionado no es valido: " + correo.value;
+        errorDiv.textContent = "El número de teléfono debe tener exactamente 10 dígitos." + telefono.length.length ;
         return false;
-
     }else
     {
         errorDiv.style.display = "none";
         errorDiv.textContent = "";
     }
+
+
 
     boton.disabled = true;
     boton.innerText = 'Guardando...';

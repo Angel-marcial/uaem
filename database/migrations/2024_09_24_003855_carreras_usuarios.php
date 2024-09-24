@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('alumnos', function(Blueprint $table)
+        Schema::create('carreras_usuarios', function(Blueprint $table)
         {
             $table->id();                // Crea una columna de tipo BIGINT con auto-incremento como clave primaria
-            $table->Integer('id_carrera');
-            $table->integer('cuenta');
-            $table->string('nombre');    // Crea una columna de tipo VARCHAR para el nombre
-            $table->string('paterno');
-            $table->string('materno');
-            $table->string('telefono');    // Crea una columna de tipo VARCHAR para el correo
-            $table->timestamps();        // Crea columnas created_at y updated_at
+            $table->bigInteger('id_usuario')->unique();
+            $table->bigInteger('id_carrera');
+            $table->timestamps();
+            // Definir la clave foránea
+            $table->foreign('id_usuario')
+            ->references('id')
+            ->on('usuarios');  
             // Definir la clave foránea
             $table->foreign('id_carrera')
             ->references('id')
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('alumnos');
+        Schema::dropIfExists('carreras_usuarios');
     }
 };

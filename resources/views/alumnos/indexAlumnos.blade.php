@@ -97,8 +97,6 @@
             </div>
         </div>
 
-
-
         <div class="btn-contenedor">   
             <div class="col-md-5">   
 
@@ -129,7 +127,7 @@
 
                                     <div> 
                                         <label for="numeroCuenta" class="form-label titulos margenes-contenedor">No de cuenta</label>
-                                        <input type="number" class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta" placeholder="0000000" required>
+                                        <input type="number" class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta" placeholder="0000000" value="{{ old('numeroCuenta') }}" required>
                                     </div>
 
                                 </div>
@@ -137,23 +135,23 @@
 
                             <div>
                                 <label for="nombres" class="form-label titulos margenes-contenedor">Nombres</label>
-                                <input type="text" class="form-control text-contenedor " id="nombres" name="nombres" placeholder="Nombres" required oninput="validarTextos(this)">
+                                <input type="text" class="form-control text-contenedor " id="nombres" name="nombres" placeholder="Nombres" value="{{ old('nombres') }}" required oninput="validarTextos(this)">
                             </div>
 
                             <div>
                                 <label for="apellidoPaterno" class="form-label titulos margenes-contenedor">Apellido Paterno</label>
-                                <input type="text" class="form-control text-contenedor " id="apellidoPaterno" name="apellidoPaterno" placeholder="Apellido Paterno" required oninput="validarTextos(this)">
+                                <input type="text" class="form-control text-contenedor " id="apellidoPaterno" name="apellidoPaterno" placeholder="Apellido Paterno" value="{{ old('apellidoPaterno') }}" required oninput="validarTextos(this)">
                             </div>
 
                             <div>
                                 <label for="apellidoMaterno" class="form-label titulos margenes-contenedor">Apellido Materno</label>
-                                <input type="text" class="form-control text-contenedor " id="apellidoMaterno" name="apellidoMaterno" placeholder="Apellido Materno" required oninput="validarTextos(this)">
+                                <input type="text" class="form-control text-contenedor " id="apellidoMaterno" name="apellidoMaterno" placeholder="Apellido Materno" value="{{ old('apellidoMaterno') }}" required oninput="validarTextos(this)">
                             </div>
 
 
                             <div>
                                 <label for="telefono" class="form-label titulos margenes-contenedor">Telefono</label>
-                                <input type="number" class="form-control text-contenedor " id="telefono" name="telefono" placeholder="7200000000" oninput="validarTelefono(this)" required>
+                                <input type="tel" class="form-control text-contenedor " id="telefono" name="telefono" placeholder="7200000000" oninput="validarTelefono(this)" value="{{ old('telefono') }}" required>
                             </div>
 
 

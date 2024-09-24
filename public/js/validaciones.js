@@ -25,6 +25,8 @@ function validarDigito(input)
 // Validar solo que el numero detelefono acepte 10 dijitos.
 function validarTelefono(input)
 {
+    var errorDiv = document.getElementById("errorDiv");
+
     input.value = input.value.replace(/\D/g, '');
     
     if (input.value.length > 10) 
@@ -32,6 +34,7 @@ function validarTelefono(input)
         input.value = input.value.slice(0, 10);
     }
 }
+
 
 function validarTextos(input)
 {
