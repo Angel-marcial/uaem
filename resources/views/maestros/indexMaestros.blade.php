@@ -31,7 +31,7 @@
         <div class="alert alert-danger" id="errorDiv" style="display:none;"></div>
     
     @endif  
-        
+ 
     <div class="btn-contenedor">   
         <div class="col-md-5">
             <h5 class="{{ (session('correoEnviado') || session('codigoAprobado')) ? 'hidden' : ''}} ">Verificar Correo</h5>
@@ -149,7 +149,7 @@
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Entrada:</label>
                                     <div class="">
                                         
-                                        <input type="time" class="form-control text-contenedor" id="entradaLunes" name="entradaLunes" placeholder="00:00" value="{{ old('entradaLunes') }}" required>
+                                        <input type="time" class="form-control text-contenedor" id="entradaLunes" name="entradaLunes" value="{{ old('entradaLunes') }}">
 
                                     </div>
 
@@ -158,7 +158,7 @@
                                     <label for="espacio" class="form-label titulos margenes-contenedor">salida:</label>
                                     <div class="">
 
-                                        <input type="time" class="form-control text-contenedor" id="salidaLunes" name="salidaLunes" placeholder="00:00" value="{{ old('salidaLune') }}" required>
+                                        <input type="time" class="form-control text-contenedor" id="salidaLunes" name="salidaLunes" value="{{ old('salidaLunes') }}">
 
                                     </div>
                                 </div>
@@ -168,14 +168,14 @@
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Entrada:</label>
                                     <div class="">
 
-                                        <input type="time" class="form-control text-contenedor" id="entradaMartes" name="entradaMartes" placeholder="00:00" required>
+                                        <input type="time" class="form-control text-contenedor" id="entradaMartes" name="entradaMartes" value="{{ old('entradaMartes') }}">
                                     
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Salida:</label>
                                     <div class="">
-                                        <input type="time" class="form-control text-contenedor" id="salidaMartes" name="salidaMartes" placeholder="00:00" required>
+                                        <input type="time" class="form-control text-contenedor" id="salidaMartes" name="salidaMartes" value="{{ old('salidaMartes') }}">
                                     </div>
                                 </div>
                                 
@@ -184,14 +184,14 @@
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Entrada:</label>
                                     <div class="">
 
-                                        <input type="time" class="form-control text-contenedor" id="entradaMiercoles" name="entradaMiercoles" placeholder="00:00" required>
+                                        <input type="time" class="form-control text-contenedor" id="entradaMiercoles" name="entradaMiercoles" value="{{ old('entradaMiercoles') }}">
                                     
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Salida:</label>
                                     <div class="">
-                                        <input type="time" class="form-control text-contenedor" id="salidaMiercoles" name="salidaMiercoles" placeholder="00:00" required>
+                                        <input type="time" class="form-control text-contenedor" id="salidaMiercoles" name="salidaMiercoles" value="{{ old('salidaMiercoles') }}">
                                     </div>
                                 </div>
 
@@ -200,14 +200,14 @@
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Entrada:</label>
                                     <div class="">
 
-                                        <input type="time" class="form-control text-contenedor " id="entradaJueves" name="entradaJueves" placeholder="00:00" required>
+                                        <input type="time" class="form-control text-contenedor " id="entradaJueves" name="entradaJueves" value="{{ old('entradaJueves') }}">
                                     
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Salida:</label>
                                     <div class="">
-                                        <input type="time" class="form-control text-contenedor " id="salidaJueves" name="salidaJueves" placeholder="00:00" required>
+                                        <input type="time" class="form-control text-contenedor " id="salidaJueves" name="salidaJueves" value="{{ old('salidaJueves') }}">
                                     </div>
                                 </div>
 
@@ -216,14 +216,14 @@
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Entrada:</label>
                                     <div class="">
 
-                                        <input type="time" class="form-control text-contenedor " id="entradaViernes" name="entradaViernes" placeholder="00:00" required>
+                                        <input type="time" class="form-control text-contenedor " id="entradaViernes" name="entradaViernes" value="{{ old('entradaViernes') }}">
                                     
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Salida:</label>
                                     <div class="">
-                                        <input type="time" class="form-control text-contenedor " id="salidaViernes" name="salidaViernes" placeholder="00:00" required>
+                                        <input type="time" class="form-control text-contenedor " id="salidaViernes" name="salidaViernes" value="{{ old('salidaViernes') }}">
                                     </div>
                                 </div>
 
@@ -232,19 +232,16 @@
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Entrada:</label>
                                     <div class="">
 
-                                        <input type="time" class="form-control text-contenedor " id="entradaSabado" name="entradaSabado" placeholder="00:00" required>
+                                        <input type="time" class="form-control text-contenedor " id="entradaSabado" name="entradaSabado" value="{{ old('entradaSabado') }}">
                                     
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Salida:</label>
                                     <div class="">
-                                        <input type="time" class="form-control text-contenedor " id="salidaSabado" name="salidaSabado" placeholder="00:00" required>
+                                        <input type="time" class="form-control text-contenedor " id="salidaSabado" name="salidaSabado" value="{{ old('salidaSabado') }}">
                                     </div>
                                 </div>
-                            
-                            
-
 
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-  /* 
+/* 
 *
 *Codice
 *Nombre del Código: maestros.js
@@ -45,7 +45,6 @@ function maestro(form)
   var sabadoMensaje = validarHoras(entradaSabado.value,salidaSabado.value);
   var boton = form.querySelector('#guardar');
   
-
   //numero de cuenta
   if (cuenta.value.length < 7 || cuenta.value.length > 7) 
   {
@@ -172,16 +171,16 @@ function maestro(form)
   } 
   //Sabado
   if(sabadoMensaje != "") 
-    {
-      errorDiv.style.display = "block";
-      errorDiv.textContent = "Sabado: " + sabadoMensaje;
-      return false;
-    }
-    else
-    {
-      errorDiv.style.display = "none";
-      errorDiv.textContent = "";
-    } 
+  {
+    errorDiv.style.display = "block";
+    errorDiv.textContent = "Sabado: " + sabadoMensaje;
+    return false;
+  }
+  else
+  {
+    errorDiv.style.display = "none";
+    errorDiv.textContent = "";
+  } 
 
   boton.disabled = true;
   boton.innerText = 'Guardando...';
@@ -191,12 +190,30 @@ function maestro(form)
 
 function validarHoras(entrada, salida)
 {
-
   let horaEntrada = convertirHoras(entrada);
   let horaSalida = convertirHoras(salida);
 
   let horaMinima = convertirHoras("07:00");
   let horaMaxima = convertirHoras("18:00");
+
+
+  
+/*
+  if(horaEntrada === 0 && horaSalida === 0)
+  {
+    return "";
+  }
+  
+  if(horaEntrada === 0 && horaSalida !== 0)
+  {
+    return "hora de entrada no detectada.";
+  }
+  
+  if(horaEntrada !== 0 && horaSalida == 0)
+  {
+    return "hora de salida no detectada.";
+  }
+*/
 
   if(horaEntrada < horaMinima)
   {
@@ -249,6 +266,4 @@ function validarHoras(entrada, salida)
       return false;
     }
   }
-
 }
-
