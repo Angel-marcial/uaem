@@ -25,7 +25,7 @@ class AlumnosController extends Controller
         $nombre = $request->input('nombres');
         $noCuenta = $request->input('numeroCuenta');
         $telefono = $request->input('telefono');
-        
+
         $carreras = [
             'ingenieria-software' => 1,
             'ingenieria-industrial' => 2,

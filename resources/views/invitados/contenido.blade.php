@@ -33,7 +33,7 @@
     <body>
 
         @include('invitados.inc.navbar')
-
+        
         <div class="py-3">  
             @yield('content')
         </div>
