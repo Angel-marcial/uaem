@@ -61,35 +61,38 @@ class AlumnosController extends Controller
             }
     
             return back()->with('status', $mensaje)->with('correoEnviado', false)->withInput();
+            
         }
-
-        Usuarios::create([
-            'no_cuenta' => $request->input('numeroCuenta'),
-            'nombre' => $request->input('nombres'),
-            'apellido_paterno' => $request->input('apellidoPaterno'),
-            'apellido_materno'=> $request->input('apellidoMaterno'),
-            'telefono' => $request->input('telefono'),
-            'estatus' => true,
-        ]);
-
-        $usuario = DB::table('usuarios')->where('no_cuenta', $request->input('numeroCuenta'))->value('id');
-
-        Carrera_usuarios::create([
-            'id_usuario' => $usuario,
-            'id_carrera' => $match,
-        ]);
-        
-        $credencialesController = new credencialesController();
-        $password = $credencialesController->generarPassword();
-        $credencialesController -> enviarCredencialesAlumno($nombre,$correo,$password);
-
-        Credenciales1::create([
-            'id_usuario' => $usuario,
-            'correo' => $correo,
-            'password' => $password,
-            'rol' => 'alumno',
-        ]);
-
-        return redirect('/index')->with('status', 'Alumno creado exitosamente. !Se ha enviando un correo con los datos de inicio de sesión!');
+        else
+        {
+            $nuevoUsuario = Usuarios::create([
+                'no_cuenta' => $request->input('numeroCuenta'),
+                'nombre' => $request->input('nombres'),
+                'apellido_paterno' => $request->input('apellidoPaterno'),
+                'apellido_materno'=> $request->input('apellidoMaterno'),
+                'telefono' => $request->input('telefono'),
+                'estatus' => true,
+            ]);
+    
+            //$usuario = DB::table('usuarios')->where('no_cuenta', $request->input('numeroCuenta'))->value('id');
+    
+            Carrera_usuarios::create([
+                'id_usuario' => $nuevoUsuario->id,
+                'id_carrera' => $match,
+            ]);
+            
+            $credencialesController = new credencialesController();
+            $password = $credencialesController->generarPassword();
+            $credencialesController -> enviarCredencialesAlumno($nombre,$correo,$password);
+    
+            Credenciales1::create([
+                'id_usuario' => $nuevoUsuario->id,
+                'correo' => $correo,
+                'password' => $password,
+                'rol' => 'alumno',
+            ]);
+    
+            return redirect('/index')->with('status', 'Alumno creado exitosamente. !Se ha enviando un correo con los datos de inicio de sesión!');
+        }
     }
 }

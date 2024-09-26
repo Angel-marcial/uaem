@@ -58,46 +58,47 @@ class MaestrosController extends Controller
     
             return back()->with('status', $mensaje)->with('correoEnviado', false)->withInput();
         }
-
-        Usuarios::create([
-            'no_cuenta' => $noCuenta,
-            'nombre' => $nombre,
-            'apellido_paterno' => $paterno,
-            'apellido_materno'=> $materno,
-            'telefono' => $telefono,
-            'estatus' => true,
-        ]);
-
-        $usuario = DB::table('usuarios')->where('no_cuenta', $noCuenta)->value('id');
-
-        Horario::create([
-            'id_usuario' => $usuario,
-            'entrada_lunes' => $entradaLunes,
-            'salida_lunes' => $salidaLunes,
-            'entrada_martes' => $entradaMartes,
-            'salida_martes' => $salidaMartes,
-            'entrada_miercoles' => $entradaMiercoles,
-            'salida_miercoles' => $salidaMiercoles,
-            'entrada_jueves' => $entradaJueves,
-            'salida_jueves' => $salidaJueves,
-            'entrada_viernes' => $entradaViernes,
-            'salida_viernes' => $salidaViernes,
-            'entrada_sabado' => $entradaSabado,
-            'salida_sabado' => $salidaSabado,
-        ]);
-
-        $credencialesController = new credencialesController();
-        $password = $credencialesController->generarPassword();
-        $credencialesController -> enviarCredencialesMaestro($nombre,$correo,$password);
-
-        Credenciales1::create([
-            'id_usuario' => $usuario,
-            'correo' => $correo,
-            'password' => $password,
-            'rol' => 'maestro',
-        ]);
-
-        return redirect('/index')->with('status', 'Maestro creado exitosamente. !Se ha enviando un correo con los datos de inicio de sesión!');
-
+        else
+        {
+            Usuarios::create([
+                'no_cuenta' => $noCuenta,
+                'nombre' => $nombre,
+                'apellido_paterno' => $paterno,
+                'apellido_materno'=> $materno,
+                'telefono' => $telefono,
+                'estatus' => true,
+            ]);
+    
+            $usuario = DB::table('usuarios')->where('no_cuenta', $noCuenta)->value('id');
+    
+            Horario::create([
+                'id_usuario' => $usuario,
+                'entrada_lunes' => $entradaLunes,
+                'salida_lunes' => $salidaLunes,
+                'entrada_martes' => $entradaMartes,
+                'salida_martes' => $salidaMartes,
+                'entrada_miercoles' => $entradaMiercoles,
+                'salida_miercoles' => $salidaMiercoles,
+                'entrada_jueves' => $entradaJueves,
+                'salida_jueves' => $salidaJueves,
+                'entrada_viernes' => $entradaViernes,
+                'salida_viernes' => $salidaViernes,
+                'entrada_sabado' => $entradaSabado,
+                'salida_sabado' => $salidaSabado,
+            ]);
+    
+            $credencialesController = new credencialesController();
+            $password = $credencialesController->generarPassword();
+            $credencialesController -> enviarCredencialesMaestro($nombre,$correo,$password);
+    
+            Credenciales1::create([
+                'id_usuario' => $usuario,
+                'correo' => $correo,
+                'password' => $password,
+                'rol' => 'maestro',
+            ]);
+            
+            return redirect('/index')->with('status', 'Maestro creado exitosamente. !Se ha enviando un correo con los datos de inicio de sesión!');
+        }
     }
 }

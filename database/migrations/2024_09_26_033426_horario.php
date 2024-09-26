@@ -15,23 +15,24 @@ return new class extends Migration
         {
             $table->id();                // Crea una columna de tipo BIGINT con auto-incremento como clave primaria
             $table->Integer('id_usuario')->unique();
-            $table->time('entrada_lunes');
-            $table->time('salida_lunes');
-            $table->time('entrada_martes');
-            $table->time('salida_martes');
-            $table->time('entrada_miercoles');
-            $table->time('salida_miercoles');
-            $table->time('entrada_jueves');
-            $table->time('salida_jueves');
-            $table->time('entrada_viernes');
-            $table->time('salida_viernes');
-            $table->time('entrada_sabado');
-            $table->time('salida_sabado');
+            $table->time('entrada_lunes')->nullable();
+            $table->time('salida_lunes')->nullable();
+            $table->time('entrada_martes')->nullable();
+            $table->time('salida_martes')->nullable();
+            $table->time('entrada_miercoles')->nullable();
+            $table->time('salida_miercoles')->nullable();
+            $table->time('entrada_jueves')->nullable();
+            $table->time('salida_jueves')->nullable();
+            $table->time('entrada_viernes')->nullable();
+            $table->time('salida_viernes')->nullable();
+            $table->time('entrada_sabado')->nullable();
+            $table->time('salida_sabado')->nullable();
             $table->timestamps();        // Crea columnas created_at y updated_at
             // Definir la clave foránea
             $table->foreign('id_usuario')
             ->references('id')
-            ->on('usuarios');  
+            ->on('usuarios')
+            ->onDelete('cascade');
         });
     }
 

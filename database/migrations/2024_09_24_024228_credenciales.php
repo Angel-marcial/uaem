@@ -22,7 +22,8 @@ return new class extends Migration
             // Definir la clave foránea
             $table->foreign('id_usuario')
             ->references('id')
-            ->on('usuarios');  
+            ->on('usuarios')
+            ->onDelete('cascade');  
         });
     }
 

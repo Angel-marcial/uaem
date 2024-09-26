@@ -110,7 +110,13 @@ function maestro(form)
 
   //mensajes para las horas 
   //lunes
-  if(lunesMensaje != "") 
+
+  if(lunesMensaje === "vacio")
+  {
+    errorDiv.style.display = "none";
+    errorDiv.textContent = "";
+  }
+  else if(lunesMensaje != "") 
   {
     errorDiv.style.display = "block";
     errorDiv.textContent = "Lunes: " + lunesMensaje;
@@ -122,7 +128,12 @@ function maestro(form)
     errorDiv.textContent = "";
   }
   //martes
-  if(martesMensaje != "") 
+  if(martesMensaje === "vacio")
+  {
+    errorDiv.style.display = "none";
+    errorDiv.textContent = "";
+  }
+  else if(martesMensaje != "") 
   {
     errorDiv.style.display = "block";
     errorDiv.textContent = "Martes: " + martesMensaje;
@@ -134,7 +145,12 @@ function maestro(form)
     errorDiv.textContent = "";
   }
   //miercoles
-  if(miercolesMensaje != "") 
+  if(miercolesMensaje === "vacio")
+  {
+    errorDiv.style.display = "none";
+    errorDiv.textContent = "";
+  }
+  else if(miercolesMensaje != "") 
   {
     errorDiv.style.display = "block";
     errorDiv.textContent = "Miercoles: " + miercolesMensaje;
@@ -146,7 +162,12 @@ function maestro(form)
     errorDiv.textContent = "";
   } 
   //jueves
-  if(juevesMensaje != "") 
+  if(juevesMensaje === "vacio")
+  {
+    errorDiv.style.display = "none";
+    errorDiv.textContent = "";
+  } 
+  else if(juevesMensaje != "") 
   {
     errorDiv.style.display = "block";
     errorDiv.textContent = "Jueves: " + juevesMensaje;
@@ -157,8 +178,14 @@ function maestro(form)
     errorDiv.style.display = "none";
     errorDiv.textContent = "";
   } 
+
   //viernes
-  if(viernesMensaje != "") 
+  if(viernesMensaje === "vacio")
+  {
+    errorDiv.style.display = "none";
+    errorDiv.textContent = "";
+  }
+  else if(viernesMensaje != "") 
   {
     errorDiv.style.display = "block";
     errorDiv.textContent = "Viernes: " + viernesMensaje;
@@ -169,11 +196,30 @@ function maestro(form)
     errorDiv.style.display = "none";
     errorDiv.textContent = "";
   } 
+
   //Sabado
-  if(sabadoMensaje != "") 
+  if(sabadoMensaje === "vacio")
+  {
+    errorDiv.style.display = "none";
+    errorDiv.textContent = "";
+  }
+  else if(sabadoMensaje != "") 
   {
     errorDiv.style.display = "block";
     errorDiv.textContent = "Sabado: " + sabadoMensaje;
+    return false;
+  }
+  else
+  {
+    errorDiv.style.display = "none";
+    errorDiv.textContent = "";
+  } 
+
+  if(lunesMensaje === "vacio" && martesMensaje === "vacio" && miercolesMensaje === "vacio" 
+  && juevesMensaje === "vacio" &&  viernesMensaje === "vacio" && sabadoMensaje === "vacio")
+  {
+    errorDiv.style.display = "block";
+    errorDiv.textContent = "No se detecta ningun horario registrado";
     return false;
   }
   else
@@ -196,33 +242,29 @@ function validarHoras(entrada, salida)
   let horaMinima = convertirHoras("07:00");
   let horaMaxima = convertirHoras("18:00");
 
-
-  
-/*
   if(horaEntrada === 0 && horaSalida === 0)
   {
-    return "";
+    return "vacio";
   }
-  
-  if(horaEntrada === 0 && horaSalida !== 0)
+
+  if(horaEntrada === 0 && horaSalida !==0)
   {
-    return "hora de entrada no detectada.";
+    return "hora de entrada no detectada";
   }
-  
-  if(horaEntrada !== 0 && horaSalida == 0)
+
+  if(horaEntrada !== 0 && horaSalida ===0)
   {
-    return "hora de salida no detectada.";
-  }
-*/
+    return "hora de salida no detectada";
+  }  
 
   if(horaEntrada < horaMinima)
   {
     return "La hora de entrada debe ser mayor o igual a las 7:00 AM.";
   }
 
-  if(horaEntrada >= (horaMaxima - 60))
+  if(horaEntrada > (horaMaxima - 60))
   {
-    return "La hora de entrada debe ser menor o igual a las 5:00 PM.";
+    return "La hora de entrada debe ser mayor a las 07:00 AM y menor a las 05:00 PM";
   }
 
   if(horaSalida > horaMaxima)
@@ -232,12 +274,12 @@ function validarHoras(entrada, salida)
 
   if(horaSalida < (horaMinima + 60))
   {
-    return "La hora de salida debe ser mayor o igual a las 8:00 AM.";
+    return "La hora de salida debe ser mayor a la hora de entrada y menor o igual de las 06:00 PM";
   }
 
   if(horaEntrada >= horaSalida)
   {
-    return "la hora de entrada no puede ser mayor a la hora de salida.";
+    return "la hora de entrada no puede ser mayor o igual a la hora de salida.";
   }
 
   if(diferenciaHoras(horaEntrada, horaSalida))
@@ -249,13 +291,18 @@ function validarHoras(entrada, salida)
 
   function convertirHoras(hora) 
   {
+    if (!hora) 
+    {
+      return 0; 
+    }
+
     let [horas, minutos] = hora.split(":").map(Number);
     return horas * 60 + minutos;
   }
 
   function diferenciaHoras(entrada, salida)
   {
-    diferencia = salida - entrada;
+    let diferencia = salida - entrada;
 
     if(diferencia < 60)
     {

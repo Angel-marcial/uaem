@@ -13,7 +13,8 @@
     --color-verde: #256218;
     --color-verde-claro: #60866D;
     --color-balnco: #ffff;
-    --color-gris: #F2F2F2;
+    /*--color-gris: #F2F2F2; */
+    --color-gris: #F8F9FD; 
     --color-dorado: #96881B;
 }
 
