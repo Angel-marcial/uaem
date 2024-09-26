@@ -99,7 +99,7 @@
         <div class="col-md-7">   
 
             <h5 class="{{ session('codigoAprobado') ? '' : 'hidden' }}">Datos del Profesor</h5>
-            <div class="{{ session('codigoAprobado') ? '' : 'hidden' }} contenedor margenes-contenedor">
+            <div class="contenedor margenes-contenedor">
                 
                 <form action="{{ url('guardar-maestros') }}" method="POST" onsubmit="return maestro(this)">
                     @csrf
