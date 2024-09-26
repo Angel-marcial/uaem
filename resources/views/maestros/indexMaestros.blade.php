@@ -26,16 +26,18 @@
             </div>
         @endif
 
-    @endif
+    @else
     
-    <div class="alert alert-danger" id="errorDiv" style="display:none;"></div>
-
+        <div class="alert alert-danger" id="errorDiv" style="display:none;"></div>
+    
+    @endif  
+        
     <div class="btn-contenedor">   
         <div class="col-md-5">
             <h5 class="{{ (session('correoEnviado') || session('codigoAprobado')) ? 'hidden' : ''}} ">Verificar Correo</h5>
             <div class="{{ (session('correoEnviado') || session('codigoAprobado')) ? 'hidden' : '' }} contenedor margenes-contenedor">
                 
-                <form action="{{ url('enviar-correo-maestros') }}" method="POST" onsubmit="return deshabilitarBotonCorreo(this)">
+                <form action="{{ url('enviar-correo-maestros') }}" method="POST" onsubmit="return ValidarCorro(this)">
                     @csrf
                     <div class="row g-0 btn-contenedor margenes-contenedor">   
                         <input type="hidden" name="redirectRoute" value="{{ url('index-maestros') }}">
@@ -56,7 +58,7 @@
     <div class="btn-contenedor">   
         <div class="col-md-5">   
             <h5 class="{{ session('correoEnviado') ? '' : 'hidden' }}">Validar Correo</h5>
-            <div class=" contenedor margenes-contenedor">
+            <div class="{{ session('correoEnviado') ? '' : 'hidden' }} contenedor margenes-contenedor">
                 <form action="{{ url('codigo-seguridad') }}" method="POST" onsubmit="return deshabilitarBotonCodigo(this)">
                     <label class="form-label titulos margenes-contenedor">Codigo de seguridad</label>
                     @csrf
@@ -103,28 +105,42 @@
                     @csrf
                     <div class="margenes-contenedor">
 
+                        <div class="row g-0">
+                            <div class="col-sm-6 col-md-8">
+
+                            </div>
+                            <div class="col-6 col-md-4">
+
+                                <div> 
+                                    <label for="numeroCuenta" class="form-label titulos margenes-contenedor">No de cuenta</label>
+                                    <input type="number" class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta" placeholder="0000000" value="{{ old('numeroCuenta') }}" required>
+                                </div>
+
+                            </div>
+                        </div>
+
                         <div>
                             <label for="nombres" class="form-label titulos margenes-contenedor">Nombres</label>
-                            <input type="text" class="form-control text-contenedor " id="nombres" name="nombres" placeholder="Nombres" required oninput="validarTextos(this)">
+                            <input type="text" class="form-control text-contenedor " id="nombres" name="nombres" placeholder="Nombres" value="{{ old('nombres') }}" required oninput="validarTextos(this)">
                         </div>
 
                         <div>
                             <label for="apellidoPaterno" class="form-label titulos margenes-contenedor">Apellido Paterno</label>
-                            <input type="text" class="form-control text-contenedor " id="apellidoPaterno" name="apellidoPaterno" placeholder="Apellido Paterno" required oninput="validarTextos(this)">
+                            <input type="text" class="form-control text-contenedor " id="apellidoPaterno" name="apellidoPaterno" placeholder="Apellido Paterno" value="{{ old('apellidoPaterno') }}" required oninput="validarTextos(this)">
                         </div>
 
                         <div>
                             <label for="apellidoMaterno" class="form-label titulos margenes-contenedor">Apellido Materno</label>
-                            <input type="text" class="form-control text-contenedor " id="apellidoMaterno" name="apellidoMaterno" placeholder="Apellido Materno" required oninput="validarTextos(this)">
+                            <input type="text" class="form-control text-contenedor " id="apellidoMaterno" name="apellidoMaterno" placeholder="Apellido Materno" value="{{ old('apellidoMaterno') }}" required oninput="validarTextos(this)">
                         </div>
 
                         <div>
                             <label for="telefono" class="form-label titulos margenes-contenedor">Telefono</label>
-                            <input type="number" class="form-control text-contenedor " id="telefono" name="telefono" placeholder="7200000000" oninput="validarTelefono(this)" required>
+                            <input type="number" class="form-control text-contenedor " id="telefono" name="telefono" placeholder="7200000000" value="{{ old('telefono') }}" required oninput="validarTelefono(this)">
                         </div>
                         
                         <h5>Horario</h5>
-
+                    
                         <div class="container text-center">
                             <div class="row g-2">
 
@@ -133,7 +149,7 @@
                                     <label for="espacio" class="form-label titulos margenes-contenedor">Entrada:</label>
                                     <div class="">
                                         
-                                        <input type="time" class="form-control text-contenedor" id="entradaLunes" name="entradaLunes" placeholder="00:00" required>
+                                        <input type="time" class="form-control text-contenedor" id="entradaLunes" name="entradaLunes" placeholder="00:00" value="{{ old('entradaLunes') }}" required>
 
                                     </div>
 
@@ -142,7 +158,7 @@
                                     <label for="espacio" class="form-label titulos margenes-contenedor">salida:</label>
                                     <div class="">
 
-                                        <input type="time" class="form-control text-contenedor" id="salidaLunes" name="salidaLunes" placeholder="00:00" required>
+                                        <input type="time" class="form-control text-contenedor" id="salidaLunes" name="salidaLunes" placeholder="00:00" value="{{ old('salidaLune') }}" required>
 
                                     </div>
                                 </div>
@@ -232,7 +248,7 @@
 
                             </div>
                         </div>
-
+                    
                         <div class="btn-contenedor">
                             <button type="submit" class="btn-custom" id="guardar">Guardar</button>
                         </div>

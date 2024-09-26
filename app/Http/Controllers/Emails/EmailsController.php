@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Emails;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Mail\MiCorreo;
-use App\Models\Alumno;
-use App\Models\Carreras;
+use App\Models\Credenciales1;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -16,11 +15,8 @@ class EmailsController extends Controller
     {
         //'/^[a-zA-Z0-9._%+-]+@gmail\.com$/';
         $correoAlumno = '/^[\w.-]+@alumno\.uaemex\.mx$/';        
-
         $destinatario = $request->input('correo');
-
-        /*
-        $correo s = Alumno::pluck('correo');
+        $correos = Credenciales1::pluck('correo');
 
         foreach($correos as $correo)
         {
@@ -30,11 +26,9 @@ class EmailsController extends Controller
                 ->with('correoEnviado',false);
             }
         }
-        */
 
         if(preg_match($correoAlumno,$destinatario))
         {
-
             $codigo = random_int(1000000, 9999999);
             $request->session()->put('codigo', $codigo);
             $nombre = 'Alumno'; 
@@ -43,7 +37,6 @@ class EmailsController extends Controller
 
             return redirect('index-alumnos')->with('status', 'se ha enviado un codigo de verificacion al correo: '. $destinatario)
             ->with('correoEnviado',true);
-
         }
         else
         {
@@ -52,22 +45,30 @@ class EmailsController extends Controller
         }
     }
 
+
+
     public function enviarCorreoMaestros(Request $request)
     {
         //$correoMaestro= '/^[\w.-]+@profesor\.uaemex\.mx$/';  
         $correoMaestro = '/^[\w.-]++@gmail\.com$/';     
-
-
         $destinatario = $request->input('correo');
+        $correos = Credenciales1::pluck('correo');
 
+        foreach($correos as $correo)
+        {
+            if($correo == $destinatario)
+            {
+                return redirect('index-maestros')->with('status', 'El correo '.$destinatario. ' ya se encuentra registrado')
+                ->with('correoEnviado',false);
+            }
+        }
 
         if(preg_match($correoMaestro,$destinatario))
         {
-
             $codigo = random_int(1000000, 9999999);
             $request->session()->put('codigo', $codigo);
-            $nombre = 'profesor'; 
-
+            $nombre = 'Profesor'; 
+            $request->session()->put('destinatario', $destinatario);
             Mail::to($destinatario)->send(new MiCorreo($nombre, $codigo));
 
             return redirect('index-maestros')->with('status', 'se ha enviado un codigo de verificacion al correo: '. $destinatario)
@@ -98,7 +99,6 @@ class EmailsController extends Controller
         // Convertir a número si es necesario
         $codigoCompleto = intval($codigoCompleto);
 
-
         if($codigo == $codigoCompleto)
         {
             return redirect($ruta)->with('status', 'Codigo de seguridad aprobado')
@@ -109,7 +109,6 @@ class EmailsController extends Controller
             return redirect($ruta)->with('status', 'Codigo de seguridad incorrecto')
             ->with('codigoAprobado',false);
         }
-
     }
 
     public function correo()

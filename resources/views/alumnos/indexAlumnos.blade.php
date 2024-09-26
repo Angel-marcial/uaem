@@ -27,9 +27,13 @@
                 </div>
             @endif
 
-        @endif
+        @else
 
-        <div class="alert alert-danger" id="errorDiv" style="display:none;"></div>
+            <div class="alert alert-danger" id="errorDiv" style="display:none;">
+                <!--<button type="submit" class="btn-custom " id="cancelar">X</button>-->
+            </div>
+
+        @endif
 
         <div class="btn-contenedor">   
             <div class="col-md-5">
@@ -151,7 +155,7 @@
 
                             <div>
                                 <label for="telefono" class="form-label titulos margenes-contenedor">Telefono</label>
-                                <input type="tel" class="form-control text-contenedor " id="telefono" name="telefono" placeholder="7200000000" oninput="validarTelefono(this)" value="{{ old('telefono') }}" required>
+                                <input type="number" class="form-control text-contenedor " id="telefono" name="telefono" placeholder="7200000000" value="{{ old('telefono') }}" required oninput="validarTelefono(this)">
                             </div>
 
 

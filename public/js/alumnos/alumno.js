@@ -80,15 +80,13 @@ function alumno(form)
     if(telefono.value.length !== 10)
     {
         errorDiv.style.display = "block";
-        errorDiv.textContent = "El número de teléfono debe tener exactamente 10 dígitos." + telefono.length.length ;
+        errorDiv.textContent = "El número de teléfono debe tener exactamente 10 dígitos.";
         return false;
     }else
     {
         errorDiv.style.display = "none";
         errorDiv.textContent = "";
     }
-
-
 
     boton.disabled = true;
     boton.innerText = 'Guardando...';

@@ -43,6 +43,7 @@
         <script src="{{ asset('js/botones.js') }}"></script>
         <script src="{{ asset('js/validaciones.js') }}"></script>
         <script src="{{ asset('js/maestros/maestro.js') }}"></script>
+        <script src="{{ asset('js/maestros/correo.js') }}"></script>
     </body>
 
 </html>

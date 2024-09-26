@@ -15,7 +15,13 @@ class credencialesController extends Controller
 
         Mail::to($destinatario)->send(new Credenciales($nombre, $correo, $password));
     }
-    
+
+    public function enviarCredencialesMaestro($nombre, $correo, $password)
+    {
+        $destinatario = $correo;
+
+        Mail::to($destinatario)->send(new Credenciales($nombre, $correo, $password));
+    }
 
     public function generarPassword()
     {

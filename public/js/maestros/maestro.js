@@ -13,12 +13,12 @@ para los formularios maestros  .
 function maestro(form)
 {
   var regexPalabra = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
-  //$regexMaestro= '/^[\w.-]+@profesor\.uaemex\.mx$/';
-  $regexMaestro = '/^[\w.-]++@gmail\.com$/';
-
+  var errorDiv = document.getElementById("errorDiv");
+  var cuenta = form.querySelector('#numeroCuenta');
   var nombres = form.querySelector('#nombres');
   var paterno = form.querySelector('#apellidoPaterno');
   var materno = form.querySelector('#apellidoMaterno');
+  var telefono = form.querySelector('#telefono');
   //lunes
   var entradaLunes = form.querySelector('#entradaLunes');
   var salidaLunes = form.querySelector('#salidaLunes');
@@ -43,9 +43,21 @@ function maestro(form)
   var entradaSabado = form.querySelector('#entradaSabado');
   var salidaSabado = form.querySelector('#salidaSabado');
   var sabadoMensaje = validarHoras(entradaSabado.value,salidaSabado.value);
+  var boton = form.querySelector('#guardar');
   
 
+  //numero de cuenta
+  if (cuenta.value.length < 7 || cuenta.value.length > 7) 
+  {
+    errorDiv.style.display = "block";
+    errorDiv.textContent = "El número de cuenta debe tener 7 dígitos.";
+    return false;
 
+  }else
+  {
+    errorDiv.style.display = "none";
+    errorDiv.textContent = "";
+  }
 
   //nombre del maestro
   if(!regexPalabra.test(nombres.value))
@@ -80,6 +92,17 @@ function maestro(form)
     errorDiv.textContent = "El apellido materno solo puede contener letras.";
     return false;
 
+  }else
+  {
+    errorDiv.style.display = "none";
+    errorDiv.textContent = "";
+  }
+  //telefono
+  if(telefono.value.length !== 10)
+  {
+    errorDiv.style.display = "block";
+    errorDiv.textContent = "El número de teléfono debe tener exactamente 10 dígitos.";
+    return false;
   }else
   {
     errorDiv.style.display = "none";
