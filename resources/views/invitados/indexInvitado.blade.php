@@ -27,7 +27,7 @@
 
                         <div>
                             <label for="nombres" class="form-label titulos margenes-contenedor">Nombre completo</label>
-                            <input type="text" class="form-control text-contenedor " id="nombres" name="nombres" placeholder="Angel Geovanni Garcia Garcia" required>
+                            <input type="text" class="form-control text-contenedor " id="nombres" name="nombres" placeholder="Nombre Completo" required >
                         </div>
 
                         <div>
@@ -57,9 +57,8 @@
                             <div class="col-6 col-md-4">
                         
                                 <label for="dia" class="form-label titulos margenes-contenedor">Hora de la visita:</label>
-                                <input type="Text" class="form-control text-contenedor " id="telefono" name="telefono" placeholder="10:00" required>
+                                <input type="time" class="form-control text-contenedor " id="telefono" name="telefono" placeholder="10:00" required>
                             
-                        
                             </div>
                         </div>
 
