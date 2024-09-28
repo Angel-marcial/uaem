@@ -35,7 +35,7 @@ function validarTelefono(input)
     }
 }
 
-
+// Validar textos para los formularios.  
 function validarTextos(input)
 {
     input.value = input.value.replace(/\d/g, '');
@@ -46,3 +46,68 @@ function validarTextos(input)
             return letra.toUpperCase();
         });
 }
+
+// Validar textos para los apellidos  
+function validarTextos2(input)
+{
+    input.value = input.value.replace(/\d/g, '');
+
+    input.value = input.value
+    .toLowerCase()
+    .replace(/\b\w/g, function(letra) {
+        return letra.toUpperCase();
+    });
+
+    const palabras = input.value.split(' ');
+
+    if (input.value === '') 
+    {
+        errorDiv.style.display = 'block'; // Mostrar el div de error
+        errorDiv.innerHTML = "El campo no puede estar vacío."; // Mensaje de error
+        input.style.borderColor = 'red';
+        return;
+    }else if(palabras.length > 2)
+    {
+        errorDiv.style.display = 'block'; // Mostrar el div de error
+        errorDiv.innerHTML = "no puedes ingresar mas de dos palabras"; // Mensaje de error
+        input.style.borderColor = 'red';
+        return;
+    }else
+    {
+        errorDiv.style.display = "none";
+        errorDiv.textContent = "";
+        input.style.borderColor = '#96881B';
+    }
+}
+
+
+
+/*
+function validarTextos(input) 
+{
+    const errorDiv = document.getElementById('errorDiv');
+    // Eliminar cualquier número
+    input.value = input.value.replace(/\d/g, '');
+    // Eliminar espacios extra al inicio y al final, y reducir múltiples espacios a uno solo
+
+
+    // Verificar que el campo no esté vacío
+    if (input.value === '') 
+    {
+        errorDiv.style.display = 'block'; // Mostrar el div de error
+        errorDiv.innerHTML = "El campo no puede estar vacío."; // Mensaje de error
+        input.style.borderColor = 'red';
+        return;
+    }
+
+    const palabras = input.value.split(' ');
+
+    if (palabras.length > 2) 
+    {
+        errorDiv.style.display = 'block'; // Mostrar el div de error
+        errorDiv.innerHTML = "no puedes ingresar mas de dos palabras"; // Mensaje de error
+        return;
+    }
+    
+}
+*/
