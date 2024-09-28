@@ -37,7 +37,6 @@
 
     @endif
 
-
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6"> <!-- Columna para la imagen -->
@@ -69,7 +68,20 @@
     </div>
 
     <div style="margin-top: 50px;">
-        <img src="{{ asset('prueba.png') }}" alt="uapt" class="img-fluid" style="height: 400px;">
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
     </div>
 
 @endsection
