@@ -25,8 +25,7 @@ function onScanSuccess(decodedText, decodedResult)
 
 
 
-
-
+    /*
     // Detener la cámara después de detectar un código QR
     html5QrCode.stop().then(() => 
     {
@@ -35,6 +34,7 @@ function onScanSuccess(decodedText, decodedResult)
     {
         console.error("Error al detener la cámara: ", err);
     });
+    */
 }
 
 var html5QrCode = new Html5Qrcode("reader");
