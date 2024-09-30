@@ -51,7 +51,7 @@
                 <h3 class="mb-4 titulos">Unidad Académica Profesional Tianguistenco</h3>
                 <h4 class="mb-4 titulos">Iniciar Sesión</h4>
 
-                <form action="{{ url('login') }}" method="POST" onsubmit="return login(this)">
+                <form onsubmit="return login(this)">
                     @csrf
                     <div class="mb-3">
                         <label for="correo" class="form-label titulos">Correo:</label>
