@@ -38,17 +38,7 @@ function alumno(form)
     }
 
     //nombre del alumno
-    if(!regexPalabra.test(nombres.value))
-    {
-        errorDiv.style.display = "block";
-        errorDiv.textContent = "El nombre solo puede contener letras.";
-        return false;
-
-    }else
-    {
-        errorDiv.style.display = "none";
-        errorDiv.textContent = "";
-    }
+    validarNombres(nombres);
 
     //apellido paterno
     if(!regexPalabra.test(paterno.value))
@@ -94,4 +84,24 @@ function alumno(form)
     return true;
 }
 
+function validarNombres(input)
+{
+    var errorDiv = document.getElementById("errorDiv");
+    var regexPalabra = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+
+
+    if(!regexPalabra.test(input.value))
+    {
+        errorDiv.style.display = "block";
+        errorDiv.textContent = "El nombre solo puede contener letras.";
+        input.style.borderColor = 'red';
+        return false;
+
+    }else
+    {
+        errorDiv.style.display = "none";
+        errorDiv.textContent = "";
+        input.style.borderColor = '#96881B';
+    }
+}
 

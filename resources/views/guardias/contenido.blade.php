@@ -1,11 +1,11 @@
 <!--
     Codice
     Nombre del Código: contenido.blade.php
-    Fecha de Creación: 22/08/2024 revisado por Angel Geovanni Marcial Morales
+    Fecha de Creación: 27/09/2024 revisado por Angel Geovanni Marcial Morales
 
     Modificaciones:
 
-    Descripción: Este archivo PHP contiene las dependencias, fuentes y links que usuara la interfaz usuarios
+    Descripción: Este archivo PHP contiene las dependencias, fuentes y links que usuara la interfaz guardias
 -->
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Universidad Autónoma del Estado de México</title>
+        <title>Control de Acceso</title>
         <link href="{{ asset('logo.png') }}" rel="icon" type="image/png">
 
         <!--Bootstrap-->
@@ -29,19 +29,23 @@
         
         <!--Estilos-->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+        
     </head> 
 
     <body>
 
-        @include('usuarios.inc.navbar')
+        @include('guardias.inc.navbar')
 
         <div class="py-3">  
             @yield('content')
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-        <script src=" {{ asset('js/validaciones.js') }}"></script>
-        <script src=" {{ asset('js/login/login.js' )}}"></script>
+        <script src=" {{ asset('js/botones.js') }}"></script>
+        <script src=" {{ asset('js/guardias/guardia.js') }}"></script>
+        
     </body>
 
 </html>
+

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Index;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class  IndexController extends Controller
 {
@@ -19,5 +21,24 @@ class  IndexController extends Controller
     {
         return view('invitados.indexInvitado');
     }
+
+    public function IndexGuardias()
+    {
+        return view('guardias.indexGuardia');
+    }
+
+    public function login(Request $request)
+    {
+        $correo = $request->input('correo');
+        $password = $request->input('contra');
+
+        
+        $usuario = DB::table('credenciales')->where('correo', $correo)->where('password', $password)->first();
+
+ 
+    }
+
+
+
 
 }
