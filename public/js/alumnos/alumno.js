@@ -104,3 +104,4 @@ function validarNombres(input)
         input.style.borderColor = '#96881B';
     }
 }
+

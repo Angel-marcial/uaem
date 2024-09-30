@@ -67,7 +67,7 @@ Route::post('codigo-seguridad', [EmailsController::class,'codigoSeguridad']);
 //Route::get('indexInvitado', [IndexController::class,'indexInvitado']);
 
 
-
+Route::get('index-guardia', [IndexController::class,'IndexGuardias']);
 
 
 

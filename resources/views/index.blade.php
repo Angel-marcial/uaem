@@ -69,18 +69,7 @@
 
     <div style="margin-top: 50px;">
 
-
-
-
-
-        
-
-
-
-
-
-
-
+        <img src="{{ asset('prueba.png') }}" alt="uapt" class="img-fluid" style="height: 400px;">
 
     </div>
 

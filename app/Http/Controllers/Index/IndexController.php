@@ -20,4 +20,9 @@ class  IndexController extends Controller
         return view('invitados.indexInvitado');
     }
 
+    public function IndexGuardias()
+    {
+        return view('guardias.indexGuardia');
+    }
+
 }
