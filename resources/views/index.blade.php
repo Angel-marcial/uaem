@@ -36,6 +36,10 @@
             {{ session('status') }}
         </div>
 
+    @else
+
+        <div class="alert alert-danger" id="errorDiv" style="display:none;"></div>
+
     @endif
 
     <div class="container mt-5">
@@ -47,7 +51,7 @@
                 <h3 class="mb-4 titulos">Unidad Académica Profesional Tianguistenco</h3>
                 <h4 class="mb-4 titulos">Iniciar Sesión</h4>
 
-                <form >
+                <form action="{{ url('login') }}" method="POST" onsubmit="return login(this)">
                     @csrf
                     <div class="mb-3">
                         <label for="correo" class="form-label titulos">Correo:</label>
@@ -55,10 +59,10 @@
                     </div>
                     <div class="mb-3">
                         <label for="contra" class="form-label titulos">Contraseña:</label>
-                        <input type="password" class="form-control text-contenedor" id="contra" name="contra" placeholder="*********" required>
+                        <input type="password" class="form-control text-contenedor" id="contra" name="contra" maxlength="10" placeholder="*********" required>
                     </div>
                     <div class="btn-contenedor">
-                        <button type="submit" class="btn-custom">Iniciar Sesión</button>
+                        <button type="submit" class="btn-custom" id="verificar">Iniciar Sesión</button>
                     </div>
                     <div class="btn-contenedor">
                         <a href="http://web.uaemex.mx/avisos/Aviso_Privacidad.pdf" class="btn-link">Aviso de Privacidad</a>

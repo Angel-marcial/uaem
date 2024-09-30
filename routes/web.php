@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Firebase\ContactsControler;
 use App\Http\Controllers\Maestros\MaestrosController;
 use App\Models\Alumno;
+use Illuminate\Auth\Events\Login;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,7 @@ Route::post('codigo-seguridad', [EmailsController::class,'codigoSeguridad']);
 //Route::get('indexMaestros', [IndexController::class,'indexMaestros']);
 //Route::get('indexInvitado', [IndexController::class,'indexInvitado']);
 
+Route::post('login', IndexController::class,'login');
 
 Route::get('index-guardia', [IndexController::class,'IndexGuardias']);
 
