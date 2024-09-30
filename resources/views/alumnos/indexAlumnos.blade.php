@@ -110,8 +110,7 @@
                     <form action="{{ url('guardar-alumnos') }}" method="POST" onsubmit="return alumno(this)">
                         @csrf
                         
-                            <div class="margenes-contenedor">
-
+                        <div class="margenes-contenedor">
 
                             <div class="row g-0">
                                 <div class="col-sm-6 col-md-8">

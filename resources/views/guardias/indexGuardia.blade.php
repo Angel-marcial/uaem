@@ -12,8 +12,51 @@
 
 @section('content')
 
+<div class="btn-contenedor ">
+    <h1>Bienvenido</h1>
+</div>
+
+<div class="margenes-grandes">
+
+    <div class="row g-0">
+
+        <div class="col-sm-6 col-md-6">
+
+            <div class="reader" id="reader"></div>
+            <div id="result"></div>
+            <div class="fuente" id="status">Iniciando cámara...</div> <!-- Mensaje de estado -->
+
+        </div>
+        
+        <div class="col-6 col-md-6">
+    
+            <div> 
+                <label for="numeroCuenta" class="form-label titulos margenes-contenedor">No de cuenta</label>
+                <input type="number" class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta" placeholder="0000000" value="{{ old('numeroCuenta') }}" disabled>
+            </div>
+
+            <div> 
+                <label for="carrera" class="form-label titulos margenes-contenedor">Carrera</label>
+                <input type="text" class="form-control text-contenedor btn-contenedor" id="carrera" name="carrera" placeholder="Carrera" value="{{ old('carrera') }}" disabled>
+            </div>
+
+            <div> 
+                <label for="estatus" class="form-label titulos margenes-contenedor">Estatus</label>
+                <input type="text" class="form-control text-contenedor btn-contenedor" id="estatus" name="estatus" placeholder="Desconocido" value="{{ old('numeroCuenta') }}" required>
+            </div>
+    
+        </div>
+
+    </div>
+
+</div>
 
 
+
+
+
+
+<!--
 
 <h1>Acceso a la Cámara</h1>
 <video id="video" width="500" height="500" autoplay></video>
@@ -49,5 +92,7 @@
         document.getElementById('status').innerText = 'La API getUserMedia no está soportada por este navegador.';
     }
 </script>
+
+-->
 
 @endsection
