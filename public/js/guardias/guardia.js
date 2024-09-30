@@ -10,15 +10,29 @@
 para la interfaz guardia . 
 */
 
-function onScanSuccess(decodedText, decodedResult) {
+function onScanSuccess(decodedText, decodedResult) 
+{
+
+    
+
+    //carrra
+    document.getElementById('carrera').innerText = 'hola';
+
+
     // Muestra el texto decodificado
     document.getElementById('result').innerText = `Código QR detectado: ${decodedText}`;
     document.getElementById('status').innerText = '¡Éxito! Código QR detectado.';
 
+
+
+
+
     // Detener la cámara después de detectar un código QR
-    html5QrCode.stop().then(() => {
+    html5QrCode.stop().then(() => 
+    {
         console.log("Cámara detenida después de detectar el código QR.");
-    }).catch((err) => {
+    }).catch((err) => 
+    {
         console.error("Error al detener la cámara: ", err);
     });
 }

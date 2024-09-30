@@ -37,7 +37,7 @@
 
             <div> 
                 <label for="carrera" class="form-label titulos margenes-contenedor">Carrera</label>
-                <input type="text" class="form-control text-contenedor btn-contenedor" id="carrera" name="carrera" placeholder="Carrera" value="{{ old('carrera') }}" disabled>
+                <label class="form-control text-contenedor btn-contenedor" id="carrera" name="carrera">Carrera</label>
             </div>
 
             <div> 
