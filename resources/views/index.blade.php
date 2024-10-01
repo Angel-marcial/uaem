@@ -72,7 +72,6 @@
         </div>
     </div>
 
-
     <!-- Estilo para agregar la imagen de fondo sin alterar el diseño -->
     <style>
         .background-custom {

@@ -35,7 +35,6 @@ class  IndexController extends Controller
         
         $usuario = DB::table('credenciales')->where('correo', $correo)->where('password', $password)->first();
 
-
     }
 
 
