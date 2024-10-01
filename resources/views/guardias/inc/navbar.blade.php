@@ -16,10 +16,13 @@
 
         <h2 class="cabecera mx-auto" >Universidad Autónoma del Estado de México</h2>
 
-        <button class="navbar-toggler btn-cabecera" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" 
-                aria-label="Toggle navigation" onclick="window.location.href='{{ url('index') }}'">
-            <h3>< </h3>
-        </button>
+        <form action="{{ url('cerrar-session') }}" method="POST" style="display: inline;">
+            @csrf
+            <button class="navbar-toggler btn-cabecera" type="submit" aria-label="Cerrar sesión">
+                <h3><</h3>
+            </button>
+        </form>
+        
         
     </div>
     </nav>

@@ -9,17 +9,12 @@
 
 *Descripción: Este archivo PHP guarda las rutas de la app
 */
-
 use App\Http\Controllers\Alumnos\AlumnosController;
-use App\Http\Controllers\Emails\credencialesController;
 use App\Http\Controllers\Emails\EmailsController;
 use App\Http\Controllers\Index\IndexController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Firebase\ContactsControler;
+use App\Http\Controllers\Guardias\GuardiasController;
 use App\Http\Controllers\Maestros\MaestrosController;
-use App\Models\Alumno;
-use Illuminate\Auth\Events\Login;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,23 +56,14 @@ Route::post('enviar-correo-alumnos', [EmailsController::class,'enviarCorreoAlumn
 Route::post('enviar-correo-maestros', [EmailsController::class,'enviarCorreoMaestros']);
 Route::post('codigo-seguridad', [EmailsController::class,'codigoSeguridad']);
 
-//rutas envio de credenciales 
-//Route::post('credenciales-alumno',[CredencialesController::class,'enviarCredencialesAlumno']);
+//zona de prueba
+Route::post('login', [IndexController::class, 'login']);
 
-//Route::get('indexMaestros', [IndexController::class,'indexMaestros']);
-//Route::get('indexInvitado', [IndexController::class,'indexInvitado']);
+Route::get('index-guardia', [GuardiasController::class, 'indexGuardias'])
+->middleware('auth.guard')
+->name('guardias.index');
 
-//Route::post('login', IndexController::class,'login');
-
-Route::get('index-guardia', [IndexController::class,'IndexGuardias']);
-
-
-
-
-
-
-
-
+Route::post('cerrar-session', [IndexController::class, 'logout']);   
 
 //Route::post('alumnos', [AlumnosController::class, 'store'])->name('alumnos.store');
 

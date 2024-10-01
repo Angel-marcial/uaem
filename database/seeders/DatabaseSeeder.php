@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         // Llamar al CarreraSeeder para poblar la tabla de carreras
         $this->call(CarreraSeeder::class);
-
+        $this->call(UsuariosSeeder::class);
 
         // \App\Models\User::factory(10)->create();
 

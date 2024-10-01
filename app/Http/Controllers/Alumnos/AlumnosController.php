@@ -9,11 +9,6 @@ use App\Models\Credenciales1;
 use App\Models\Carrera_usuarios;
 use App\Models\Usuarios;
 
-use Illuminate\Support\Facades\DB;
-
-use function Laravel\Prompts\password;
-use function Laravel\Prompts\select;
-
 class AlumnosController extends Controller
 {
     
