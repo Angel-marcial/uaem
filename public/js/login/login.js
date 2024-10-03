@@ -13,7 +13,6 @@ para el login.
 function login(form)
 {
     var errorDiv = document.getElementById("errorDiv");
-
     var regexMaestro= /^[\w.-]+@profesor\.uaemex\.mx$/;
     var regexAlumno = /^[\w.-]+@alumno\.uaemex\.mx$/;
     var regexgmail = /^[\w.-]+@gmail\.com$/;
@@ -62,6 +61,15 @@ function login(form)
 
     boton.disabled = true;
     boton.innerText = 'Verificando...';
+
+
+    setTimeout(function() {
+        form.reset();
+        boton.disabled = false; 
+        boton.innerText = 'Iniciar Sesión'; 
+        errorDiv.style.display = "none";
+        errorDiv.textContent = "";
+    }, 2000); 
 
     return true;
 }

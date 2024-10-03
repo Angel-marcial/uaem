@@ -15,15 +15,15 @@
         <img src="{{ asset('logo.png') }}" alt="Logo" class="img-fluid" style="height: 50px;">
 
         <h2 class="cabecera mx-auto" >Universidad Autónoma del Estado de México</h2>
-
+        
         <form action="{{ url('cerrar-session') }}" method="POST" style="display: inline;">
             @csrf
             <button class="navbar-toggler btn-cabecera" type="submit" aria-label="Cerrar sesión">
                 <h3><</h3>
             </button>
         </form>
-        
-        
+    
     </div>
     </nav>
 </div>
+

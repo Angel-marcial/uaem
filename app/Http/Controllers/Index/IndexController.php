@@ -37,27 +37,28 @@ class  IndexController extends Controller
         {
             if($usuario->rol == "guardia")
             {
-                session(['id' => $usuario->id, 'rol' => $usuario->rol]);
-                return redirect()->route('guardias.index')->with('success', 'Inicio de sesión exitoso.');
+                session(['id' => $usuario->id, 'rol' => $usuario->rol, 'ruta' => 'index-guardia']);
+                return redirect('index-guardia');
             }
-            else
+            else if($usuario->rol == "alumno")
             {
-                return redirect()->back()->with('error', 'Credenciales incorrectas.')->withInput();
+                session(['id' => $usuario->id, 'rol' => $usuario->rol, 'ruta' => 'consulta-alumnos']);
+                return redirect('consulta-alumnos');
             }
         }
         else
         {
-            return redirect()->back()->with('error', 'Credenciales incorrectas.')->withInput();
+            return redirect()->back()->with('status', 'Correo o Contraseña inconrrectos')->with('error',false);
         }
     }
     
-    public function logout(Request $request)
+    public function cerrarSession(Request $request)
     {
         // Elimina las variables específicas de la sesión
         $request->session()->flush();
 
         // Redirige al usuario a la página de inicio de sesión u otra página
-        return redirect('index-maestros')->with('success', 'Sesión cerrada exitosamente.');
+        return redirect('index')->with('success', 'Sesión cerrada exitosamente.');
     }
 
 

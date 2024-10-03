@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Alumnos;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Emails\credencialesController;
 use App\Http\Controllers\Emails\EmailsController;
+use App\Models\Alumnos;
 use Illuminate\Http\Request;
 use App\Models\Credenciales1;
 use App\Models\Carrera_usuarios;
@@ -11,7 +12,31 @@ use App\Models\Usuarios;
 
 class AlumnosController extends Controller
 {
-    
+    public function consultaAlumnos(Request $request)
+    {
+        $id = $request->session()->get('id');
+        $rol = $request->session()->get('rol');
+        $ruta = $request->session()->get('ruta');
+
+
+
+        if($rol == 'alumno')
+        {
+            //$alumnos = Alumno::with('credenciales')->get(); 
+
+            $alumno = Alumnos::find($id);
+            return view('alumnos.consulta', compact('alumno'));
+        }
+        else if($rol !== 'alumno')
+        {
+            return redirect($ruta);
+        }
+        else
+        {
+            return redirect('index');
+        }
+    }
+
     public function guardarAlumnos(Request $request)
     {
         $EmailsController = new EmailsController();
@@ -89,5 +114,13 @@ class AlumnosController extends Controller
     
             return redirect('/index')->with('status', 'Alumno creado exitosamente. !Se ha enviando un correo con los datos de inicio de sesión!');
         }
+    }
+
+    function editarAlumno(Request $request, $id)
+    {
+
+
+
+        
     }
 }

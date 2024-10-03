@@ -43,6 +43,9 @@ Route::get('index', function () {
 //rutas alumnos
 Route::get('index-alumnos', [IndexController::class,'indexAlumnos']);
 Route::post('guardar-alumnos', [AlumnosController::class,'guardarAlumnos']);
+Route::get('consulta-alumnos', [AlumnosController::class,'consultaAlumnos'])
+->middleware('auth.guard')
+->name('consulta.alumno');
 
 //rutas maestros
 Route::get('index-maestros', [IndexController::class, 'indexMaestros']);
@@ -63,8 +66,7 @@ Route::get('index-guardia', [GuardiasController::class, 'indexGuardias'])
 ->middleware('auth.guard')
 ->name('guardias.index');
 
-Route::post('cerrar-session', [IndexController::class, 'logout']);   
-
+Route::post('cerrar-session', [IndexController::class, 'cerrarSession']);   
 //Route::post('alumnos', [AlumnosController::class, 'store'])->name('alumnos.store');
 
 /*

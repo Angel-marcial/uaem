@@ -8,8 +8,6 @@
     Descripción: Este archivo PHP contiene las dependencias, fuentes y links que usuara la interfaz alumnos
 -->
 
-
-
 <!DOCTYPE html>
 
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -31,6 +29,9 @@
         
         <!--Estilos-->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+        <script src=" {{ asset('js/alumnos/alumno.js' )}}"></script>
+
     </head> 
 
     <body>
@@ -44,8 +45,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
         <script src=" {{ asset('js/botones.js') }}"></script>
         <script src=" {{ asset('js/validaciones.js') }}"></script>
-        <script src=" {{ asset('js/alumnos/alumno.js' )}}"></script>
-        
+        <script src=" {{ asset('js/alumnos/alumno.js')}}"></script>
+
     </body>
 
 </html>

@@ -30,16 +30,17 @@
 
 <div class="margenes-contenedor">
 
+    <div class="alert alert-danger" id="errorDiv" style="display:none;"></div>
+
     @if (session('status'))
-
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-
-    @else
-
-        <div class="alert alert-danger" id="errorDiv" style="display:none;"></div>
-
+        <script>
+            document.addEventListener("DOMContentLoaded", function() 
+            {
+                var errorDiv = document.getElementById('errorDiv');
+                errorDiv.textContent = "{{ session('status') }}"; // Mensaje de error
+                errorDiv.style.display = "block"; // Muestra el div
+            });
+        </script>
     @endif
 
     <div class="container mt-5">
@@ -51,7 +52,7 @@
                 <h3 class="mb-4 titulos">Unidad Académica Profesional Tianguistenco</h3>
                 <h4 class="mb-4 titulos">Iniciar Sesión</h4>
 
-                <form action="{{ url('login') }}" method="POST"  onsubmit="return login(this)">
+                <form id="formLogin" action="{{ url('login') }}" method="POST" onsubmit="return login(this)">
                     @csrf
                     <div class="mb-3">
                         <label for="correo" class="form-label titulos">Correo:</label>

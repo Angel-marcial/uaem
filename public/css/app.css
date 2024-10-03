@@ -16,6 +16,8 @@
     /*--color-gris: #F2F2F2; */
     --color-gris: #F8F9FD; 
     --color-dorado: #96881B;
+    --color-rojo: #df1010;
+    --color-amarillo: #e3de36 ;
 }
 
 .fuente{
@@ -106,7 +108,33 @@ h5{
     align-items: center; /* Centra verticalmente, si es necesario */
 }
 
-/* Propiedades del boton */
+/* Propiedades del boton editar*/
+.btn-editar {
+    
+    background-color: var(--color-dorado); /* Color inicial */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; 
+}
+
+/* Propiedades del boton cancelar*/
+.btn-cancelar {
+    
+    background-color: var(--color-verde-claro); /* Color inicial */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; 
+}
+
+/* Propiedades del boton guardar*/
 .btn-custom {
     
     background-color: var(--color-verde); /* Color inicial */
