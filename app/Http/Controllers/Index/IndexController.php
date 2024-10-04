@@ -45,6 +45,11 @@ class  IndexController extends Controller
                 session(['id' => $usuario->id, 'rol' => $usuario->rol, 'ruta' => 'consulta-alumnos']);
                 return redirect('consulta-alumnos');
             }
+            else if($usuario->rol == "maestro")
+            {
+                session(['id' => $usuario->id, 'rol' => $usuario->rol, 'ruta' => 'consulta-maestros']);
+                return redirect('consulta-maestros');
+            }
         }
         else
         {

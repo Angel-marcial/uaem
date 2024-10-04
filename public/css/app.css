@@ -38,8 +38,6 @@ h5{
     color: var(--color-verde);
 }
 
-
-
 .hidden {
     display: none;
 }
@@ -99,6 +97,13 @@ h5{
     
     border: 2px solid var(--color-dorado);
     
+}
+
+.cerrar
+{
+    background: none;
+    border: none;
+    float: right;
 }
 
 /* propiedades del contenedor del boton */

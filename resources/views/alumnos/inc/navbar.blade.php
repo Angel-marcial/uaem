@@ -8,7 +8,6 @@
     Descripción: Este archivo PHP contiene la cabecera de la interfaz alumnos.
 -->
 
-
 <div class="container mt-5">
     <nav class="navbar custom-bg  fixed-top "> <!--navbar-expand-lg        -->
     <div class="container-fluid "> 

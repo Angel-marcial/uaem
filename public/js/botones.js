@@ -34,3 +34,29 @@ function deshabilitarBotonGuardar(form) {
 
     return true;
 }
+
+function cerrarMensaje()
+{
+    var errorDiv = document.getElementById("divCerrar1");
+    var boton = document.getElementById("cerrar1");
+
+    if(boton.click)
+    {
+        errorDiv.style.display = "none";
+        errorDiv.textContent = "";
+    }
+
+}
+
+function cerrarMensaje2()
+{
+    var errorDiv = document.getElementById("divCerrar2");
+    var boton = document.getElementById("cerrar2");
+
+    if(boton.click)
+    {
+        errorDiv.style.display = "none";
+        errorDiv.textContent = "";
+    }
+
+}

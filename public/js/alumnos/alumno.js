@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function()
         document.getElementById("nombres").disabled = true;
         document.getElementById("apellidoPaterno").disabled = true;
         document.getElementById("apellidoMaterno").disabled = true;
-
+        
         document.getElementById("editarAlumno").style.display = "block";
         document.getElementById("guardarAlumno").style.display = "none";
         document.getElementById("cancelarAlumno").style.display = "none";   

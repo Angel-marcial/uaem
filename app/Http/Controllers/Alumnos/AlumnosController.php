@@ -12,30 +12,6 @@ use App\Models\Usuarios;
 
 class AlumnosController extends Controller
 {
-    public function consultaAlumnos(Request $request)
-    {
-        $id = $request->session()->get('id');
-        $rol = $request->session()->get('rol');
-        $ruta = $request->session()->get('ruta');
-
-
-
-        if($rol == 'alumno')
-        {
-            //$alumnos = Alumno::with('credenciales')->get(); 
-
-            $alumno = Alumnos::find($id);
-            return view('alumnos.consulta', compact('alumno'));
-        }
-        else if($rol !== 'alumno')
-        {
-            return redirect($ruta);
-        }
-        else
-        {
-            return redirect('index');
-        }
-    }
 
     public function guardarAlumnos(Request $request)
     {
@@ -116,11 +92,136 @@ class AlumnosController extends Controller
         }
     }
 
+    public function consultaAlumnos(Request $request)
+    {
+        $id = $request->session()->get('id');
+        $rol = $request->session()->get('rol');
+        $ruta = $request->session()->get('ruta');
+
+
+        if($rol == 'alumno')
+        {
+            //$alumnos = Alumno::with('credenciales')->get(); 
+
+            $alumno = Alumnos::find($id);
+            return view('alumnos.consulta', compact('alumno'));
+        }
+        else if($rol !== 'alumno')
+        {
+            return redirect($ruta);
+        }
+        else
+        {
+            return redirect('index');
+        }
+    }
+
     function editarAlumno(Request $request, $id)
     {
 
+        $nombre = $request->input('nombres');
+        $paterno = $request->input('apellidoPaterno');
+        $materno = $request->input('apellidoMaterno');
+        $telefono = $request->input('telefono');
 
-
+        //nombre
+        $mensajeNombre = $this->validacionesTextos($nombre, "Nombre");
+        $mensajePaterno = $this->validacionesTextos($paterno, "Apellido Paterno");
+        $mensajeMaterno = $this->validacionesTextos($materno, "Apellido Materno");
+        $mensajeTelefono = $this->validarNumero($telefono);
         
+        if(!$mensajeNombre == "")
+        {
+            return back()->with('status', $mensajeNombre);
+        }
+
+        if(!$mensajePaterno == "")
+        {
+            return back()->with('status', $mensajePaterno);
+        }
+
+        if(!$mensajeMaterno == "")
+        {
+            return back()->with('status', $mensajeMaterno);
+        }
+
+        if(!$mensajeTelefono == "")
+        {
+            return back()->with('status', $mensajeTelefono);
+        }
+
+        $usuarioExistente = Usuarios::find($id);
+    
+        if (!$usuarioExistente) {
+            return back()->with('status', 'No se puedo actializar los datos, contacta con soporte tecnico')
+            ->with('error',false)->withInput();
+        }
+        
+        //Verificamos si el teléfono ya existen para otro usuario
+        $usuarioDuplicado = Usuarios::where('telefono', $telefono)
+        ->where('id', '!=', $id)
+        ->first();
+    
+        if ($usuarioDuplicado) {
+            $mensaje = '';
+            
+            if ($usuarioDuplicado->telefono == $telefono) {
+                $mensaje .= 'El número de teléfono ' . $telefono . ' ya está registrado.';
+            }
+    
+            return back()->with('status', $mensaje)
+            ->with('error',false)->withInput();
+        }else
+        {
+
+            Usuarios::where('id', $id)->update([
+                'nombre' => $nombre,
+                'apellido_paterno' => $paterno,
+                'apellido_materno' => $materno,
+                'telefono' => $telefono,
+            ]);
+
+            return redirect('/consulta-alumnos')->with('status', 'Datos actualizado exitosamente.')
+            ->with('error',true)->withInput();
+        }
     }
+
+
+    public function validacionesTextos(string $texto, string $campo): string
+    {
+        $regexPalabra = '/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/';
+
+        //El apellido materno solo puede contener letras
+        if(empty($texto))
+        {
+            return "El campo " . $campo . " no puede estar vacio";
+        }
+
+        if(!preg_match($regexPalabra, $texto))
+        {
+            return "El " . $campo . " solo puede contener letras";
+        }
+
+        return "";
+    }  
+    
+    public function validarNumero(string $numero): string
+    {
+        $cantidadDeDigitos = strlen((string)$numero);
+
+        //"El número de teléfono debe tener exactamente 10 dígitos.";
+        if(empty($numero))
+        {
+            return "Numero de telefono obligatorio";
+        }
+
+        if($cantidadDeDigitos !== 10)
+        {
+            return "El número de teléfono debe tener exactamente 10 dígitos.";
+        }
+
+        return "";
+    }
+
+
 }

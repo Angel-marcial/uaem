@@ -101,4 +101,29 @@ class MaestrosController extends Controller
             return redirect('/index')->with('status', 'Maestro creado exitosamente. !Se ha enviando un correo con los datos de inicio de sesión!');
         }
     }
+
+    public function consultaMaestros(Request $request)
+    {
+        $id = $request->session()->get('id');
+        $rol = $request->session()->get('rol');
+        $ruta = $request->session()->get('ruta');
+
+        if($rol == 'maestro')
+        {
+            //$alumnos = Alumno::with('credenciales')->get(); 
+
+            $maestro = Usuarios::find($id);
+            $horario = Horario::where('id_usuario', $id)->first();;
+            return view('maestros.consulta', compact('maestro','horario'));
+        }
+        else if($rol !== 'maestro')
+        {
+            return redirect($ruta);
+        }
+        else
+        {
+            return redirect('index');
+        }
+    }
+
 }

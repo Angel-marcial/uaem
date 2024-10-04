@@ -314,3 +314,35 @@ function validarHoras(entrada, salida)
     }
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() 
+{
+    // Función para habilitar campos
+    window.editar = function() 
+    {
+        document.getElementById("telefono").disabled = false;
+        document.getElementById("nombres").disabled = false;
+        document.getElementById("apellidoPaterno").disabled = false;
+        document.getElementById("apellidoMaterno").disabled = false;
+
+        document.getElementById("editarMaestro").style.display = "none";
+        document.getElementById("guardarMaestro").style.display = "block";
+        document.getElementById("cancelarMaestro").style.display = "block";
+    };
+
+    window.cancelar = function() 
+    {
+        document.getElementById("telefono").disabled = true;
+        document.getElementById("nombres").disabled = true;
+        document.getElementById("apellidoPaterno").disabled = true;
+        document.getElementById("apellidoMaterno").disabled = true;
+        
+        document.getElementById("editarMaestro").style.display = "block";
+        document.getElementById("guardarMaestro").style.display = "none";
+        document.getElementById("cancelarMaestro").style.display = "none";   
+    };
+
+    // Asignar eventos a los botones
+    document.getElementById("editarMaestro").addEventListener("click", editar);
+    document.getElementById("cancelarMaestro").addEventListener("click", cancelar);
+});

@@ -12,10 +12,31 @@
 
 @section('content')
 
-<div class="alert alert-danger" id="errorDiv" style="display:none;">
-    <!--<button type="submit" class="btn-custom " id="cancelar">X</button>-->
-</div>
-  
+
+<div class="margenes-contenedor">
+
+    @if (session('status'))
+
+        @if (!session('error'))
+            <div id="divCerrar1" class="alert alert-danger">
+                {{ session('status') }}
+
+                <button type="button" class="cerrar"  id="cerrar1" onclick="cerrarMensaje()">X</button>
+            </div>
+        @else
+            <div id="divCerrar2" class="alert alert-success">
+                {{ session('status') }}
+
+                <button type="button" class="cerrar"  id="cerrar2" onclick="cerrarMensaje2()">X</button>
+            </div>
+        @endif
+
+    @else
+        <div class="display:none;"></div>
+
+    @endif
+
+
 <div class="margenes-contenedor">
 
     <div class="btn-contenedor">   
@@ -24,7 +45,7 @@
             <h5>Datos del alumno</h5>
             <div class="contenedor margenes-contenedor">
                 
-                <form onsubmit="return editarAlumno(this)">
+                <form action="{{ url('editar-alumno/'.$alumno->id) }}" method="POST" onsubmit="return editarAlumno(this)">
                     @csrf
                     
                     <div class="margenes-contenedor">
@@ -33,14 +54,14 @@
                             <div class="col-sm-6 col-md-8">
 
                                 <label for="carreras" class="form-label titulos margenes-contenedor">Selecciona una carrera:</label>
-                                <label class="form-control text-contenedor btn-contenedor" id="carrera" name="carrera">{{ old('carrera', $alumno->carrera ?? '') }}</label>
+                                <label class="form-control text-contenedor btn-contenedor" id="carrera" name="carrera"> {{ old('carrera', $alumno->carrera ?? '') }}</label>
                                 
                             </div>
                             <div class="col-6 col-md-4">
 
                                 <div> 
                                     <label for="numeroCuenta" class="form-label titulos margenes-contenedor">No de cuenta</label>
-                                    <label class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta">{{ old('numeroCuenta', $alumno->no_cuenta ?? '') }}</label>
+                                    <label class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta"> {{ old('numeroCuenta', $alumno->no_cuenta ?? '') }}</label>
                                 </div>
 
                             </div>
@@ -78,8 +99,6 @@
         </div>
     </div>
 </div> 
-
-
 
 @endsection
 
