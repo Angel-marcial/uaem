@@ -191,10 +191,14 @@ document.addEventListener('DOMContentLoaded', function()
         
         document.getElementById("editarAlumno").style.display = "block";
         document.getElementById("guardarAlumno").style.display = "none";
-        document.getElementById("cancelarAlumno").style.display = "none";   
+        document.getElementById("cancelarAlumno").style.display = "none";  
+
+        location.reload();
     };
 
     // Asignar eventos a los botones
     document.getElementById("editarAlumno").addEventListener("click", editar);
     document.getElementById("cancelarAlumno").addEventListener("click", cancelar);
 });
+
+

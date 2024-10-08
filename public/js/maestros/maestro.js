@@ -315,11 +315,31 @@ function validarHoras(entrada, salida)
   }
 }
 
+function textos(input) {
+  // Remover números
+  input.value = input.value.replace(/\d/g, '');
+
+  // Formatear a minúsculas y luego capitalizar la primera letra de cada palabra
+  input.value = input.value.toLowerCase().replace(/\b\w/g, function(letra) {
+    return letra.toUpperCase();
+  });
+
+  // Dividir el input en palabras y limitar a dos
+  let palabras = input.value.split(/\s+/).filter(Boolean); // Eliminar espacios extra
+  if (palabras.length > 2) {
+    palabras = palabras.slice(0, 2); // Solo mantener las dos primeras palabras
+    input.value = palabras.join(' '); // Unir palabras en el input de nuevo
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() 
 {
+  
     // Función para habilitar campos
     window.editar = function() 
     {
+        //document.getElementById("entradaMartes");
+      
         document.getElementById("telefono").disabled = false;
         document.getElementById("nombres").disabled = false;
         document.getElementById("apellidoPaterno").disabled = false;
@@ -340,9 +360,13 @@ document.addEventListener('DOMContentLoaded', function()
         document.getElementById("editarMaestro").style.display = "block";
         document.getElementById("guardarMaestro").style.display = "none";
         document.getElementById("cancelarMaestro").style.display = "none";   
+
+        location.reload();
     };
 
     // Asignar eventos a los botones
     document.getElementById("editarMaestro").addEventListener("click", editar);
     document.getElementById("cancelarMaestro").addEventListener("click", cancelar);
 });
+
+

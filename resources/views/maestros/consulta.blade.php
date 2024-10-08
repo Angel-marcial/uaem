@@ -60,17 +60,17 @@
 
                         <div>
                             <label for="nombres" class="form-label titulos margenes-contenedor">Nombres</label>
-                            <input type="text" class="form-control text-contenedor" id="nombres" name="nombres" value="{{ old('nombres', $maestro->nombre ?? '') }}" required disabled oninput="validarTextos(this)">
+                            <input type="text" class="form-control text-contenedor" id="nombres" name="nombres" value="{{ old('nombres', $maestro->nombre ?? '') }}" required disabled oninput="textos(this)">
                         </div>
 
                         <div>
                             <label for="apellidoPaterno" class="form-label titulos margenes-contenedor">Apellido Paterno</label>
-                            <input type="text" class="form-control text-contenedor " id="apellidoPaterno" name="apellidoPaterno" value="{{ old('apellidoPaterno', $maestro->apellido_paterno ?? '') }}" required disabled oninput="validarTextos(this)">
+                            <input type="text" class="form-control text-contenedor " id="apellidoPaterno" name="apellidoPaterno" value="{{ old('apellidoPaterno', $maestro->apellido_paterno ?? '') }}" required disabled oninput="textos(this)">
                         </div>
 
                         <div>
                             <label for="apellidoMaterno" class="form-label titulos margenes-contenedor">Apellido Materno</label>
-                            <input type="text" class="form-control text-contenedor " id="apellidoMaterno" name="apellidoMaterno" value="{{ old('apellidoMaterno', $maestro->apellido_materno ?? '') }}" required disabled oninput="validarTextos(this)">
+                            <input type="text" class="form-control text-contenedor " id="apellidoMaterno" name="apellidoMaterno" value="{{ old('apellidoMaterno', $maestro->apellido_materno ?? '') }}" required disabled oninput="textos   (this)">
                         </div>
 
                         <div>
@@ -185,14 +185,11 @@
                             </div>
                         </div>
                     
-
                         <div class="d-flex justify-content-end gap-2 btn-contenedor">
                             <button type="button" class="btn-editar" id="editarMaestro">Editar</button>
                             <button type="submit" class="btn-custom" id="guardarMaestro" style="display: none;">Guardar</button>
                             <button type="button" class="btn-cancelar" id="cancelarMaestro" style="display: none;">Cancelar</button>
                         </div>
-
-
 
                     </div>
 
@@ -203,8 +200,10 @@
         </div>
     </div>
 
-    
 </div> 
+
+
+
 
 
 @endsection
