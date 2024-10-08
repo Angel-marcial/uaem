@@ -13,6 +13,28 @@
 
 <div class="margenes-contenedor">
 
+    @if (session('status'))
+
+        @if (session('correoEnviado') || session('codigoAprobado'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @else
+            <div class="alert alert-danger">
+                {{ session('status') }}
+            </div>
+        @endif
+
+    @else
+
+        <div class="alert alert-danger" id="errorDiv" style="display:none;">
+            <!--<button type="submit" class="btn-custom " id="cancelar">X</button>-->
+        </div>
+
+    @endif
+
+<div class="margenes-contenedor">
+
     <div class="btn-contenedor">   
         <div class="col-md-5">
             <h5 class="">Datos</h5>
@@ -94,6 +116,8 @@
 </div>
 
 @endsection
+
+
 
 <script>
     // Validación de teclas permitidas para el campo de correo (letras, números, guión, guión bajo, punto, arroba)
