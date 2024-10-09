@@ -50,6 +50,7 @@ Route::post('editar-alumno/{id}', [AlumnosController::class,'editarAlumno']);
 Route::get('index-maestros', [IndexController::class, 'indexMaestros']);
 Route::post('guardar-maestros', [MaestrosController::class,'guardarMaestros']);
 Route::get('consulta-maestros', [MaestrosController::class, 'consultaMaestros'])->middleware('auth.guard')->name('consulta.maestros');
+Route::post('editar-maestro/{id}', [MaestrosController::class,'editarMaestro']); //editando
 
 //rutas invitados
 Route::get('index-invitado', [IndexController::class,'indexInvitados']);

@@ -12,26 +12,27 @@
 
 @section('content')
 
-<div class="margenes-contenedor">
-
     @if (session('status'))
 
-        @if (session('correoEnviado') || session('codigoAprobado'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @else
-            <div class="alert alert-danger">
-                {{ session('status') }}
-            </div>
-        @endif
+    @if (!session('error'))
+        <div id="divCerrar1" class="alert alert-danger">
+            {{ session('status') }}
+
+            <button type="button" class="cerrar"  id="cerrar1" onclick="cerrarMensaje()">X</button>
+        </div>
+    @else
+        <div id="divCerrar2" class="alert alert-success">
+            {{ session('status') }}
+
+            <button type="button" class="cerrar"  id="cerrar2" onclick="cerrarMensaje2()">X</button>
+        </div>
+    @endif
 
     @else
-    
-        <div class="alert alert-danger" id="errorDiv" style="display:none;"></div>
-    
-    @endif  
- 
+
+        <div class="display:none;"></div>
+
+    @endif
 
     <div class="btn-contenedor">   
         <div class="col-md-7">   
@@ -39,8 +40,7 @@
             <h5>Datos del Profesor</h5>
 
             <div class="contenedor margenes-contenedor">
-            
-                <form action="{{ url('') }}" method="POST" onsubmit="return maestro(this)">
+                <form action="{{ url('editar-maestro/'.$maestro->id) }}" method="POST" onsubmit="return maestro(this)">
                     @csrf
                     <div class="margenes-contenedor">
 

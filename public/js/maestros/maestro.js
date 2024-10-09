@@ -344,6 +344,18 @@ document.addEventListener('DOMContentLoaded', function()
         document.getElementById("nombres").disabled = false;
         document.getElementById("apellidoPaterno").disabled = false;
         document.getElementById("apellidoMaterno").disabled = false;
+        document.getElementById("entradaLunes").disabled = false;
+        document.getElementById("salidaLunes").disabled = false;
+        document.getElementById("entradaMartes").disabled = false;
+        document.getElementById("salidaMartes").disabled = false;
+        document.getElementById("entradaMiercoles").disabled = false;
+        document.getElementById("salidaMiercoles").disabled = false;
+        document.getElementById("entradaJueves").disabled = false;
+        document.getElementById("salidaJueves").disabled = false;
+        document.getElementById("entradaViernes").disabled = false;
+        document.getElementById("salidaViernes").disabled = false;
+        document.getElementById("entradaSabado").disabled = false;
+        document.getElementById("salidaSabado").disabled = false;
 
         document.getElementById("editarMaestro").style.display = "none";
         document.getElementById("guardarMaestro").style.display = "block";
@@ -356,6 +368,18 @@ document.addEventListener('DOMContentLoaded', function()
         document.getElementById("nombres").disabled = true;
         document.getElementById("apellidoPaterno").disabled = true;
         document.getElementById("apellidoMaterno").disabled = true;
+        document.getElementById("entradaLunes").disabled = true;
+        document.getElementById("salidaLunes").disabled = true;
+        document.getElementById("entradaMartes").disabled = true;
+        document.getElementById("salidaMartes").disabled = true;
+        document.getElementById("entradaMiercoles").disabled = true;
+        document.getElementById("salidaMiercoles").disabled = true;
+        document.getElementById("entradaJueves").disabled = true;
+        document.getElementById("salidaJueves").disabled = true;
+        document.getElementById("entradaViernes").disabled = true;
+        document.getElementById("salidaViernes").disabled = true;
+        document.getElementById("entradaSabado").disabled = true;
+        document.getElementById("salidaSabado").disabled = true;
         
         document.getElementById("editarMaestro").style.display = "block";
         document.getElementById("guardarMaestro").style.display = "none";
