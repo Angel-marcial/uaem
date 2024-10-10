@@ -14,19 +14,19 @@
 
     @if (session('status'))
 
-    @if (!session('error'))
-        <div id="divCerrar1" class="alert alert-danger">
-            {{ session('status') }}
+        @if (!session('error'))
+            <div id="divCerrar1" class="alert alert-danger">
+                {{ session('status') }}
 
-            <button type="button" class="cerrar"  id="cerrar1" onclick="cerrarMensaje()">X</button>
-        </div>
-    @else
-        <div id="divCerrar2" class="alert alert-success">
-            {{ session('status') }}
+                <button type="button" class="cerrar"  id="cerrar1" onclick="cerrarMensaje()">X</button>
+            </div>
+        @else
+            <div id="divCerrar2" class="alert alert-success">
+                {{ session('status') }}
 
-            <button type="button" class="cerrar"  id="cerrar2" onclick="cerrarMensaje2()">X</button>
-        </div>
-    @endif
+                <button type="button" class="cerrar"  id="cerrar2" onclick="cerrarMensaje2()">X</button>
+            </div>
+        @endif
 
     @else
 

@@ -224,4 +224,10 @@ class AlumnosController extends Controller
     }
 
 
+    public function adminConsultaAlumnos()
+    {
+
+    }
+
+
 }

@@ -50,6 +50,19 @@ h5{
     overflow: hidden; /* Evita desbordamiento */
 }
 
+.form-min-size {
+    min-width: 350px; /* Define el ancho mínimo del formulario */
+}
+
+.alto{
+    margin-top: 40px;
+}
+
+.margenes{
+    margin-left: 250px;
+    margin-right: 50px;
+}
+
 /* color de la cabecera */
 .custom-bg {
     background-color: var(--color-verde-claro) !important;  

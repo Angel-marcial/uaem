@@ -1,0 +1,63 @@
+/* 
+*
+*Codice
+*Nombre del Código: sidebar.css
+*Fecha de Creación: 09/q0/2024 revisado por Angel Geovanni Marcial Morales
+*
+*Modificaciones:
+*
+*Descripción: Este archivo css cuenta con los estilos para al app, incluyendo colores y tipografias. 
+*/
+@import url('app.css');
+
+body {
+    font-family: 'Archivo', sans-serif;
+    color: var(--color-verde);
+}
+
+.sidebar {
+    height: 100vh;
+    width: 200px;
+    position: fixed;
+    left: 0;
+    top: 50px;
+    padding-top: 20px;
+    background-color: var(--color-gris);
+}
+
+.sidebar a {
+    padding: 10px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: var(--color-verde-claro);
+    color: white;
+}
+
+.sidebar a.active {
+    background-color: var(--color-dorado);
+    color: white;
+}
+
+.profile-section {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.profile-section img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.profile-section span {
+    margin-left: 10px;
+}

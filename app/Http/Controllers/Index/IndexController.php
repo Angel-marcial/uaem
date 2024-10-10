@@ -30,26 +30,32 @@ class  IndexController extends Controller
         $usuario = DB::table('credenciales')
         ->where('correo', $correo)
         ->where('password', $password)
-        ->select('id','rol')
+        ->select('id_usuario','rol')
         ->first();
 
         if($usuario)
         {
             if($usuario->rol == "guardia")
             {
-                session(['id' => $usuario->id, 'rol' => $usuario->rol, 'ruta' => 'index-guardia']);
+                session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'index-guardia']);
                 return redirect('index-guardia');
             }
             else if($usuario->rol == "alumno")
             {
-                session(['id' => $usuario->id, 'rol' => $usuario->rol, 'ruta' => 'consulta-alumnos']);
+                session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'consulta-alumnos']);
                 return redirect('consulta-alumnos');
             }
             else if($usuario->rol == "maestro")
             {
-                session(['id' => $usuario->id, 'rol' => $usuario->rol, 'ruta' => 'consulta-maestros']);
+                session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'consulta-maestros']);
                 return redirect('consulta-maestros');
             }
+            else if($usuario->rol == "administrador")
+            {
+                session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'index-admim']);
+                return redirect('index-admin');
+            }
+
         }
         else
         {

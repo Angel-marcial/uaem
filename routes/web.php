@@ -9,6 +9,8 @@
 
 *Descripción: Este archivo PHP guarda las rutas de la app
 */
+
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Alumnos\AlumnosController;
 use App\Http\Controllers\Emails\EmailsController;
 use App\Http\Controllers\Index\IndexController;
@@ -52,6 +54,15 @@ Route::post('guardar-maestros', [MaestrosController::class,'guardarMaestros']);
 Route::get('consulta-maestros', [MaestrosController::class, 'consultaMaestros'])->middleware('auth.guard')->name('consulta.maestros');
 Route::post('editar-maestro/{id}', [MaestrosController::class,'editarMaestro']); //editando
 
+//rutas administrador 
+Route::get('index-admin',[AdminController::class, 'consultaAdmin'])->middleware('auth.guard')->name('guardias.index');
+Route::post('editar-admin/{id}', [AdminController::class,'editarAdmin'])->middleware('auth.guard');
+//admin alumnos
+Route::get('admin-consulta-alumnos', [AdminController::class,'tablaAlumos'])->middleware('auth.guard');
+Route::get('admin-buscar-alumnos', [AdminController::class,'buscarAlumos'])->middleware('auth.guard');
+Route::get('admin-elimina-alumnos/{cuenta}', [AdminController::class,'eliminarAlumno'])->middleware('auth.guard');
+Route::get('admin-ver-alumnos/{cuenta}', [AdminController::class,'datosAlumno'])->middleware('auth.guard');
+
 //rutas invitados
 Route::get('index-invitado', [IndexController::class,'indexInvitados']);
 
@@ -68,7 +79,8 @@ Route::get('index-guardia', [GuardiasController::class, 'indexGuardias'])
 ->name('guardias.index');
 
 Route::post('cerrar-session', [IndexController::class, 'cerrarSession']);   
-//Route::post('alumnos', [AlumnosController::class, 'store'])->name('alumnos.store');
+
+
 
 /*
 Route::get('/', function () {
