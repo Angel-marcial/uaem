@@ -116,7 +116,7 @@ class AlumnosController extends Controller
         }
     }
 
-    function editarAlumno(Request $request, $id)
+    function editarAlumno(Request $request, $id , $interfaz)
     {
 
         $nombre = $request->input('nombres');
@@ -165,7 +165,8 @@ class AlumnosController extends Controller
         if ($usuarioDuplicado) {
             $mensaje = '';
             
-            if ($usuarioDuplicado->telefono == $telefono) {
+            if ($usuarioDuplicado->telefono == $telefono) 
+            {
                 $mensaje .= 'El número de teléfono ' . $telefono . ' ya está registrado.';
             }
     
@@ -173,18 +174,36 @@ class AlumnosController extends Controller
             ->with('error',false)->withInput();
         }else
         {
+            
+            if($interfaz == "admin")
+            {
+                $cuenta = $request->input('numeroCuenta');
 
-            Usuarios::where('id', $id)->update([
-                'nombre' => $nombre,
-                'apellido_paterno' => $paterno,
-                'apellido_materno' => $materno,
-                'telefono' => $telefono,
-            ]);
+                Usuarios::where('id', $id)->update([
+                    'no_cuenta' => $cuenta,
+                    'nombre' => $nombre,
+                    'apellido_paterno' => $paterno,
+                    'apellido_materno' => $materno,
+                    'telefono' => $telefono,
+                ]);
 
-            return redirect('/consulta-alumnos')->with('status', 'Datos actualizado exitosamente.')
-            ->with('error',true)->withInput();
+                
+               return redirect('/admin-consulta-alumnos')->with('status', 'Alumno actualizado con exito.')->with('error',true);
+            }
+            else
+            {      
+                Usuarios::where('id', $id)->update([
+                    'nombre' => $nombre,
+                    'apellido_paterno' => $paterno,
+                    'apellido_materno' => $materno,
+                    'telefono' => $telefono,
+                ]);
+
+                return redirect('/consulta-alumnos')->with('status', 'Datos actualizado exitosamente.')
+                ->with('error',true)->withInput();
+            }
         }
-    }
+    }  
 
 
     public function validacionesTextos(string $texto, string $campo): string

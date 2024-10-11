@@ -45,7 +45,7 @@
             <h5>Datos del alumno</h5>
             <div class="contenedor margenes-contenedor">
                 
-                <form action="{{ url('editar-alumno/'.$alumno->id) }}" method="POST" onsubmit="return editarAlumno(this)">
+                <form action="{{ url('editar-alumno/'.$alumno->id.'/alumno') }}" method="POST" onsubmit="return editarAlumno(this)">
                     @csrf
                     
                     <div class="margenes-contenedor">
@@ -53,7 +53,7 @@
                         <div class="row g-0">
                             <div class="col-sm-6 col-md-8">
 
-                                <label for="carreras" class="form-label titulos margenes-contenedor">Selecciona una carrera:</label>
+                                <label for="carreras" class="form-label titulos margenes-contenedor">Carrera:</label>
                                 <label class="form-control text-contenedor btn-contenedor" id="carrera" name="carrera"> {{ old('carrera', $alumno->carrera ?? '') }}</label>
                                 
                             </div>

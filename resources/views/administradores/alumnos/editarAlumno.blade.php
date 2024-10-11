@@ -36,31 +36,47 @@
 
     @endif
 
-<div class="margenes-contenedor">
+<div class="margenes">
 
     <div class="btn-contenedor">   
         <div class="col-md-5">   
 
+
             <h5>Datos del alumno</h5>
-            <div class="contenedor margenes-contenedor">
+            <div class="contenedor margenes-contenedor">  
                 
-                <form action="{{ url('editar-alumno/'.$alumno->id) }}" method="POST" onsubmit="return editarAlumno(this)">
+                <form action="{{ url('editar-alumno/'.$alumno->id.'/admin') }}" method="POST" onsubmit="return editarAlumno(this)">
                     @csrf
                     
                     <div class="margenes-contenedor">
 
                         <div class="row g-0">
-                            <div class="col-sm-6 col-md-8">
+
+                            <div class="col-sm-6 col-md-8" id="divCarreraAlumno">
+
+                                <label for="carreras" class="form-label titulos margenes-contenedor">Carrera:</label>
+                                <label class="form-control text-contenedor btn-contenedor" id="carreraAlumno" name="carreraAlumno"> {{ old('carrera', $alumno->carrera ?? '') }}</label>
+                                
+                            </div>
+
+                            <div class="col-sm-6 col-md-8" style="display: none;" id="divCarreras">
 
                                 <label for="carreras" class="form-label titulos margenes-contenedor">Selecciona una carrera:</label>
-                                <label class="form-control text-contenedor btn-contenedor" id="carrera" name="carrera"> {{ old('carrera', $alumno->carrera ?? '') }}</label>
+                                <select class="form-control text-contenedor btn-contenedor" id="carreras" name="carreras">
+                                    <option value="ingenieria-software">Ingeniería de Software</option>
+                                    <option value="ingenieria-industrial">Producción Industrial</option>
+                                    <option value="ingenieria-plasticos">Ingeniería de Plasticos</option>
+                                    <option value="ingenieria-sistemas">Ingeniería de Sistemas</option>
+                                    <option value="ingenieria-mecanica">Ingeniería Mecanica</option>
+                                    <option value="seguridad-ciudadana">Seguridad Ciudadana</option>
+                                </select>
                                 
                             </div>
                             <div class="col-6 col-md-4">
 
                                 <div> 
-                                    <label for="numeroCuenta" class="form-label titulos margenes-contenedor">No de cuenta</label>
-                                    <label class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta"> {{ old('numeroCuenta', $alumno->no_cuenta ?? '') }}</label>
+                                    <label for="numeroCuenta" class="form-label titulos margenes-contenedor">No de cuenta</label> 
+                                    <input type="number" class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta" value="{{ old('carrera', $alumno->no_cuenta ?? '') }}" required disabled >
                                 </div>
 
                             </div>
@@ -87,9 +103,9 @@
                         </div>
 
                         <div class="d-flex justify-content-end gap-2 btn-contenedor">
-                            <button type="button" class="btn-editar" id="editarAlumno">Editar</button>
-                            <button type="submit" class="btn-custom" id="guardarAlumno" style="display: none;">Guardar</button>
-                            <button type="button" class="btn-cancelar" id="cancelarAlumno" style="display: none;">Cancelar</button>
+                            <button type="button" class="btn-editar" id="editarAdminAlumno">Editar</button>
+                            <button type="submit" class="btn-custom" id="guardarAdminAlumno" style="display: none;">Guardar</button>
+                            <button type="button" class="btn-cancelar" id="cancelarAdminAlumno" style="display: none;">Cancelar</button>
                         </div>
 
                     </div>

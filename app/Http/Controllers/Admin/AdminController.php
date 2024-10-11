@@ -84,7 +84,7 @@ class AdminController extends Controller
 
 
 
-
+    
     //administrador
     public function consultaAdmin(Request $request)
     {

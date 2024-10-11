@@ -69,7 +69,10 @@
         <script src="{{ asset('js/validaciones.js') }}"></script>
         <script src="{{ asset('js/administrador/sidebar.js') }}"></script>
         <script src="{{ asset('js/administrador/admin.js') }}"></script>
+        <script src="{{ asset('js/administrador/adminAlumno.js') }}"></script>
+        <script src=" {{ asset('js/alumnos/alumno.js')}}"></script>
 
     </body>
 
 </html>
+

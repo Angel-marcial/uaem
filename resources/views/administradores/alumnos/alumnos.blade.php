@@ -37,13 +37,11 @@
 
     <div class="margenes">
 
-
         <form action="{{ url('admin-buscar-alumnos') }}" method="GET">
-
             <div class="input-group mb-3 form-min-size alto">
                 <input type="text" class="form-control" name="search" placeholder="Numero de cuenta..." value="{{ request('search') }}">
                 <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-                <button class="btn btn-success" type="submit">Nuevo</button>
+                <a class="btn btn-success" href="{{ url('admin-nuevo-alumno') }}">Nuevo</a>
             </div>
         </form>
 
