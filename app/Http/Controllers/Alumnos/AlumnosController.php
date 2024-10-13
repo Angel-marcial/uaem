@@ -178,6 +178,19 @@ class AlumnosController extends Controller
             if($interfaz == "admin")
             {
                 $cuenta = $request->input('numeroCuenta');
+                $carrera = $request->input('carreras');
+
+                $carreras = [
+                    'ingenieria-software' => 1,
+                    'ingenieria-industrial' => 2,
+                    'ingenieria-plasticos' => 3,
+                    'ingenieria-sistemas' => 4,
+                    'ingenieria-mecanica' => 5,
+                    'seguridad-ciudadana' => 6,
+                ];
+
+                $match = $carreras[$carrera] ?? null;
+
 
                 Usuarios::where('id', $id)->update([
                     'no_cuenta' => $cuenta,
@@ -187,7 +200,10 @@ class AlumnosController extends Controller
                     'telefono' => $telefono,
                 ]);
 
-                
+                Carrera_usuarios::where('id_usuario', $id)->update([
+                    'id_carrera' => $match,
+                ]);
+
                return redirect('/admin-consulta-alumnos')->with('status', 'Alumno actualizado con exito.')->with('error',true);
             }
             else

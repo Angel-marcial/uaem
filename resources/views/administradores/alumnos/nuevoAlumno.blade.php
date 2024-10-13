@@ -13,6 +13,30 @@
 
 @section('content')
 
+    @if (session('status'))
+
+        @if (!session('error'))
+            <div id="divCerrar1" class="alert alert-danger">
+                {{ session('status') }}
+
+                <button type="button" class="cerrar"  id="cerrar1" onclick="cerrarMensaje()">X</button>
+            </div>
+        @else
+            <div id="divCerrar2" class="alert alert-success">
+                {{ session('status') }}
+
+                <button type="button" class="cerrar"  id="cerrar2" onclick="cerrarMensaje2()">X</button>
+            </div>
+        @endif
+
+    @else
+
+        <div class="display:none;"></div>
+
+    @endif
+
+
+
     <div class="margenes">
 
         <div class="btn-contenedor">   
@@ -21,7 +45,7 @@
                 <h5 >Datos del alumno</h5>
                 <div class="contenedor margenes-contenedor">
                     
-                    <form action="{{ url('') }}" method="POST" >
+                    <form action="{{ url('admin-alta-alumno') }}" method="POST" >
                         @csrf
                         
                         <div class="margenes-contenedor">
@@ -71,8 +95,8 @@
                             </div>
 
                             <div>
-                                <label for="correo" class="form-label titulos margenes-contenedor">Telefono</label>
-                                <input type="email" class="form-control text-contenedor " id="correo" name="correo" placeholder="7200000000" value="{{ old('telefono') }}" required oninput="validarTelefono(this)">
+                                <label for="correo" class="form-label titulos margenes-contenedor">Correo</label>
+                                <input type="email" class="form-control text-contenedor " id="correo" name="correo" placeholder="Ej: alumno@alumno.uaemex.mx" value="{{ old('correo') }}" required>
                             </div>
 
                             <div class="btn-contenedor">

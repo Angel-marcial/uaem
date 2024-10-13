@@ -53,6 +53,8 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Telefono</th>
                     <th scope="col">Carrera</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Estatus</th>
                     <th scope="col">Editar</th>
                     <th scope="col">Eliminar</th>
                 </tr>
@@ -66,6 +68,14 @@
                         <td>{{ $alumno->nombre }} {{ $alumno->apellido_paterno }} {{ $alumno->apellido_materno }}</td>
                         <td>{{ $alumno->telefono }}</td>
                         <td>{{ $alumno->carrera }}</td>
+                        <td>{{ $alumno->correo }}</td>
+                        <td>
+
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheck{{ $alumno->id }}"{{ $alumno->estatus ? 'checked' : '' }}>
+                            </div>
+
+                        </td>
                         <td><a href="{{ url('admin-ver-alumnos/'.$alumno->no_cuenta) }}" class="btn btn-warning">Editar</a></td>
                         <td><a href="{{ url('admin-elimina-alumnos/'.$alumno->no_cuenta) }}" class="btn btn-danger" >Eliminar</a></td>
                     </tr>
