@@ -61,6 +61,9 @@ Route::post('actualizar-estatus-alumno/{id}', [AdminAlumnosController::class, 'a
 
 //admin maestros  --trabajando 
 Route::get('admin-consulta-maestros', [AdminMaestrosController::class,'tablaMaestros'])->middleware('auth.guard'); //--editando
+Route::get('admin-buscar-maestros', [AdminMaestrosController::class,'buscarMaestros'])->middleware('auth.guard'); 
+Route::get('admin-elimina-maestro/{cuenta}', [AdminMaestrosController::class,'eliminarMaestro'])->middleware('auth.guard');
+
 
 
 

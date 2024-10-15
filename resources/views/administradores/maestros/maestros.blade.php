@@ -39,7 +39,7 @@
 
         <h1>Maestros</h1>
 
-        <form action="{{ url('admin-buscar-alumnos') }}" method="GET">
+        <form action="{{ url('admin-buscar-maestros') }}" method="GET">
             <div class="input-group mb-3 form-min-size alto">
                 <input type="text" class="form-control" name="search" placeholder="Numero de cuenta..." value="{{ request('search') }}">
                 <button class="btn btn-outline-secondary" type="submit">Buscar</button>
@@ -78,7 +78,7 @@
                             
                         </td>
                         <td><a href="{{ url('admin-ver-alumnos/'.$maestro->no_cuenta) }}" class="btn btn-warning">Editar</a></td>
-                        <td><a href="{{ url('admin-elimina-alumnos/'.$maestro->no_cuenta) }}" class="btn btn-danger" >Eliminar</a></td>
+                        <td><a href="{{ url('admin-elimina-maestro/'.$maestro->no_cuenta) }}" class="btn btn-danger" >Eliminar</a></td>
                     </tr>
                 @endforeach
             </tbody>

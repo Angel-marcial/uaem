@@ -62,7 +62,7 @@ class AdminAlumnosController extends Controller
             }
         }
         //cuenta
-        if($GlobalController->validarCuenta($noCuenta) == true)
+        if($GlobalController->validarCuenta($noCuenta ,0) == true)
         {
             return back()->with('status', 'El numero de cuenta ya se encuentra registrado')->with('error',false)->withInput();
         }
@@ -76,7 +76,7 @@ class AdminAlumnosController extends Controller
             return back()->with('status', 'El correo '.$correo. ' ya se encuentra registrado')->with('error',false)->withInput();
         }
         //numero de telefono 
-        if($GlobalController->buscarNumero($telefono) == true)
+        if($GlobalController->buscarNumero($telefono, 0) == true)
         {
             return back()->with('status', 'El numero de telefono ya se encuentra registrado')->with('error',false)->withInput();
         }        
@@ -139,21 +139,19 @@ class AdminAlumnosController extends Controller
 
 
     public function actualizarEstatus(Request $request, $id)
-{
+    {
+        $usuario = Usuarios::find($id);
 
+        if ($usuario) {
 
-    $usuario = Usuarios::find($id);
+            $usuario->estatus = $request->input('estatus');
+            $usuario->save();
 
-    if ($usuario) {
-
-        $usuario->estatus = $request->input('estatus');
-        $usuario->save();
-
-        return response()->json(['success' => true]);
-    } else {
-        return response()->json(['success' => false, 'message' => 'Alumno no encontrado.']);
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false, 'message' => 'usuario no encontrado.']);
+        }
     }
-}
 
 
 }

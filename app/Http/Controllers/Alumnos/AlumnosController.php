@@ -193,13 +193,17 @@ class AlumnosController extends Controller
 
                 $match = $carreras[$carrera] ?? null;
 
-                if($GlobalController->validarCuenta($cuenta) == true)
+                if($GlobalController->validarCuenta($cuenta, $id) !== null)
                 {
                     return back()->with('status', 'El numero de cuenta ya se encuentra registrado')->with('error',false)->withInput();
                 }
                 if($GlobalController->tamanioCuenta($cuenta) == true)
                 {
                     return back()->with('status', 'El numero de cuenta no cumple con el formato adecuado')->with('error',false)->withInput();
+                }
+                if($GlobalController->buscarNumero($telefono, $id) !==null)
+                {
+                    back()->with('status', 'El numero de telefono ya se encuentra registrado')->with('error',false)->withInput();
                 }
 
                 Usuarios::where('id', $id)->update([

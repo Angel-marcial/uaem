@@ -15,12 +15,11 @@ class GlobalController extends Controller
     }
     //estructura de correo
 
-
-
+    
     //validar numero de cuenta
-    public function validarCuenta($cuenta)
+    public function validarCuenta($cuenta, $id)
     {
-        return Usuarios::pluck('no_cuenta')->contains($cuenta);
+        return Usuarios::where('no_cuenta', $cuenta)->where('id', '!=', $id)->first();
     }
     //validar que el numero de cuenta tenga 7 dijitos 
     public function tamanioCuenta($cuenta)
@@ -36,9 +35,9 @@ class GlobalController extends Controller
     }   
 
     //se busca el numero de cuenta 
-    public function buscarNumero($telefono)
+    public function buscarNumero($telefono, $id)
     {
-        return Usuarios::pluck('telefono')->contains($telefono);
+        return Usuarios::where('telefono', $telefono)->where('id', '!=', $id)->first();
     }
     //validar textos
     public function validacionesTextos(string $texto, string $campo): string
