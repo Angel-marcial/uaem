@@ -12,6 +12,7 @@
 
 use App\Http\Controllers\Admin\AdminAlumnosController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminMaestrosController;
 use App\Http\Controllers\Alumnos\AlumnosController;
 use App\Http\Controllers\Emails\EmailsController;
 use App\Http\Controllers\Index\IndexController;
@@ -28,16 +29,6 @@ use App\Http\Controllers\Maestros\MaestrosController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-/*
-Route::get('contacts', [ContactsControler::class,'index']);
-Route::get('add-contact', [ContactsControler::class,'create']);
-Route::post('add-contact', [ContactsControler::class,'store']);
-Route::get('edit-contact/{id}', [ContactsControler::class,'edit']);
-Route::put('update-contact/{id}', [ContactsControler::class,'update']);
-Route::get('delete-contact/{id}', [ContactsControler::class,'delete']);
-*/
-
 //index
 Route::get('index', function () {
     return view('index');
@@ -58,24 +49,18 @@ Route::post('editar-maestro/{id}', [MaestrosController::class,'editarMaestro']);
 //rutas administrador 
 Route::get('index-admin',[AdminController::class, 'consultaAdmin'])->middleware('auth.guard')->name('guardias.index');
 Route::post('editar-admin/{id}', [AdminController::class,'editarAdmin'])->middleware('auth.guard');
+
 //admin alumnos 
-Route::get('admin-consulta-alumnos', [AdminController::class,'tablaAlumos'])->middleware('auth.guard'); 
+Route::get('admin-consulta-alumnos', [AdminController::class,'tablaAlumos'])->middleware('auth.guard');
 Route::get('admin-buscar-alumnos', [AdminController::class,'buscarAlumos'])->middleware('auth.guard');
 Route::get('admin-elimina-alumnos/{cuenta}', [AdminController::class,'eliminarAlumno'])->middleware('auth.guard');
 Route::get('admin-ver-alumnos/{cuenta}', [AdminController::class,'datosAlumno'])->middleware('auth.guard');
-Route::get('admin-nuevo-alumno', [AdminAlumnosController::class,'adminNuevoAlumno'])->middleware('auth.guard'); //--editando 
-Route::post('admin-alta-alumno', [AdminAlumnosController::class,'nuevoAlumno'])->middleware('auth.guard'); //--editando 
+Route::get('admin-nuevo-alumno', [AdminAlumnosController::class,'adminNuevoAlumno'])->middleware('auth.guard');
+Route::post('admin-alta-alumno', [AdminAlumnosController::class,'nuevoAlumno'])->middleware('auth.guard');
+Route::post('actualizar-estatus-alumno/{id}', [AdminAlumnosController::class, 'actualizarEstatus']); 
 
-
-
-
-
-
-
-
-
-
-
+//admin maestros  --trabajando 
+Route::get('admin-consulta-maestros', [AdminMaestrosController::class,'tablaMaestros'])->middleware('auth.guard'); //--editando
 
 
 
@@ -88,25 +73,11 @@ Route::post('enviar-correo-alumnos', [EmailsController::class,'enviarCorreoAlumn
 Route::post('enviar-correo-maestros', [EmailsController::class,'enviarCorreoMaestros']);
 Route::post('codigo-seguridad', [EmailsController::class,'codigoSeguridad']);
 
-//zona de prueba
+//ruras login
 Route::post('login', [IndexController::class, 'login']);
 
-Route::get('index-guardia', [GuardiasController::class, 'indexGuardias'])
-->middleware('auth.guard')
-->name('guardias.index');
+//rutas guardia
+Route::get('index-guardia', [GuardiasController::class, 'indexGuardias'])->middleware('auth.guard')->name('guardias.index');
 
+//ruta para cerrar session
 Route::post('cerrar-session', [IndexController::class, 'cerrarSession']);   
-
-
-
-/*
-Route::get('/', function () {
-    return view('index');
-});
-*/
-
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/

@@ -1,4 +1,5 @@
 <!--
+
     Codice
     Nombre del Código: nuevoAlumno.blade.php
     Fecha de Creación: 10/10/2024
@@ -34,8 +35,6 @@
         <div class="display:none;"></div>
 
     @endif
-
-
 
     <div class="margenes">
 

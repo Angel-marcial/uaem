@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Alumnos;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Emails\credencialesController;
 use App\Http\Controllers\Emails\EmailsController;
+use App\Http\Controllers\GlobalController;
 use App\Models\Alumnos;
 use Illuminate\Http\Request;
 use App\Models\Credenciales1;
@@ -118,6 +119,7 @@ class AlumnosController extends Controller
 
     function editarAlumno(Request $request, $id , $interfaz)
     {
+        $GlobalController = new GlobalController();
 
         $nombre = $request->input('nombres');
         $paterno = $request->input('apellidoPaterno');
@@ -191,6 +193,14 @@ class AlumnosController extends Controller
 
                 $match = $carreras[$carrera] ?? null;
 
+                if($GlobalController->validarCuenta($cuenta) == true)
+                {
+                    return back()->with('status', 'El numero de cuenta ya se encuentra registrado')->with('error',false)->withInput();
+                }
+                if($GlobalController->tamanioCuenta($cuenta) == true)
+                {
+                    return back()->with('status', 'El numero de cuenta no cumple con el formato adecuado')->with('error',false)->withInput();
+                }
 
                 Usuarios::where('id', $id)->update([
                     'no_cuenta' => $cuenta,

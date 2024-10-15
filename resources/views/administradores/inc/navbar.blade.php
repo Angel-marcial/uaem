@@ -15,7 +15,7 @@
 
         <img src="{{ asset('logo.png') }}" alt="Logo" class="img-fluid" style="height: 50px;">
 
-        <h2 class="cabecera mx-auto" >Administracion</h2>
+        <h2 class="cabecera mx-auto" >Administración</h2>
 
         <form action="{{ url('cerrar-session') }}" method="POST" style="display: inline;">
             @csrf

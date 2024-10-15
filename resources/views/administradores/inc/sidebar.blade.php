@@ -15,7 +15,7 @@
 
         <a href="#"><i class="" id="dashboard"></i>Dashboard</a>
         <a href="#" data-url="{{ url('admin-consulta-alumnos') }}" class="ajax-link"><i class=""></i>Alumnos</a>
-        <a href="#"><i class=""></i>Maestros</a>
+        <a data-url="{{ url('admin-consulta-maestros') }}" class="ajax-link"><i class=""></i>Maestros</a>
         <a href="#"><i class=""></i>Guardias</a>
         <a href="#"><i class=""></i>Departamentos</a>
         <a href="#"><i class=""></i>Peticiones</a>

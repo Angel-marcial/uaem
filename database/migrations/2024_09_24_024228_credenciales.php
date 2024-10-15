@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('credenciales', function(Blueprint $table)
         {
-            $table->id();                // Crea una columna de tipo BIGINT con auto-incremento como clave primaria
+            $table->id();        
             $table->Integer('id_usuario')->unique();
             $table->string('correo');
             $table->string('password');    // Crea una columna de tipo VARCHAR para el nombre
@@ -32,6 +33,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('credenciales');
+        DB::statement('DROP TABLE IF EXISTS credenciales CASCADE');
     }
 };
+

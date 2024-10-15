@@ -72,6 +72,7 @@
         <script src="{{ asset('js/administrador/adminAlumno.js') }}"></script>
         <script src=" {{ asset('js/alumnos/alumno.js')}}"></script>
 
+
     </body>
 
 </html>

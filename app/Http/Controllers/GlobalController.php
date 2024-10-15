@@ -17,7 +17,6 @@ class GlobalController extends Controller
 
 
 
-
     //validar numero de cuenta
     public function validarCuenta($cuenta)
     {
@@ -26,7 +25,7 @@ class GlobalController extends Controller
     //validar que el numero de cuenta tenga 7 dijitos 
     public function tamanioCuenta($cuenta)
     {
-        if(strlen($cuenta) < 7)
+        if(strlen($cuenta) !== 7)
         {
             return true;
         }
@@ -35,8 +34,6 @@ class GlobalController extends Controller
             return false;
         }
     }   
-
-
 
     //se busca el numero de cuenta 
     public function buscarNumero($telefono)

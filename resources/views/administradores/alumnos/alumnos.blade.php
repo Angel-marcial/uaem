@@ -37,6 +37,8 @@
 
     <div class="margenes">
 
+        <h1>Alumnos</h1>
+
         <form action="{{ url('admin-buscar-alumnos') }}" method="GET">
             <div class="input-group mb-3 form-min-size alto">
                 <input type="text" class="form-control" name="search" placeholder="Numero de cuenta..." value="{{ request('search') }}">
@@ -51,7 +53,7 @@
                     <th scope="col">#</th>
                     <th scope="col">No Cuenta</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Telefono</th>
+                    <th scope="col">Teléfono</th>
                     <th scope="col">Carrera</th>
                     <th scope="col">Correo</th>
                     <th scope="col">Estatus</th>
@@ -72,9 +74,10 @@
                         <td>
 
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheck{{ $alumno->id }}"{{ $alumno->estatus ? 'checked' : '' }}>
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheck{{ $alumno->id }}" 
+                                {{ $alumno->estatus ? 'checked' : '' }} onchange="toggleEstatus(this, {{ $alumno->id }})">
                             </div>
-
+                            
                         </td>
                         <td><a href="{{ url('admin-ver-alumnos/'.$alumno->no_cuenta) }}" class="btn btn-warning">Editar</a></td>
                         <td><a href="{{ url('admin-elimina-alumnos/'.$alumno->no_cuenta) }}" class="btn btn-danger" >Eliminar</a></td>
@@ -89,6 +92,44 @@
             </ul>
         </nav>
 
-    </div> <!-- Cierre del div correctamente -->
+    </div>
+
+    <script>
+        function toggleEstatus(checkbox, alumnoId) 
+        {
+            const nuevoEstatus = checkbox.checked ? 1 : 0;
+        
+            fetch(`/actualizar-estatus-alumno/${alumnoId}`, 
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    estatus: nuevoEstatus
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) 
+                {
+                    console.log('Estatus actualizado con éxito');
+                    
+                } else 
+                {
+                    checkbox.checked = !nuevoEstatus;
+                    alert('Hubo un error al actualizar el estatus.');
+                }
+            })
+            .catch(error => 
+            {
+                console.error('Error al actualizar el estatus:', error);
+                checkbox.checked = !nuevoEstatus;
+                alert('Error al conectar con el servidor.');
+            });
+        }
+        </script>
+        
 
 @endsection
