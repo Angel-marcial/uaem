@@ -1,4 +1,5 @@
-function validarCorreo(input) {
+function validarCorreo(input) 
+{
     // Expresión regular para validar la estructura del correo
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const dominiosPermitidos = [
@@ -18,7 +19,8 @@ function validarCorreo(input) {
     const cumpleDominio = dominiosPermitidos.includes(dominio);
 
     // Si cumple al menos una de las dos validaciones
-    if (!cumpleRegex && !cumpleDominio) {
+    if (!cumpleRegex && !cumpleDominio) 
+    {
         mensajeValidacion.style.display = 'block';
         mensajeValidacion.style.color = '#58151c';
         mensajeValidacion.innerHTML = 'El correo no es válido. Debe tener un formato correcto o pertenecer a un dominio permitido.';
@@ -30,7 +32,8 @@ function validarCorreo(input) {
     return true;
 }
 
-function establecerMinMaxFecha() {
+function establecerMinMaxFecha() 
+{
     const fechaInput = document.getElementById('fecha');
     const hoy = new Date();
     const manana = new Date(hoy);
@@ -44,54 +47,63 @@ function establecerMinMaxFecha() {
     fechaInput.min = `${year}-${month}-${day}`;
 
     // Lógica para evitar selección de domingos
-    fechaInput.addEventListener('change', function() {
+    fechaInput.addEventListener('change', function() 
+    {
         validarFecha(this);
     });
 }
 
-function validarFecha(input) {
+function validarFecha(input) 
+{
     const fechaInput = new Date(input.value + 'T00:00:00');
     const diaSemana = fechaInput.getUTCDay(); // Obtiene el día de la semana (0 = domingo)
     const mensajeValidacion = document.getElementById('mensajeValidacion');
 
     // Evitar que se seleccionen domingos (día 0)
-    if (diaSemana === 0) {
+    if (diaSemana === 0) 
+    {
         mensajeValidacion.style.display = 'block';
         mensajeValidacion.style.color = '#58151c';
         mensajeValidacion.innerHTML = 'No se pueden seleccionar domingos.';
         input.value = ''; // Limpiar el campo de fecha
         return false;
-    } else {
+    } else 
+    {
         mensajeValidacion.style.display = 'none';
         return true;
     }
 }
 
-function validarHora(input) {
+function validarHora(input) 
+{
     const horaInput = input.value;
     const [hora, minuto] = horaInput.split(':');
     const horaEntera = parseInt(hora);
 
     const mensajeValidacion = document.getElementById('mensajeValidacion');
 
-    if (horaEntera < 7 || horaEntera > 17 || (horaEntera === 17 && minuto !== '00')) {
+    if (horaEntera < 7 || horaEntera > 17 || (horaEntera === 17 && minuto !== '00')) 
+    {
         mensajeValidacion.style.display = 'block';
         mensajeValidacion.style.color = '#58151c';
         mensajeValidacion.innerHTML = 'Solo se pueden agendar citas entre las 7:00 AM y las 5:00 PM.';
         input.value = ''; 
         return false;
-    } else {
+    } else 
+    {
         mensajeValidacion.style.display = 'none';
         return true;
     }
 }
 
-function validarInvitado(form) {
+function validarInvitado(form) 
+{
     const nombreInput = form.nombres;
     const regex = /^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$/;
     const mensajeValidacion = document.getElementById('mensajeValidacion');
 
-    if (!regex.test(nombreInput.value)) {
+    if (!regex.test(nombreInput.value)) 
+    {
         mensajeValidacion.style.display = 'block';
         mensajeValidacion.style.color = '#58151c';
         mensajeValidacion.innerHTML = 'El nombre solo puede contener letras, acentos y la letra ñ.';
@@ -99,7 +111,8 @@ function validarInvitado(form) {
     }
 
     const telefonoInput = form.telefono;
-    if (telefonoInput.value.length !== 10) {
+    if (telefonoInput.value.length !== 10) 
+    {
         mensajeValidacion.style.display = 'block';
         mensajeValidacion.style.color = '#58151c';
         mensajeValidacion.innerHTML = 'El número de teléfono debe contener exactamente 10 dígitos.';
@@ -107,19 +120,22 @@ function validarInvitado(form) {
     }
 
     const horaInput = form.hora;
-    if (!validarHora(horaInput)) {
+    if (!validarHora(horaInput)) 
+    {
         return false;
     }
 
     const fechaInput = form.fecha;
-    if (!validarFecha(fechaInput)) {
+    if (!validarFecha(fechaInput)) 
+    {
         return false;
     }
 
     return true;
 }
 
-window.onload = function() {
+window.onload = function() 
+{
     establecerMinMaxFecha();
 
     const horaInput = document.getElementById('hora');
