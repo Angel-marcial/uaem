@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\AdminAlumnosController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminGuardiasController;
 use App\Http\Controllers\Admin\AdminMaestrosController;
+use App\Http\Controllers\Admin\AdminCoordinadoresController;
 use App\Http\Controllers\Alumnos\AlumnosController;
 use App\Http\Controllers\Emails\EmailsController;
 use App\Http\Controllers\Index\IndexController;
@@ -69,11 +70,14 @@ Route::get('admin-elimina-guardia/{cuenta}', [AdminGuardiasController::class,'el
 Route::get('admin-nuevo-alumno', [AdminGuardiasController::class,'adminNuevoGuardia'])->middleware('auth.guard');
 Route::post('admin-alta-guardia', [AdminGuardiasController::class,'nuevoMaestro'])->middleware('auth.guard');
 Route::get('admin-ver-guardia/{cuenta}', [AdminGuardiasController::class,'datosGuardia'])->middleware('auth.guard'); 
+Route::post('editar-guardia/{id}', [AdminGuardiasController::class,'editarGuardia'])->middleware('auth.guard');
+//admin coordinadores
+
+Route::get('admin-consulta-coordinador', [AdminCoordinadoresController::class,'tablaCoordinadores'])->middleware('auth.guard');
 
 
 
 
-Route::post('editar-guardia/{id}', [AdminGuardiasController::class,'editarGuardia'])->middleware('auth.guard'); //trabajando
 
 
 
