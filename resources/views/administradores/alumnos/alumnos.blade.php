@@ -129,7 +129,7 @@
                 alert('Error al conectar con el servidor.');
             });
         }
-        </script>
+    </script>
         
 
 @endsection

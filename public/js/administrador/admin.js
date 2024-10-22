@@ -20,9 +20,9 @@ document.addEventListener('DOMContentLoaded', function()
         document.getElementById("apellidoPaterno").disabled = false;
         document.getElementById("apellidoMaterno").disabled = false;
 
-        document.getElementById("editarAdmin").style.display = "none";
-        document.getElementById("guardarAdmin").style.display = "block";
-        document.getElementById("cancelarAdmin").style.display = "block";
+        document.getElementById("editarAdminGuardia").style.display = "none";
+        document.getElementById("guardarAdminGuardia").style.display = "block";
+        document.getElementById("cancelarAdminGuardia").style.display = "block";
     };
 
     window.cancelar = function() 
@@ -33,14 +33,14 @@ document.addEventListener('DOMContentLoaded', function()
         document.getElementById("apellidoPaterno").disabled = true;
         document.getElementById("apellidoMaterno").disabled = true;
         
-        document.getElementById("editarAdmin").style.display = "block";
-        document.getElementById("guardarAdmin").style.display = "none";
-        document.getElementById("cancelarAdmin").style.display = "none";  
+        document.getElementById("editarAdminGuardia").style.display = "block";
+        document.getElementById("guardarAdminGuardia").style.display = "none";
+        document.getElementById("cancelarAdminGuardia").style.display = "none";  
 
         location.reload();
     };
 
     // Asignar eventos a los botones
-    document.getElementById("editarAdmin").addEventListener("click", editar);
-    document.getElementById("cancelarAdmin").addEventListener("click", cancelar);
+    document.getElementById("editarAdminGuardia").addEventListener("click", editar);
+    document.getElementById("cancelarAdminGuardia").addEventListener("click", cancelar);
 });
