@@ -197,17 +197,9 @@ class AdminGuardiasController extends Controller
                 'telefono' => $telefono,
             ]);
 
-            Credenciales1::where()->update([
-
-
-                
-            ]);
-
-            return redirect('/admin-consulta-alumnos')->with('status', 'Alumno actualizado con exito.')->with('error',true);
+            return redirect('/admin-consulta-guardias')->with('status', 'Guardia actualizado con exito.')->with('error',true);
         }
- 
     }
-
 
     //trabajando aqui ------------------------
     public function nuevoMaestro(Request $request)
