@@ -39,7 +39,7 @@
 
         <h1>Departamentos</h1>
 
-        <form action="{{ url('admin-buscar-alumnos') }}" method="GET">
+        <form action="{{ url('admin-buscar-coordinador') }}" method="GET">
             <div class="input-group mb-3 form-min-size alto">
                 <input type="text" class="form-control" name="search" placeholder="Numero de cuenta..." value="{{ request('search') }}">
                 <button class="btn btn-outline-secondary" type="submit">Buscar</button>
@@ -53,8 +53,9 @@
                     <th scope="col">#</th>
                     <th scope="col">No Cuenta</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Teléfono</th>
-                    <th scope="col">Carrera</th>
+                    <th scope="col">Departamento</th>
+                    <th scope="col">Edificio</th>
+                    <th scope="col">Aula</th>
                     <th scope="col">Correo</th>
                     <th scope="col">Estatus</th>
                     <th scope="col">Editar</th>
@@ -62,25 +63,26 @@
                 </tr>
             </thead>
             <tbody>
-                @php $i = ($alumnos->currentPage() - 1) * $alumnos->perPage() + 1; @endphp
-                @foreach ($alumnos as $alumno)
+                @php $i = ($coordinadores->currentPage() - 1) * $coordinadores->perPage() + 1; @endphp
+                @foreach ($coordinadores as $coordinador)
                     <tr>
                         <td>{{ $i++ }}</td>
-                        <td>{{ $alumno->no_cuenta }}</td>
-                        <td>{{ $alumno->nombre }} {{ $alumno->apellido_paterno }} {{ $alumno->apellido_materno }}</td>
-                        <td>{{ $alumno->telefono }}</td>
-                        <td>{{ $alumno->carrera }}</td>
-                        <td>{{ $alumno->correo }}</td>
+                        <td>{{ $coordinador->no_cuenta }}</td>
+                        <td>{{ $coordinador->nombre }} {{ $coordinador->apellido_paterno }} {{ $coordinador->apellido_materno }}</td>
+                        <td>{{ $coordinador->nombre_departamento }}</td>
+                        <td>{{ $coordinador->edificio }}</td>
+                        <td>{{ $coordinador->aula }}</td>
+                        <td>{{ $coordinador->correo }}</td>
                         <td>
 
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheck{{ $alumno->id }}" 
-                                {{ $alumno->estatus ? 'checked' : '' }} onchange="toggleEstatus(this, {{ $alumno->id }})">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheck{{ $coordinador->id_usuario }}" 
+                                {{ $coordinador->estatus ? 'checked' : '' }} onchange="toggleEstatus(this, {{ $coordinador->id_usuario }})">
                             </div>
                             
                         </td>
-                        <td><a href="{{ url('admin-ver-alumnos/'.$alumno->no_cuenta) }}" class="btn btn-warning">Editar</a></td>
-                        <td><a href="{{ url('admin-elimina-alumnos/'.$alumno->no_cuenta) }}" class="btn btn-danger" >Eliminar</a></td>
+                        <td><a href="{{ url('admin-ver-alumnos/'.$coordinador->no_cuenta) }}" class="btn btn-warning">Editar</a></td>
+                        <td><a href="{{ url('admin-elimina-alumnos/'.$coordinador->no_cuenta) }}" class="btn btn-danger" >Eliminar</a></td>
                     </tr>
                 @endforeach
             </tbody>
@@ -88,7 +90,7 @@
         <!-- Paginación -->
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
-                {{ $alumnos->links('pagination::bootstrap-4') }}
+                {{ $coordinadores->links('pagination::bootstrap-4') }}
             </ul>
         </nav>
 

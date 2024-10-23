@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Alumnos;
+use App\Models\Coordinadores;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
 
@@ -19,8 +19,40 @@ class AdminCoordinadoresController extends Controller
         $admin = Usuarios::find($id);
         //$alumnos = Alumnos::get();
 
-        $alumnos = Alumnos::where('id', 'like', '%'.$request->input('search').'%')->paginate(4);
-        return view('administradores.departamentos.departamentos', compact('admin','alumnos'));
+        $coordinadores = Coordinadores::where('id_usuario', 'like', '%'.$request->input('search').'%')->paginate(4);
+        return view('administradores.departamentos.departamentos', compact('admin','coordinadores'));
+    }
+
+    //buscar coordinador
+    public function buscarCoordinador(Request $request)
+    {
+        $id = $request->session()->get('id');
+        $rol = $request->session()->get('rol');
+        $ruta = $request->session()->get('ruta');
+
+        $admin = Usuarios::find($id);
+
+        // Obtén la consulta de búsqueda
+        $search = $request->input('search');
+
+        // Si hay un término de búsqueda, filtrar por él
+        if ($search) 
+        {
+            $coordinadores = Coordinadores::where('no_cuenta', 'like', '%' . $search . '%')
+                ->orWhere('nombre', 'like', '%' . $search . '%')
+                ->orWhere('apellido_paterno', 'like', '%' . $search . '%')
+                ->paginate(4); // Paginación con 10 alumnos por página
+        } 
+        else 
+        {
+            $coordinadores = Coordinadores::paginate(4); // Paginación con 10 alumnos por página si no hay búsqueda
+        }
+        if ($request->ajax()) 
+        {
+            return response()->json($coordinadores);
+        }
+
+        return view('administradores.departamentos.departamentos', compact('admin', 'coordinadores'));
     }
 
 

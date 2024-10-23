@@ -18,7 +18,9 @@ class Coordinadores extends Model
         'apellido_paterno',
         'apellido_materno',
         'nombre_departamento',
-        'carrera',
+        'edificio',
+        'aula',
+        'correo',
         'estatus'
     ];
 }
