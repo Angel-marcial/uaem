@@ -72,10 +72,9 @@ Route::post('admin-alta-guardia', [AdminGuardiasController::class,'nuevoMaestro'
 Route::get('admin-ver-guardia/{cuenta}', [AdminGuardiasController::class,'datosGuardia'])->middleware('auth.guard'); 
 Route::post('editar-guardia/{id}', [AdminGuardiasController::class,'editarGuardia'])->middleware('auth.guard');
 //admin coordinadores
-
 Route::get('admin-consulta-coordinador', [AdminCoordinadoresController::class,'tablaCoordinadores'])->middleware('auth.guard');
-
 Route::get('admin-buscar-coordinador', [AdminCoordinadoresController::class,'buscarCoordinador'])->middleware('auth.guard');
+
 
 
 
