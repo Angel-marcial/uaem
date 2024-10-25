@@ -55,7 +55,16 @@ class AdminCoordinadoresController extends Controller
         return view('administradores.departamentos.departamentos', compact('admin', 'coordinadores'));
     }
 
+    public function adminNuevoCordinador(Request $request)
+    {
+        $id = $request->session()->get('id');
+        $rol = $request->session()->get('rol');
+        $ruta = $request->session()->get('ruta');
 
+        $admin = Usuarios::find($id);
+
+        return view('administradores.departamentos.nuevoDepartamento',compact('admin'));
+    }
 
 
 }

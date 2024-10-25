@@ -48,6 +48,3 @@ class ApiLoginController extends Controller
         }
     }
 }
-
-
-

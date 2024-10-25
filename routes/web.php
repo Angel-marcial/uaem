@@ -77,6 +77,9 @@ Route::get('admin-buscar-coordinador', [AdminCoordinadoresController::class,'bus
 
 
 
+Route::get('admin-nuevo-coordinador', [AdminCoordinadoresController::class,'adminNuevoCordinador'])->middleware('auth.guard');
+
+
 
 
 

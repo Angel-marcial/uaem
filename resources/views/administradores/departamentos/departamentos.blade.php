@@ -43,7 +43,7 @@
             <div class="input-group mb-3 form-min-size alto">
                 <input type="text" class="form-control" name="search" placeholder="Numero de cuenta..." value="{{ request('search') }}">
                 <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-                <a class="btn btn-success" href="{{ url('admin-nuevo-alumno') }}">Nuevo</a>
+                <a class="btn btn-success" href="{{ url('admin-nuevo-coordinador') }}">Nuevo</a>
             </div>
         </form>
 
