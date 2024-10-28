@@ -82,11 +82,10 @@
                             <input type="number" class="form-control text-contenedor " id="telefono" name="telefono" value="{{ old('telefono', $admin->telefono?? '') }}" required disabled oninput="validarTelefono(this)">
                         </div>
                         
-                    
                         <div class="d-flex justify-content-end gap-2 btn-contenedor">
-                            <button type="button" class="btn-editar" id="editarAdmin">Editar</button>
-                            <button type="submit" class="btn-custom" id="guardarAdmin" style="display: none;">Guardar</button>
-                            <button type="button" class="btn-cancelar" id="cancelarAdmin" style="display: none;">Cancelar</button>
+                            <button type="button" class="btn-editar" id="editarAdminGuardia">Editar</button>
+                            <button type="submit" class="btn-custom" id="guardarAdminGuardia" style="display: none;">Guardar</button>
+                            <button type="button" class="btn-cancelar" id="cancelarAdminGuardia" style="display: none;">Cancelar</button>
                         </div>
 
                     </div>

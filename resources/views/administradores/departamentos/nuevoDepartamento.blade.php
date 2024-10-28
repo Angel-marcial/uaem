@@ -48,6 +48,21 @@
 
                         <div class="margenes-contenedor">
 
+                            <div class="row g-0 ">
+                                <div class="col-sm-6 col-md-6">
+
+                                </div>
+
+                                <div class="col-6 col-md-6">
+
+                                    <div>
+                                        <label for="aula" class="form-label titulos margenes-contenedor">No de cuenta</label>
+                                        <input type="text" class="form-control text-contenedor " id="numeroCuenta" name="numeroCuenta" placeholder="numero de cuenta" value="{{ old('numeroCuenta') }}" required oninput="validarCuenta(this)">
+                                    </div>
+
+                                </div>
+                            </div>
+
                             <div>
                                 <label for="departamento" class="form-label titulos margenes-contenedor">Nombre del Departamento</label>
                                 <input type="text" class="form-control text-contenedor " id="departamento" name="departamento" placeholder="Nombre del Departamento" value="{{ old('departamento') }}" required oninput="validarTextos(this)">
@@ -73,15 +88,13 @@
                                 </div>
                             </div>
 
+                            <div class="btn-contenedor">
+                                <button type="submit" class="btn-custom" id="guardar">Guardar</button>
+                            </div>
+
                         </div>
 
-
-
-
-
-
                     </form>
-
 
                 </div>
             

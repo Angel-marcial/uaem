@@ -10,6 +10,23 @@
 para los formularios alumnos,  . 
 */
 
+function validarCuenta(input)
+{
+    var errorDiv = document.getElementById("divCerrar1");
+
+    if (input.value.length < 7 || input.value.length > 7) 
+    {
+        errorDiv.style.display = "block";
+        errorDiv.textContent = "El número de cuenta debe tener al menos 7 dígitos.";
+        return false;
+    }else
+    {
+        errorDiv.style.display = "none";
+        errorDiv.textContent = "";
+    }
+    
+}
+
 
 // Validar que solo se pueda ingresar un dígito del 0 al 9
 function validarDigito(input) 
