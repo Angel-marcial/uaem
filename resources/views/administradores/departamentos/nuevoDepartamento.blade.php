@@ -43,7 +43,7 @@
                 <h5 >Nuevo Departamento</h5>
                 <div class="contenedor margenes-contenedor">
 
-                    <form action="{{ url('') }}" method="POST" >
+                    <form action="{{ url('admin-nuevo-departamento') }}" method="POST" >
                         @csrf
 
                         <div class="margenes-contenedor">
@@ -56,7 +56,7 @@
                                 <div class="col-6 col-md-6">
 
                                     <div>
-                                        <label for="aula" class="form-label titulos margenes-contenedor">No de cuenta</label>
+                                        <label for="aula" class="form-label titulos margenes-contenedor">No de Cuenta Del Cordinador </label>
                                         <input type="text" class="form-control text-contenedor " id="numeroCuenta" name="numeroCuenta" placeholder="numero de cuenta" value="{{ old('numeroCuenta') }}" required oninput="validarCuenta(this)">
                                     </div>
 
@@ -82,7 +82,7 @@
 
                                     <div>
                                         <label for="aula" class="form-label titulos margenes-contenedor">Aula</label>
-                                        <input type="text" class="form-control text-contenedor " id="aula" name="aula" placeholder="aula" value="{{ old('aula') }}" required oninput="validarTextos(this)">
+                                        <input type="text" class="form-control text-contenedor " id="aula" name="aula" placeholder="aula" value="{{ old('aula') }}" required oninput="validarCuenta(this)">
                                     </div>
 
                                 </div>

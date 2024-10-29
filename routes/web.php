@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminGuardiasController;
 use App\Http\Controllers\Admin\AdminMaestrosController;
 use App\Http\Controllers\Admin\AdminCoordinadoresController;
+use App\Http\Controllers\Admin\AdminDepartamentosController;
 use App\Http\Controllers\Alumnos\AlumnosController;
 use App\Http\Controllers\Emails\EmailsController;
 use App\Http\Controllers\Index\IndexController;
@@ -74,10 +75,13 @@ Route::post('editar-guardia/{id}', [AdminGuardiasController::class,'editarGuardi
 //admin coordinadores
 Route::get('admin-consulta-coordinador', [AdminCoordinadoresController::class,'tablaCoordinadores'])->middleware('auth.guard');
 Route::get('admin-buscar-coordinador', [AdminCoordinadoresController::class,'buscarCoordinador'])->middleware('auth.guard');
-
-
-
 Route::get('admin-nuevo-coordinador', [AdminCoordinadoresController::class,'adminNuevoCordinador'])->middleware('auth.guard');
+
+
+
+
+Route::post('admin-nuevo-departamento', [AdminDepartamentosController::class,'nuevoDepartamento'])->middleware('auth.guard'); //trabajando
+
 
 
 
