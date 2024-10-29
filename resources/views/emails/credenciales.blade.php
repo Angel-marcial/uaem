@@ -22,6 +22,6 @@ Contraseña: {{ $password }}
 ¡No compartas tus datos con nadie!
 ¡No responda a este mensaje!
 
-Cordinacion general<br>
+Coordinación General<br>
 {{ config('app.name') }}
 @endcomponent

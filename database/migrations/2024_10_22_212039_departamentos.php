@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -14,7 +15,7 @@ return new class extends Migration
         Schema::create('departamentos', function(Blueprint $table)
         {
             $table->id();                  // Crea una columna de tipo BIGINT con auto-incremento como clave primaria
-            $table->bigInteger('id_usuario');
+            $table->bigInteger('id_usuario')->unique();
             $table->string('nombre_departamento');      // Crea una columna de tipo VARCHAR para el nombre
             $table->string('edificio');
             $table->string('aula');

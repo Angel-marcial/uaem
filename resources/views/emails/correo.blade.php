@@ -17,6 +17,6 @@ Código de verificación
 
 ¡No responda a este mensaje!
 
-Cordinacion general<br>
+Coordinación General<br>
 {{ config('app.name') }}
 @endcomponent

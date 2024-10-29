@@ -71,6 +71,7 @@
         <script src="{{ asset('js/administrador/admin.js') }}"></script>
         <script src="{{ asset('js/administrador/adminAlumno.js') }}"></script>
         <script src=" {{ asset('js/alumnos/alumno.js')}}"></script>
+        <script src="{{ asset('js/administrador/adminDepartamento.js') }}"></script>
 
     </body>
 

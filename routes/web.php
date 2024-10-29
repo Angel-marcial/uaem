@@ -76,17 +76,12 @@ Route::post('editar-guardia/{id}', [AdminGuardiasController::class,'editarGuardi
 Route::get('admin-consulta-coordinador', [AdminCoordinadoresController::class,'tablaCoordinadores'])->middleware('auth.guard');
 Route::get('admin-buscar-coordinador', [AdminCoordinadoresController::class,'buscarCoordinador'])->middleware('auth.guard');
 Route::get('admin-nuevo-coordinador', [AdminCoordinadoresController::class,'adminNuevoCordinador'])->middleware('auth.guard');
+Route::post('admin-nuevo-departamento/{interfaz}', [AdminDepartamentosController::class,'nuevoDepartamento'])->middleware('auth.guard');
+Route::get('admin-elimina-departamento/{id}', [AdminDepartamentosController::class,'eliminarDepartamento'])->middleware('auth.guard');
 
 
 
-
-Route::post('admin-nuevo-departamento', [AdminDepartamentosController::class,'nuevoDepartamento'])->middleware('auth.guard'); //trabajando
-
-
-
-
-
-
+Route::get('admin-ver-departamento/{cuenta}', [AdminDepartamentosController::class,'datosDepartamento'])->middleware('auth.guard');  //trabajando
 
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Emails;
 use App\Http\Controllers\Controller;
+use App\Mail\Departamento;
 use Illuminate\Http\Request;
 use App\Mail\MiCorreo;
 use App\Models\Credenciales1;
@@ -115,4 +116,11 @@ class EmailsController extends Controller
     {
         return $correo = session()->get('destinatario');
     }
+
+
+    public function notificarDepartamento($destinatario, $nombre , $departamento)
+    { 
+        Mail::to($destinatario)->send(new Departamento($nombre, $departamento));
+    }
+
 }

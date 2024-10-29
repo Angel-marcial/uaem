@@ -81,8 +81,8 @@
                             </div>
                             
                         </td>
-                        <td><a href="{{ url('admin-ver-alumnos/'.$coordinador->no_cuenta) }}" class="btn btn-warning">Editar</a></td>
-                        <td><a href="{{ url('admin-elimina-alumnos/'.$coordinador->no_cuenta) }}" class="btn btn-danger" >Eliminar</a></td>
+                        <td><a href="{{ url('admin-ver-departamento/'.$coordinador->id_departamento) }}" class="btn btn-warning">Editar</a></td>
+                        <td><a href="{{ url('admin-elimina-departamento/'.$coordinador->id_usuario) }}" class="btn btn-danger" >Eliminar</a></td>
                     </tr>
                 @endforeach
             </tbody>

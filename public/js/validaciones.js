@@ -85,9 +85,6 @@ function validarTextos2(input)
         return;
     }else if(palabras.length > 2)
     {
-        errorDiv.style.display = 'block'; // Mostrar el div de error
-        errorDiv.innerHTML = "no puedes ingresar mas de dos palabras"; // Mensaje de error
-        input.style.borderColor = 'red';
         return;
     }else
     {
@@ -96,8 +93,28 @@ function validarTextos2(input)
         input.style.borderColor = '#96881B';
     }
 }
+//validar solo una latra 
+function validarMayuscula(input) 
+{
+    // Convierte el valor a mayúscula
+    input.value = input.value.toUpperCase();
 
+    // Expresión regular que solo permite una letra mayúscula
+    const regex = /^[A-Z]$/;
 
+    // Verifica si el valor cumple con la expresión regular
+    if (!regex.test(input.value)) {
+        // Si no cumple, se borra el valor ingresado
+        input.value = '';
+    }
+}
+
+function validarSalon(input) 
+{
+    if (input.value.length > 3) {
+        input.value = input.value.slice(0, 3);
+    }
+}
 
 /*
 function validarTextos(input) 

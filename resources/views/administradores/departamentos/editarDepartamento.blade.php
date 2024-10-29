@@ -1,12 +1,12 @@
 <!--
     Codice
-    Nombre del Código: nuevoDepartamento.blade.php
-    Fecha de Creación: 24/10/2024
+    Nombre del Código: editarDepartamento.blade.php
+    Fecha de Creación: 29/10/2024
     Revisado por: Angel Geovanni Marcial Morales
 
     Modificaciones:
 
-    Descripción: Este archivo PHP contiene el formulario para un nuevo departamento. 
+    Descripción: Este archivo PHP contiene el formulario para editar un departamento. 
 -->
 
 @extends('administradores.contenido')
@@ -40,10 +40,10 @@
         <div class="btn-contenedor">   
             <div class="col-md-5">   
 
-                <h5 >Nuevo Departamento</h5>
+                <h5 >Editar Departamento</h5>
                 <div class="contenedor margenes-contenedor">
 
-                    <form action="{{ url('admin-nuevo-departamento/'.'nuevo') }}" method="POST" >
+                    <form action="{{ url('admin-nuevo-departamento/'.'editar') }}" method="POST" >
                         @csrf
 
                         <div class="margenes-contenedor">
@@ -57,7 +57,7 @@
 
                                     <div>
                                         <label for="aula" class="form-label titulos margenes-contenedor">No de Cuenta Del Cordinador </label>
-                                        <input type="text" class="form-control text-contenedor " id="numeroCuenta" name="numeroCuenta" placeholder="numero de cuenta" value="{{ old('numeroCuenta') }}" required oninput="validarCuenta(this)">
+                                        <input type="text" class="form-control text-contenedor " id="numeroCuenta" name="numeroCuenta"  value="{{ old('numeroCuenta', $departamento->no_cuenta ?? '') }}" required disabled oninput="validarCuenta(this)">
                                     </div>
 
                                 </div>
@@ -65,7 +65,7 @@
 
                             <div>
                                 <label for="departamento" class="form-label titulos margenes-contenedor">Nombre del Departamento</label>
-                                <input type="text" class="form-control text-contenedor " id="departamento" name="departamento" placeholder="Nombre del Departamento" value="{{ old('departamento') }}" required oninput="validarTextos2(this)">
+                                <input type="text" class="form-control text-contenedor " id="departamento" name="departamento" placeholder="Nombre del Departamento" value="{{ old('departamento', $departamento->nombre_departamento ?? '') }}" required disabled oninput="validarTextos2(this)">
                             </div>
            
                             <div class="row g-0 ">
@@ -73,7 +73,7 @@
 
                                     <div>
                                         <label for="edificio" class="form-label titulos margenes-contenedor">Edificio</label>
-                                        <input type="text" class="form-control text-contenedor " id="edificio" name="edificio" placeholder="Edificio" value="{{ old('edificio') }}" required oninput="validarMayuscula(this)" maxlength="1">
+                                        <input type="text" class="form-control text-contenedor " id="edificio" name="edificio" placeholder="Edificio" value="{{ old('edificio', $departamento->edificio ?? '') }}" required disabled oninput="validarMayuscula(this)" maxlength="1">
                                     </div>
 
                                 </div>
@@ -82,14 +82,16 @@
 
                                     <div>
                                         <label for="aula" class="form-label titulos margenes-contenedor">Aula</label>
-                                        <input type="number" class="form-control text-contenedor " id="aula" name="aula" placeholder="aula" value="{{ old('aula') }}" required oninput="validarSalon(this)" maxlength="3">
+                                        <input type="number" class="form-control text-contenedor " id="aula" name="aula" placeholder="aula" value="{{ old('aula', $departamento->aula ?? '') }}" required disabled oninput="validarSalon(this)" maxlength="3">
                                     </div>
 
                                 </div>
                             </div>
 
-                            <div class="btn-contenedor">
-                                <button type="submit" class="btn-custom" id="guardar">Guardar</button>
+                            <div class="d-flex justify-content-end gap-2 btn-contenedor">
+                                <button type="button" class="btn-editar" id="editarAdminDepartamento">Editar</button>
+                                <button type="submit" class="btn-custom" id="guardarAdminDepartamento" style="display: none;">Guardar</button>
+                                <button type="button" class="btn-cancelar" id="cancelarAdminDepartamento" style="display: none;">Cancelar</button>
                             </div>
 
                         </div>
