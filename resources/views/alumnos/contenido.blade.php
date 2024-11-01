@@ -35,8 +35,10 @@
     </head> 
 
     <body>
-
-        @include('alumnos.inc.navbar')
+         <!--ESTE es el navegador-->
+        @include('navbar.navbar') 
+        @include('menunav.menunav')
+     
 
         <div class="py-3">  
             @yield('content')

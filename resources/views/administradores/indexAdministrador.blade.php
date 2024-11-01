@@ -9,6 +9,9 @@
 
     Descripción: Este archivo PHP contiene el inicio de sesion del administrador
 -->
+
+
+
 @extends('administradores.contenido')
 
 @section('content')

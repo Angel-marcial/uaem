@@ -34,8 +34,9 @@
 
     <body>
 
-        @include('administradores.inc.navbar')
-        @include('administradores.inc.sidebar')
+        <!--ESTE es el navegador-->
+        @include('navbar.navbar')
+        @include('menunav.menunav')
 
 
         <div class="py-3" id="contenido-principal">  

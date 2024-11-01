@@ -7,6 +7,12 @@
 
     Descripción: Este archivo PHP contiene el formulario de nuevos invitados en la interfaz invitados.
 -->
+
+<?php 
+
+$fecha_actual = date("Y-m-d");
+
+?>
 @extends('invitados.contenido')
 
 @section('content')
