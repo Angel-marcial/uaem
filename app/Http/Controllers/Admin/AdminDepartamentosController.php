@@ -36,13 +36,13 @@ class AdminDepartamentosController extends Controller
         $cuentaExistente = Coordinadores::where('no_cuenta', $cuenta)->first();
         $buscarMaestro = Maestros::where('no_cuenta', $cuenta)->first();
 
-        if($cuentaExistente)
+        if($cuentaExistente && $interfaz == 'nuevo')
         {
             return back()->with('status', 'El número de cuenta ya se encuentra asignado a un departamento.')
             ->with('error',false)->withInput();
         }
 
-        if(!$buscarMaestro)
+        if(!$buscarMaestro && $interfaz == 'nuevo')
         {
             return back()->with('status', 'El número de cuenta no está asociado a un maestro o no existe.')
             ->with('error',false)->withInput();
@@ -81,8 +81,11 @@ class AdminDepartamentosController extends Controller
 
             return redirect('/admin-consulta-coordinador')->with('status', 'Departamento creado con exito. se ha notificado al nuevo Coordinador')->with('error',true);
 
-        } else if($buscarMaestro && $interfaz == "editar")
+        } else if($interfaz == "editar") //$buscarMaestro &&
         {
+            
+
+
 
             echo "editando";
 
@@ -93,8 +96,8 @@ class AdminDepartamentosController extends Controller
             ->with('error',false)->withInput();
         }
         
-        return back()->with('status', 'esto no deveria pasar, contacta con soporte tecnico. ')
-        ->with('error',false)->withInput();
+        //return back()->with('status', 'esto no deveria pasar, contacta con soporte tecnico. ')
+        //->with('error',false)->withInput();
         /*
         $nuevoDepartamento = Departamentos::create([
             'no_cuenta' => $request->input('numeroCuenta'),
