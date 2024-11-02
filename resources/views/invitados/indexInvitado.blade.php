@@ -40,7 +40,7 @@ $fecha_actual = date("Y-m-d");
                 <h5 class="">Datos</h5>
                 <div class="contenedor margenes-contenedor">
                     
-                    <form action="" method="POST" onsubmit="return validarInvitado(this)">
+                    <form action="crear-invitado" method="POST" onsubmit="return validarInvitado(this)">
                         @csrf
 
                         <div class="row g-0 btn-contenedor margenes-contenedor">

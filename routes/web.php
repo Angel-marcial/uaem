@@ -21,6 +21,7 @@ use App\Http\Controllers\Emails\EmailsController;
 use App\Http\Controllers\Index\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guardias\GuardiasController;
+use App\Http\Controllers\Invitados\InvitadosController;
 use App\Http\Controllers\Maestros\MaestrosController;
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +90,11 @@ Route::post('admin-edita-departamento/{id}/{idUsuario}', [AdminDepartamentosCont
 
 //rutas invitados
 Route::get('index-invitado', [IndexController::class,'indexInvitados']);
+Route::post('crear-invitado', [InvitadosController::class,'crearInvitacion']);  //trabajando 
+
+
+
+
 
 //rutas validar correos
 Route::post('enviar-correo-alumnos', [EmailsController::class,'enviarCorreoAlumnos']);
