@@ -182,7 +182,7 @@ class AdminDepartamentosController extends Controller
 
 
                 //editando
-                $datosDepartamento = Coordinadores::where('id_departamento', $idDepartamento->id)->first();
+                $datosDepartamento = Coordinadores::where('id_departamento', $idDepartamento)->first();
                 $notificarCoordinador = new EmailsController();
                 $notificarCoordinador -> notificarDepartamento($datosDepartamento->correo, ($datosDepartamento->nombre . " " . $datosDepartamento->apellido_paterno), $datosDepartamento->nombre_departamento );
 

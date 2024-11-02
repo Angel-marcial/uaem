@@ -60,11 +60,9 @@
                                 <div class="col-sm-6 col-md-8">
                                     <label for="area" class="form-label titulos margenes-contenedor">Selecciona el Área a visitar:</label>
                                     <select class="form-control text-contenedor btn-contenedor" id="areas" name="areas">
-                                        <option value="control-escolar">Control Escolar</option>
-                                        <option value="biblioteca">Biblioteca</option>
-                                        <option value="auto-acceso">Auto Acceso</option>
-                                        <option value="servicio-social">Servicio Social</option>
-                                        <option value="cafeteria">Cafetería</option>
+                                        @foreach ($departamentos as $departamento)
+                                            <option value="{{ $departamento->id }}">{{ $departamento->nombre_departamento }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -99,3 +97,5 @@
 @endsection
 
 <script src="{{ asset('js/invitados/invitado.js') }}"></script>
+
+

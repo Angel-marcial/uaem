@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Index;
 use App\Http\Controllers\Controller;
+use App\Models\Departamentos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,7 +20,10 @@ class  IndexController extends Controller
   
     public function IndexInvitados()
     {
-        return view('invitados.indexInvitado');
+
+        $departamentos = Departamentos::all();
+
+        return view('invitados.indexInvitado', compact('departamentos'));
     }
 
     public function login(Request $request)
