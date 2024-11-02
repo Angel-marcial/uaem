@@ -10,6 +10,7 @@
 
 @extends('alumnos.contenido')
 
+
 @section('content')
 
 

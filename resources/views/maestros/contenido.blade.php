@@ -33,7 +33,8 @@
 
     <body>
 
-        @include('maestros.inc.navbar')
+        @include('navbar.navbar') 
+        @include('menunav.menunav')
 
         <div class="py-3">  
             @yield('content')
