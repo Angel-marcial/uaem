@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class InvitadosController extends Controller
 {
-    
-   
+    public function crearInvitacion(Request $request)
+    {
+        
+        
+
+        
+
+
+
+
+    }   
 }
