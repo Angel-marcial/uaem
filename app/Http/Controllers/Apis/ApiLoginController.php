@@ -25,17 +25,17 @@ class ApiLoginController extends Controller
                 case 'alumno':
 
                     $alumno = DB::table('alumnos')->where('id', $id_usuario)->first();
-                    return response()->json($alumno, 200);
+                    return response()->json(['alumno' => $alumno, 'rol' => $rol], 200);
 
                 case 'maestro':
 
                     $maestro = DB::table('maestros')->where('id', $id_usuario)->first();
-                    return response()->json($maestro, 200);      
+                    return response()->json(['maestro' => $maestro ,'rol' => $rol], 200);      
 
                 case 'cordinador':
 
                     $coordinador = DB::table('vdepartamentos')->where('id_usuario', $id_usuario)->first();
-                    return response()->json($coordinador, 200);      
+                    return response()->json(['cordinador' => $coordinador, 'rol' => $rol], 200);      
 
                 default:
 
