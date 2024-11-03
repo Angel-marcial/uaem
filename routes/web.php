@@ -22,6 +22,9 @@ use App\Http\Controllers\Index\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guardias\GuardiasController;
 use App\Http\Controllers\Maestros\MaestrosController;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\IngresoSalidaExport;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +51,7 @@ Route::get('index-maestros', [IndexController::class, 'indexMaestros']);
 Route::post('guardar-maestros', [MaestrosController::class,'guardarMaestros']);
 Route::get('consulta-maestros', [MaestrosController::class, 'consultaMaestros'])->middleware('auth.guard')->name('consulta.maestros');
 Route::post('editar-maestro/{id}', [MaestrosController::class,'editarMaestro']); 
+Route::get('maestros-horarios', [MaestrosController::class, 'consultaMaestrosHorarios'])->name('maestros.horarios.horarios');
 
 //rutas administrador 
 Route::get('index-admin',[AdminController::class, 'consultaAdmin'])->middleware('auth.guard')->name('guardias.index');
@@ -104,3 +108,18 @@ Route::get('index-guardia', [GuardiasController::class, 'indexGuardias'])->middl
 
 //ruta para cerrar session
 Route::post('cerrar-session', [IndexController::class, 'cerrarSession']);   
+
+
+//expprtaciones 
+Route::get('export/ingreso-salida', function (Request $request) {
+    return Excel::download(
+        new IngresoSalidaExport(
+            session('id'), 
+            $request->input('option'), 
+            $request->input('day'), 
+            $request->input('start_date'), 
+            $request->input('end_date')
+        ), 
+        'ingreso_salida.xlsx'
+    );
+})->name('export.ingreso_salida');

@@ -37,29 +37,33 @@ switch ($tipo){
         break;
     case 'alumno':
             ?>
-                <div class="sidebar">
-                    <div class="p-3">
-                        <ul>
-                            <li>prueba</li>
-                            <li>prueba</li>
-                            <li>prueba</li>
-                        </ul>
-                    </div>
+            <div class="sidebar">
+                <div class="p-3">
+                    <h5><i class=""></i>{{ old('numeroCuenta', $alumno->nombre." ".$alumno->apellido_paterno ?? '') }}</h5>
+                        <hr>
+                        <a class="active" href="{{ url('index-admin') }}" data-url="{{ url('index-admin') }}" class="ajax-link"><i class="bi bi-house-door"></i>Home</a>
+                        <a href="#"><i class="" id="dashboard"></i>Dashboard</a>
+                        <a href="#" data-url="{{ url('admin-consulta-alumnos') }}" class="ajax-link"><i class=""></i>MIS HORARIOS</a>
+                        <a data-url="{{ url('admin-consulta-maestros') }}" class="ajax-link"><i class=""></i>AGREGAR HORARIOS</a>
+                        <a data-url="{{ url('admin-consulta-guardias') }}" class="ajax-link"></i>PETICIONES</a>
                 </div>
+            </div>
             <?php
         break;
 
         case 'maestro':
         ?>
-                <div class="sidebar">
-                    <div class="p-3">
-                        <ul>
-                            <li>prueba</li>
-                            <li>prueba</li>
-                            <li>prueba</li>
-                        </ul>
-                    </div>
+            <div class="sidebar">
+                <div class="p-3">
+                    <h5><i class=""></i>{{ old('numeroCuenta', $maestro->nombre." ".$maestro->apellido_paterno ?? '') }}</h5>
+                        <hr>
+                        <a class="active" href="{{ url('index-admin') }}" data-url="{{ url('index-admin') }}" class="ajax-link"><i class="bi bi-house-door"></i>Home</a>
+                        <a href="{{ url('maestros-horarios') }}" data-url="{{ url('maestros/horarios') }}" class="ajax-link"><i class=""></i>Registros</a>
+                        <a href="{{ url('maestros-horarios') }}" data-url="{{ url('maestros/horarios') }}" class="ajax-link"><i class=""></i>Horarios</a>
+                        <a data-url="{{ url('admin-consulta-maestros') }}" class="ajax-link"><i class=""></i>Agregar Horarios</a>
+                        <a data-url="{{ url('admin-consulta-guardias') }}" class="ajax-link"></i>Cuenta</a>
                 </div>
+            </div>
         <?php
         break;
 

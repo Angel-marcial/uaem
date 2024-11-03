@@ -127,6 +127,47 @@ class MaestrosController extends Controller
         }
     }
 
+    public function consultaMaestrosHorarios(Request $request)
+    {
+        $id = $request->session()->get('id');
+        $rol = $request->session()->get('rol');
+        $ruta = $request->session()->get('ruta');
+
+        // Validación de rol y redirección
+        if ($rol !== 'maestro') {
+            return redirect($ruta ?? 'index');
+        }
+
+        // Obtener el maestro y su horario, en caso de ser necesario para la vista
+        $maestro = Usuarios::find($id);
+        $horario = Horario::where('id_usuario', $id)->first();
+
+        // Obtener los parámetros de búsqueda
+        $option = $request->input('option');
+        $day = $request->input('day');
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // Consulta base para el maestro actual
+        $query = DB::table('ingreso_salida')->where('id', $id);
+
+        // Aplicar filtros según la opción seleccionada
+        if ($option == '1' && $day) {
+            // Filtro por día específico
+            $query->whereDate('fecha', $day);
+        } elseif ($option == '2' && $startDate && $endDate) {
+            // Filtro por rango de fechas
+            $query->whereBetween('fecha', [$startDate, $endDate]);
+        }
+
+        // Paginación de los resultados
+        $query_principal = $query->paginate(5);
+
+        // Pasar las variables a la vista
+        return view('maestros.horarios.horarios', compact('maestro', 'horario', 'query_principal', 'option', 'day', 'startDate', 'endDate'));
+    }
+
+
     function editarMaestro(Request $request, $id)
     {
         //campos de entrada
