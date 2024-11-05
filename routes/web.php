@@ -81,9 +81,17 @@ Route::post('admin-nuevo-departamento/{interfaz}', [AdminDepartamentosController
 Route::get('admin-elimina-departamento/{id}', [AdminDepartamentosController::class,'eliminarDepartamento'])->middleware('auth.guard');
 Route::get('admin-ver-departamento/{cuenta}', [AdminDepartamentosController::class,'datosDepartamento'])->middleware('auth.guard');
 Route::post('admin-edita-departamento/{id}/{idUsuario}', [AdminDepartamentosController::class,'editarDepartamento'])->middleware('auth.guard'); 
+//admin peticiones
+
+
+
+Route::get('admin-consulta-peticiones', [AdminCoordinadoresController::class,'tablaCoordinadores'])->middleware('auth.guard'); //--trabajando
+
+
+
 //rutas invitados
 Route::get('index-invitado', [IndexController::class,'indexInvitados']);
-Route::post('crear-invitado', [InvitadosController::class,'crearInvitacion']);  //trabajando 
+Route::post('crear-invitado', [InvitadosController::class,'crearInvitacion']);  
 
 
 

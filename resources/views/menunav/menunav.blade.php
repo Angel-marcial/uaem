@@ -49,6 +49,12 @@ switch ($tipo){
             <?php
         break;
 
+        case 'altaAlumno':
+            ?>
+
+            <?php
+        break;
+
         case 'maestro':
         ?>
                 <div class="sidebar">

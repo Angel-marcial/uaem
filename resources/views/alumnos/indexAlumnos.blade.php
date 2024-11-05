@@ -106,7 +106,7 @@
             <div class="col-md-5">   
 
                 <h5 class="{{ session('codigoAprobado') ? '' : 'hidden' }}">Datos del alumno</h5>
-                <div class="contenedor margenes-contenedor">
+                <div class="{{ session('codigoAprobado') ? '' : 'hidden'}} contenedor margenes-contenedor">
                     
                     <form action="{{ url('guardar-alumnos') }}" method="POST" onsubmit="return alumno(this)">
                         @csrf
@@ -117,21 +117,21 @@
                                 <div class="col-sm-6 col-md-8">
 
                                     <label for="carreras" class="form-label titulos margenes-contenedor">Selecciona una carrera:</label>
-                                    <select class="form-control text-contenedor btn-contenedor"  id="carreras" name="carreras">
-                                        <option value="ingenieria-software">Ingeniería de Software</option>
-                                        <option value="ingenieria-industrial">Producción Industrial</option>
-                                        <option value="ingenieria-plasticos">Ingeniería de Plasticos</option>
-                                        <option value="ingenieria-sistemas">Ingeniería de Sistemas</option>
-                                        <option value="ingenieria-mecanica">Ingeniería Mecanica</option>
-                                        <option value="seguridad-ciudadana">Seguridad Ciudadana</option>
+                                    <select class="form-control text-contenedor btn-contenedor" id="carreras" name="carreras">
+                                        <option value="ingenieria-software" {{ old('carreras') == 'ingenieria-software' ? 'selected' : '' }}>Ingeniería de Software</option>
+                                        <option value="ingenieria-industrial" {{ old('carreras') == 'ingenieria-industrial' ? 'selected' : '' }}>Producción Industrial</option>
+                                        <option value="ingenieria-plasticos" {{ old('carreras') == 'ingenieria-plasticos' ? 'selected' : '' }}>Ingeniería de Plásticos</option>
+                                        <option value="ingenieria-sistemas" {{ old('carreras') == 'ingenieria-sistemas' ? 'selected' : '' }}>Ingeniería de Sistemas</option>
+                                        <option value="ingenieria-mecanica" {{ old('carreras') == 'ingenieria-mecanica' ? 'selected' : '' }}>Ingeniería Mecánica</option>
+                                        <option value="seguridad-ciudadana" {{ old('carreras') == 'seguridad-ciudadana' ? 'selected' : '' }}>Seguridad Ciudadana</option>
                                     </select>
-                                    
+                                               
                                 </div>
                                 <div class="col-6 col-md-4">
 
                                     <div> 
                                         <label for="numeroCuenta" class="form-label titulos margenes-contenedor">No de cuenta</label>
-                                        <input type="number" class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta" placeholder="0000000" value="{{ old('numeroCuenta') }}" required>
+                                        <input type="number" class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta" placeholder="0000000" value="{{ old('numeroCuenta') }}" required min="1000000" max="9999999">
                                     </div>
 
                                 </div>

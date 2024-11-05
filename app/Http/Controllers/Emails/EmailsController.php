@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Mail;
 
 class EmailsController extends Controller
 {
-
+    //return back()->with('status', '')->with('error',false)->withInput();
     public function enviarCorreoAlumnos(Request $request)
     {
         //'/^[a-zA-Z0-9._%+-]+@gmail\.com$/';
@@ -19,31 +19,34 @@ class EmailsController extends Controller
         $destinatario = $request->input('correo');
         $correos = Credenciales1::pluck('correo');
 
-        foreach($correos as $correo)
-        {
-            if($correo == $destinatario)
-            {
-                return redirect('index-alumnos')->with('status', 'El correo '.$destinatario. ' ya se encuentra registrado')
-                ->with('correoEnviado',false);
-            }
-        }
-
         if(preg_match($correoAlumno,$destinatario))
         {
+            foreach($correos as $correo)
+            {
+                if($correo == $destinatario)
+                {
+                    return back()->with('status', 'El correo '.$destinatario. ' ya se encuentra registrado')
+                    ->with('error',false);
+                }
+            }
+
             $codigo = random_int(1000000, 9999999);
             $request->session()->put('codigo', $codigo);
             $nombre = 'Alumno'; 
             $request->session()->put('destinatario', $destinatario);
             Mail::to($destinatario)->send(new MiCorreo($nombre, $codigo));
 
-            return redirect('index-alumnos')->with('status', 'se ha enviado un codigo de verificacion al correo: '. $destinatario)
-            ->with('correoEnviado',true);
+            return back()->with('status', 'se ha enviado un codigo de verificacion al correo: '. $destinatario)
+            ->with('error',true)
+            ->with('correoEnviado', true);
         }
         else
         {
             return redirect('index-alumnos')->with('status', 'El correo proporcionado no es valido: '. $destinatario)
+            ->with('error',false)
             ->with('correoEnviado',false);
         }
+        
     }
 
 
@@ -103,11 +106,13 @@ class EmailsController extends Controller
         if($codigo == $codigoCompleto)
         {
             return redirect($ruta)->with('status', 'Codigo de seguridad aprobado')
+            ->with('error', true)
             ->with('codigoAprobado',true);
         }
         else
         {
             return redirect($ruta)->with('status', 'Codigo de seguridad incorrecto')
+            ->with('error', false)
             ->with('codigoAprobado',false);
         }
     }
