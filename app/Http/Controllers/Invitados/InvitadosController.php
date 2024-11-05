@@ -71,16 +71,33 @@ class InvitadosController extends Controller
             } 
             else 
             {
+
                 $horaVisita = new DateTime($hora);
-                $horaVisita->modify('-1 hour');
-
-                $horaCoordinadorEntarda = $cordinadorPresente->$diaBusquedaEntarda;
+                $horaCoordinadorEntrada = $cordinadorPresente->$diaBusquedaEntarda;
                 $horaCoordinadorSalida = $cordinadorPresente->$diaBusquedaSalida;
+                
+                $horaPermitidaEntrada = new DateTime($horaCoordinadorEntrada);
+
+                $horaPermitidaSalida = new DateTime($horaCoordinadorSalida);
+                $horaPermitidaSalida->modify('-1 hour');
+
+                $horaVisitaFormato = $horaVisita->format('H:i:s');
+                $horaPermitidaSalidaFormato = $horaPermitidaSalida->format('H:i:s');
+                $horaPermitidaEntradaFormato = $horaPermitidaEntrada->format('H:i:s');
+
+                if($horaVisitaFormato < $horaPermitidaSalidaFormato && $horaVisitaFormato > $horaPermitidaEntradaFormato)
+                {
+                    echo 'hora permitida';
+                }
+                else
+                {
+                    echo 'hora no permitida';
+                }
 
 
 
 
-                echo 'todo bien ' . $horaVisita->format('H:i:s') . ' ------------' . $horaCoordinadorEntarda . ' ------------' . $horaCoordinadorSalida;
+                echo '----datos----' . $horaVisita->format('H:i:s') . ' ------------' . $horaCoordinadorEntrada . ' ------------' . $horaCoordinadorSalida .  ' ------------' . $horaPermitidaSalida->format('H:i:s')  . ' ------------' ;
             }
         } 
         else 
