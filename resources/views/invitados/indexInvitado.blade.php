@@ -76,7 +76,9 @@ $fecha_actual = date("Y-m-d");
                                     <label for="area" class="form-label titulos margenes-contenedor">Selecciona el Área a visitar:</label>
                                     <select class="form-control text-contenedor btn-contenedor" id="areas" name="areas">
                                         @foreach ($departamentos as $departamento)
-                                            <option value="{{ $departamento->id }}">{{ $departamento->nombre_departamento }}</option>
+                                            <option value="{{ $departamento->id }}" {{ old('areas') == $departamento->id ? 'selected' : '' }}>
+                                                {{ $departamento->nombre_departamento }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -94,7 +96,7 @@ $fecha_actual = date("Y-m-d");
 
                             <div>
                                 <label for="motivo" class="form-label titulos margenes-contenedor">Motivo de la visita</label>
-                                <textarea class="form-control text-contenedor" id="motivo" name="motivo" placeholder="Escriba el motivo de su visita" rows="3" required value="{{ old('motivo') }}"></textarea>
+                                <textarea class="form-control text-contenedor" id="motivo" name="motivo" placeholder="Escriba el motivo de su visita" rows="3" required >{{ old('motivo') }}</textarea>
                             </div>
 
                             <div class="btn-contenedor">

@@ -130,8 +130,6 @@ class AdminDepartamentosController extends Controller
         $buscarCuenta = Coordinadores::where('no_cuenta', $cuenta)->first();
         $buscarMaestro = Maestros::where('no_cuenta', $cuenta)->first();
 
-
-        
         if($cuentaExistente)
         {
             return back()->with('status', 'El número de cuenta ya se encuentra asignado a un departamento.')
@@ -169,9 +167,19 @@ class AdminDepartamentosController extends Controller
             }
             else
             {
-                //id
+                $datosDepartamento = Coordinadores::where('id_departamento', $idDepartamento)->first();
+
+                if($datosDepartamento->id_departamento == 1)
+                {
+                    $nuevoUsuario = 'administrador';
+                }
+                else
+                {
+                    $nuevoUsuario = 'cordinador';
+                }
+
                 Credenciales1::where('id_usuario', $idUsuario)->update(['rol' => 'maestro']);
-                Credenciales1::where('id_usuario', $buscarMaestro->id)->update(['rol' => 'cordinador']);
+                Credenciales1::where('id_usuario', $buscarMaestro->id)->update(['rol' => $nuevoUsuario ]);
 
                 Departamentos::where('id', $idDepartamento)->update([
                     'id_usuario' => $buscarMaestro->id,
@@ -179,7 +187,6 @@ class AdminDepartamentosController extends Controller
                     'edificio' => $edificio ,
                     'aula' => $aula,
                 ]);
-
 
                 //editando
                 $datosDepartamento = Coordinadores::where('id_departamento', $idDepartamento)->first();

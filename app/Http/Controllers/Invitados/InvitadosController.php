@@ -62,9 +62,16 @@ class InvitadosController extends Controller
         // Verificamos si encontramos el coordinador
         if ($departamentoSolicitado) 
         {
+
+            
+            if($departamentoSolicitado->estatus == false)
+            {
+                return back()->with('status', 'Por el momento, no se aceptan visitas a este departamento.')->with('error',false)->withInput();
+            }
+
             // Obtenemos el horario del coordinador
             $cordinadorPresente = Horario::where('id_usuario', $departamentoSolicitado->id_usuario)->first();
-            
+
             if ($cordinadorPresente && is_null($cordinadorPresente->$diaBusquedaEntarda)) 
             {
                 return back()->with('status', 'El coordinador no está disponible en la fecha seleccionada. Por favor, programa tu visita para otro día.')->with('error',false)->withInput();
@@ -87,56 +94,35 @@ class InvitadosController extends Controller
 
                 if($horaVisitaFormato < $horaPermitidaSalidaFormato && $horaVisitaFormato > $horaPermitidaEntradaFormato)
                 {
-                    echo 'hora permitida';
+                    
+                    $invitacionCreada =  Invitados::create([
+                        'nombre_completo' => $nombre,
+                        'correo' => $correo,
+                        'telefono' => $telefono,
+                        'area_visita' => $areas,
+                        'hora_visita' => $hora,
+                        'fecha_visita' => $fecha,
+                        'motivo' => $motivo,
+                        'estatus' => false,
+                    ]);
+
+                    if ($invitacionCreada) 
+                    {
+                        return redirect('index')->with('status', 'El coordinador del departamento ha sido notificado. Recibirás un correo electrónico informándote si tu visita ha sido aprobada.')
+                        ->with('error',true);        
+                    }
                 }
                 else
                 {
-                    echo 'hora no permitida';
+                    return back()->with('status', 'El coordinador no está disponible en la hora seleccionada. Por favor, programa tu visita en otra hora del dia.')->with('error',false)->withInput();
                 }
-
-
-
-
-                echo '----datos----' . $horaVisita->format('H:i:s') . ' ------------' . $horaCoordinadorEntrada . ' ------------' . $horaCoordinadorSalida .  ' ------------' . $horaPermitidaSalida->format('H:i:s')  . ' ------------' ;
             }
         } 
         else 
         {
-            echo 'algo salio mal 2';
+            return back()->with('status', 'No se encontro el departamento')->with('error',false)->withInput();
         }
-
-
-
-
-
-        /*
-        $invitacionCreada =  Invitados::create([
-            'nombre_completo' => $nombre,
-            'correo' => $correo,
-            'telefono' => $telefono,
-            'area_visita' => $areas,
-            'hora_visita' => $hora,
-            'fecha_visita' => $fecha,
-            'motivo' => $motivo,
-            'estatus' => false,
-        ]);
-
-
-
-
-
-        if ($invitacionCreada) 
-        {
-            return redirect('index')->with('status', 'El coordinador del departamento ha sido notificado. Recibirás un correo electrónico informándote si tu visita ha sido aprobada.')
-            ->with('error',true);        
-        }
-        */
         
-        
-        echo "El día de la semana es: " . $diasSemanaEntarda[$diaSemana] . $diasSemanaSalida[$diaSemana];
-        
-        
-        echo $nombre . "----" .  $correo . "----" . $telefono . "----" . $areas . "----" . $hora . "----" . $fecha . "----" . $motivo;
-
+        return back()->with('status', 'Esto no deveria de pasar contactate con soporte tecnico')->with('error',false)->withInput();
     }   
 }

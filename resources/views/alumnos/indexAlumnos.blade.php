@@ -17,23 +17,24 @@
 
         @if (session('status'))
 
-            @if (session('correoEnviado') || session('codigoAprobado'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @else
-                <div class="alert alert-danger">
-                    {{ session('status') }}
-                </div>
-            @endif
+        @if (!session('error'))
+            <div id="divCerrar1" class="alert alert-danger">
+                {{ session('status') }}
 
-        @else
-
-            <div class="alert alert-danger" id="errorDiv" style="display:none;">
-                <!--<button type="submit" class="btn-custom " id="cancelar">X</button>-->
+                <button type="button" class="cerrar"  id="cerrar1" onclick="cerrarMensaje()">X</button>
             </div>
+        @else
+            <div id="divCerrar2" class="alert alert-success">
+                {{ session('status') }}
 
+                <button type="button" class="cerrar"  id="cerrar2" onclick="cerrarMensaje2()">X</button>
+            </div>
         @endif
+
+    @else
+        <div class="display:none;"></div>
+
+    @endif
 
         <div class="btn-contenedor">   
             <div class="col-md-5">
