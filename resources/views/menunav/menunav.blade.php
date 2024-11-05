@@ -12,10 +12,26 @@
 
 $tipo = session('rol');
 
-?>
+if (!$tipo)
+{
+    $nombreArchivo = basename(__FILE__);
 
-<?php 
-switch ($tipo){
+
+    switch($nombreArchivo)
+    {
+        case '9ccced337fbfafd9635af00120531477.php':
+            $prueba;
+            break;
+        default:
+        // Código a ejecutar si $variable no coincide con ninguno de los casos anteriores
+        echo "Valor no encontrado";
+        break;            
+    }
+
+} else 
+{
+    switch ($tipo)
+{
     case 'administrador':
         ?>
             <div class="sidebar">
@@ -71,6 +87,7 @@ switch ($tipo){
         // Código a ejecutar si $variable no coincide con ninguno de los casos anteriores
         echo "Valor no encontrado";
         break;
+}
 }
 
 ?>

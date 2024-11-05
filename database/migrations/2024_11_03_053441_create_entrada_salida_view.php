@@ -10,7 +10,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement("
+        DB::statement
+        ("
             CREATE VIEW ingreso_salida AS
             SELECT
                 a.id,
@@ -18,12 +19,14 @@ return new class extends Migration
                 CONCAT(a.nombre, ' ', a.apellido_paterno, ' ', a.apellido_materno) AS nombre,
                 a.telefono,
                 b.fecha,
-                b.hora_salida AS \"Hora de entrada\",
+                d.rol,
+                b.hora_ingreso AS \"Hora de entrada\",
                 c.hora_salida AS \"Hora de salida\",
                 c.dia
             FROM usuarios a
             INNER JOIN ingresos b ON a.id = b.id_usuario
             INNER JOIN salidas c ON a.id = c.id_usuario
+            INNER JOIN credenciales d ON a.id = d.id_usuario
             WHERE b.fecha = c.fecha;
         ");
     }
