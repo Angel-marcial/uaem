@@ -30,17 +30,25 @@
 
 <div class="margenes-contenedor">
 
-    <div class="alert alert-danger" id="errorDiv" style="display:none;"></div>
-
     @if (session('status'))
-        <script>
-            document.addEventListener("DOMContentLoaded", function() 
-            {
-                var errorDiv = document.getElementById('errorDiv');
-                errorDiv.textContent = "{{ session('status') }}"; // Mensaje de error
-                errorDiv.style.display = "block"; // Muestra el div
-            });
-        </script>
+
+        @if (!session('error'))
+            <div id="divCerrar1" class="alert alert-danger">
+                {{ session('status') }}
+
+                <button type="button" class="cerrar"  id="cerrar1" onclick="cerrarMensaje()">X</button>
+            </div>
+        @else
+            <div id="divCerrar2" class="alert alert-success">
+                {{ session('status') }}
+
+                <button type="button" class="cerrar"  id="cerrar2" onclick="cerrarMensaje2()">X</button>
+            </div>
+        @endif
+
+    @else
+        <div class="display:none;"></div>
+
     @endif
 
     <div class="container mt-5">
