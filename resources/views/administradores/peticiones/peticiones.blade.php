@@ -36,15 +36,38 @@
     @endif
 
 
-    <div class="margenes form-min-size">
+    <div class="margenes">
 
-        <div class="btn-contenedor">   
-            <div class="col-md-7">   
-    
-                <h5>Datos del Administrador</h5>
+        <h1>Peticiónes</h1>
+
+        @foreach ($peticiones as $peticion)
+
+        <div class="card">
+            <div class="card-header">
+                {{ $peticion->nombre_completo }}
+                <span class="float-end">Fecha: {{ $peticion->fecha_visita }} </span> <!-- Fecha alineada a la derecha -->
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">{{ $peticion->motivo}}</h4>
+                <h6 class="card-text">Datos de contacto</h6>
+                <p class="card-text">Correo: {{$peticion->correo}}</p>
+                <p class="card-text">Telefono: {{$peticion->telefono}}</p>
+                <p class="card-text">Hora Solicitada: {{$peticion->hora_visita}}</p>
+
+                <div class="d-flex justify-content-end gap-2 btn-contenedor">
+                    <a href="#" class="btn btn-success">Aceptar</a>
+                    <a href="#" class="btn btn-danger">Rechazar</a>
+                </div>
+                
             </div>
         </div>
+
+        <div class="card-vw"></div>
+        
+        @endforeach
     </div>
+
+
 
 @endsection
 

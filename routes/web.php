@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\AdminGuardiasController;
 use App\Http\Controllers\Admin\AdminMaestrosController;
 use App\Http\Controllers\Admin\AdminCoordinadoresController;
 use App\Http\Controllers\Admin\AdminDepartamentosController;
+use App\Http\Controllers\Admin\AdminPeticionesController;
 use App\Http\Controllers\Alumnos\AlumnosController;
 use App\Http\Controllers\Emails\EmailsController;
 use App\Http\Controllers\Index\IndexController;
@@ -85,7 +86,7 @@ Route::post('admin-edita-departamento/{id}/{idUsuario}', [AdminDepartamentosCont
 
 
 
-Route::get('admin-consulta-peticiones', [AdminCoordinadoresController::class,'tablaCoordinadores'])->middleware('auth.guard'); //--trabajando
+Route::get('admin-consulta-peticiones', [AdminPeticionesController::class,'adminVerPeticiones'])->middleware('auth.guard'); //--trabajando
 
 
 
