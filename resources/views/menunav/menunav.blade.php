@@ -29,7 +29,8 @@ switch ($tipo){
                         <a data-url="{{ url('admin-consulta-maestros') }}" class="ajax-link"><i class=""></i>Maestros</a>
                         <a data-url="{{ url('admin-consulta-guardias') }}" class="ajax-link"></i>Guardias</a>
                         <a data-url="{{ url('admin-consulta-coordinador') }}" class="ajax-link"><i class=""></i>Departamentos</a>
-                        <a href="#"><i class=""></i>Peticiones</a>
+                        <a data-url="{{ url('admin-consulta-peticiones') }}" class="ajax-link"></i>Peticiones</a>
+                        
                 </div>
             </div>
             
@@ -48,6 +49,12 @@ switch ($tipo){
                         <a data-url="{{ url('admin-consulta-guardias') }}" class="ajax-link"></i>PETICIONES</a>
                 </div>
             </div>
+            <?php
+        break;
+
+        case 'altaAlumno':
+            ?>
+
             <?php
         break;
 

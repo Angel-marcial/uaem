@@ -14,7 +14,7 @@ function alumno(form)
     var regexPalabra = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
     var regexAlumno = /^[\w.-]+@alumno\.uaemex\.mx$/;
     
-    var errorDiv = document.getElementById("errorDiv");
+    var errorDiv = document.getElementById("divCerrar1");
     var carrera = document.getElementById("carreras");
 
     var cuenta = form.querySelector('#numeroCuenta');

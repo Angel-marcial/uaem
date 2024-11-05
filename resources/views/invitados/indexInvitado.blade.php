@@ -21,13 +21,22 @@ $fecha_actual = date("Y-m-d");
 
     @if (session('status'))
 
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
+        @if (!session('error'))
+            <div id="divCerrar1" class="alert alert-danger">
+                {{ session('status') }}
+
+                <button type="button" class="cerrar"  id="cerrar1" onclick="cerrarMensaje()">X</button>
+            </div>
+        @else
+            <div id="divCerrar2" class="alert alert-success">
+                {{ session('status') }}
+
+                <button type="button" class="cerrar"  id="cerrar2" onclick="cerrarMensaje2()">X</button>
+            </div>
+        @endif
 
     @else
-
-        <div class="alert alert-danger" id="errorDiv" style="display:none;"></div>
+        <div class="display:none;"></div>
 
     @endif
 
@@ -40,7 +49,7 @@ $fecha_actual = date("Y-m-d");
                 <h5 class="">Datos</h5>
                 <div class="contenedor margenes-contenedor">
                     
-                    <form action="" method="POST" onsubmit="return validarInvitado(this)">
+                    <form action="crear-invitado" method="POST" onsubmit="return validarInvitado(this)">
                         @csrf
 
                         <div class="row g-0 btn-contenedor margenes-contenedor">
@@ -49,45 +58,45 @@ $fecha_actual = date("Y-m-d");
 
                             <div>
                                 <label for="nombres" class="form-label titulos margenes-contenedor">Nombre completo</label>
-                                <input type="text" class="form-control text-contenedor" id="nombres" name="nombres" placeholder="Nombre Completo" required oninput="validarInput(this)" onkeydown="return validarTecla(event)">
+                                <input type="text" class="form-control text-contenedor" id="nombres" name="nombres" placeholder="Nombre Completo" required value="{{ old('nombres') }}" oninput="validarInput(this)" onkeydown="return validarTecla(event)">
                             </div>
 
                             <div>
                                 <label for="correo" class="form-label titulos margenes-contenedor">Correo:</label>
-                                <input type="email" class="form-control text-contenedor" id="correo" name="correo" placeholder="Ej: usuario@gmail.com" required onkeypress="return validarTeclaCorreo(event)" oninput="validarCorreo(this)">
+                                <input type="email" class="form-control text-contenedor" id="correo" name="correo" placeholder="Ej: usuario@gmail.com" required value="{{ old('correo') }}" onkeypress="return validarTeclaCorreo(event)" oninput="validarCorreo(this)">
                             </div>
 
                             <div>
                                 <label for="telefono" class="form-label titulos margenes-contenedor">Teléfono</label>
-                                <input type="tel" class="form-control text-contenedor" id="telefono" name="telefono" placeholder="7200000000" required maxlength="10" onkeypress="return validarSoloNumeros(event)">
+                                <input type="tel" class="form-control text-contenedor" id="telefono" name="telefono" placeholder="7200000000" required value="{{ old('telefono') }}" maxlength="10" onkeypress="return validarSoloNumeros(event)">
                             </div>
 
                             <div class="row g-0">
                                 <div class="col-sm-6 col-md-8">
                                     <label for="area" class="form-label titulos margenes-contenedor">Selecciona el Área a visitar:</label>
                                     <select class="form-control text-contenedor btn-contenedor" id="areas" name="areas">
-                                        <option value="control-escolar">Control Escolar</option>
-                                        <option value="biblioteca">Biblioteca</option>
-                                        <option value="auto-acceso">Auto Acceso</option>
-                                        <option value="servicio-social">Servicio Social</option>
-                                        <option value="cafeteria">Cafetería</option>
+                                        @foreach ($departamentos as $departamento)
+                                            <option value="{{ $departamento->id }}" {{ old('areas') == $departamento->id ? 'selected' : '' }}>
+                                                {{ $departamento->nombre_departamento }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
 
                                 <div class="col-6 col-md-4">
                                     <label for="hora" class="form-label titulos margenes-contenedor">Hora de la visita:</label>
-                                    <input type="time" class="form-control text-contenedor" id="hora" name="hora" required>
+                                    <input type="time" class="form-control text-contenedor" id="hora" name="hora" required value="{{ old('hora') }}">
                                 </div>
                             </div>
 
                             <div>
                                 <label for="fecha" class="form-label titulos margenes-contenedor">Fecha de la visita</label>
-                                <input type="date" class="form-control text-contenedor" id="fecha" name="fecha" required>
+                                <input type="date" class="form-control text-contenedor" id="fecha" name="fecha" required value="{{ old('fecha') }}">
                             </div>
 
                             <div>
                                 <label for="motivo" class="form-label titulos margenes-contenedor">Motivo de la visita</label>
-                                <textarea class="form-control text-contenedor" id="motivo" name="motivo" placeholder="Escriba el motivo de su visita" rows="3" required></textarea>
+                                <textarea class="form-control text-contenedor" id="motivo" name="motivo" placeholder="Escriba el motivo de su visita" rows="3" required >{{ old('motivo') }}</textarea>
                             </div>
 
                             <div class="btn-contenedor">
@@ -105,3 +114,5 @@ $fecha_actual = date("Y-m-d");
 @endsection
 
 <script src="{{ asset('js/invitados/invitado.js') }}"></script>
+
+

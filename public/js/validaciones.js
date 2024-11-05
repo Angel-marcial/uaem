@@ -26,8 +26,6 @@ function validarCuenta(input)
     }
     
 }
-
-
 // Validar que solo se pueda ingresar un dígito del 0 al 9
 function validarDigito(input) 
 {

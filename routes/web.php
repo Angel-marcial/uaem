@@ -16,11 +16,13 @@ use App\Http\Controllers\Admin\AdminGuardiasController;
 use App\Http\Controllers\Admin\AdminMaestrosController;
 use App\Http\Controllers\Admin\AdminCoordinadoresController;
 use App\Http\Controllers\Admin\AdminDepartamentosController;
+use App\Http\Controllers\Admin\AdminPeticionesController;
 use App\Http\Controllers\Alumnos\AlumnosController;
 use App\Http\Controllers\Emails\EmailsController;
 use App\Http\Controllers\Index\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guardias\GuardiasController;
+use App\Http\Controllers\Invitados\InvitadosController;
 use App\Http\Controllers\Maestros\MaestrosController;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -82,18 +84,23 @@ Route::get('admin-buscar-coordinador', [AdminCoordinadoresController::class,'bus
 Route::get('admin-nuevo-coordinador', [AdminCoordinadoresController::class,'adminNuevoCordinador'])->middleware('auth.guard');
 Route::post('admin-nuevo-departamento/{interfaz}', [AdminDepartamentosController::class,'nuevoDepartamento'])->middleware('auth.guard');
 Route::get('admin-elimina-departamento/{id}', [AdminDepartamentosController::class,'eliminarDepartamento'])->middleware('auth.guard');
+Route::get('admin-ver-departamento/{cuenta}', [AdminDepartamentosController::class,'datosDepartamento'])->middleware('auth.guard');
+Route::post('admin-edita-departamento/{id}/{idUsuario}', [AdminDepartamentosController::class,'editarDepartamento'])->middleware('auth.guard'); 
+//admin peticiones
 
 
 
-Route::get('admin-ver-departamento/{cuenta}', [AdminDepartamentosController::class,'datosDepartamento'])->middleware('auth.guard');  //trabajando
-
-
-
+Route::get('admin-consulta-peticiones', [AdminPeticionesController::class,'adminVerPeticiones'])->middleware('auth.guard'); //--trabajando
 
 
 
 //rutas invitados
 Route::get('index-invitado', [IndexController::class,'indexInvitados']);
+Route::post('crear-invitado', [InvitadosController::class,'crearInvitacion']);  
+
+
+
+
 
 //rutas validar correos
 Route::post('enviar-correo-alumnos', [EmailsController::class,'enviarCorreoAlumnos']);

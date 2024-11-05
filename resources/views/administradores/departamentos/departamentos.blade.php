@@ -74,7 +74,6 @@
                         <td>{{ $coordinador->aula }}</td>
                         <td>{{ $coordinador->correo }}</td>
                         <td>
-
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" id="flexSwitchCheck{{ $coordinador->id_usuario }}" 
                                 {{ $coordinador->estatus ? 'checked' : '' }} onchange="toggleEstatus(this, {{ $coordinador->id_usuario }})">
@@ -82,7 +81,14 @@
                             
                         </td>
                         <td><a href="{{ url('admin-ver-departamento/'.$coordinador->id_departamento) }}" class="btn btn-warning">Editar</a></td>
-                        <td><a href="{{ url('admin-elimina-departamento/'.$coordinador->id_usuario) }}" class="btn btn-danger" >Eliminar</a></td>
+
+                        @if($coordinador->id_departamento == 1)
+                            <td><a href="{{ url('admin-elimina-departamento/' . $coordinador->id_usuario) }}" class="btn btn-danger disabled" aria-disabled="true">Eliminar</a></td>
+                        @else
+                            <td><a href="{{ url('admin-elimina-departamento/'.$coordinador->id_usuario) }}" class="btn btn-danger" >Eliminar</a></td>
+                        @endif
+
+                        
                     </tr>
                 @endforeach
             </tbody>

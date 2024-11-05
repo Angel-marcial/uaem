@@ -17,11 +17,21 @@ class AlumnosController extends Controller
     public function guardarAlumnos(Request $request)
     {
         $EmailsController = new EmailsController();
+        $GlobalController = new GlobalController();
+
         $correo = $EmailsController->correo();
         $carrera = $request->input('carreras');
         $nombre = $request->input('nombres');
+        $paterno = $request->input('apellidoPaterno');
+        $materno = $request->input('apellidoMaterno');
+        $telefono = $request->input('telefono');
         $noCuenta = $request->input('numeroCuenta');
         $telefono = $request->input('telefono');
+
+        $mensajeNombre = $this->validacionesTextos($nombre, "Nombre");
+        $mensajePaterno = $this->validacionesTextos($paterno, "Apellido Paterno");
+        $mensajeMaterno = $this->validacionesTextos($materno, "Apellido Materno");
+        $mensajeTelefono = $this->validarNumero($telefono);
 
         $carreras = [
             'ingenieria-software' => 1,
@@ -43,6 +53,53 @@ class AlumnosController extends Controller
             }
         }
 
+        if($GlobalController->tamanioCuenta($noCuenta) == true)
+        {
+            return back()->with('status', 'El numero de cuenta no cumple con el formato adecuado')
+            ->with('codigoAprobado', true)
+            ->with('correoEnviado',false)
+            ->with('error',false)
+            ->withInput();
+        }
+
+        if(!$mensajeNombre == "")
+        {
+            return back()->with('status', $mensajeNombre)
+            ->with('codigoAprobado', true)
+            ->with('correoEnviado',false)
+            ->with('error',false)
+            ->withInput();
+        }
+
+        if(!$mensajePaterno == "")
+        {
+            return back()->with('status', $mensajePaterno)
+            ->with('codigoAprobado', true)
+            ->with('correoEnviado',false)
+            ->with('error',false)
+            ->withInput();
+        }
+
+        if(!$mensajeMaterno == "")
+        {
+            return back()->with('status', $mensajeMaterno)
+            ->with('codigoAprobado', true)
+            ->with('correoEnviado',false)
+            ->with('error',false)
+            ->withInput();
+        }
+
+        if(!$mensajeTelefono == "")
+        {
+            return back()->with('status', $mensajeTelefono)
+            ->with('codigoAprobado', true)
+            ->with('correoEnviado',false)
+            ->with('error',false)
+            ->withInput();
+        }
+
+
+
         $usuarioExistente = Usuarios::where('no_cuenta', $noCuenta)->orWhere('telefono', $telefono)->first();
 
         if ($usuarioExistente) 
@@ -57,7 +114,11 @@ class AlumnosController extends Controller
                 $mensaje .= 'El número de teléfono ' . $telefono . ' ya está registrado.';
             }
     
-            return back()->with('status', $mensaje)->with('correoEnviado', false)->withInput();
+            return back()->with('status', $mensaje)
+            ->with('codigoAprobado', true)
+            ->with('correoEnviado',false)
+            ->with('error',false)
+            ->withInput();
             
         }
         else
@@ -89,9 +150,10 @@ class AlumnosController extends Controller
                 'rol' => 'alumno',
             ]);
     
-            return redirect('/index')->with('status', 'Alumno creado exitosamente. !Se ha enviando un correo con los datos de inicio de sesión!');
+            return redirect('/index')->with('status', 'Alumno creado exitosamente. !Se ha enviando un correo con los datos de inicio de sesión!')
+            ->with('error', true);
         }
-    }
+    }   
 
     public function consultaAlumnos(Request $request)
     {

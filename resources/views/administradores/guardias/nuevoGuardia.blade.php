@@ -41,7 +41,7 @@
         <div class="btn-contenedor">   
             <div class="col-md-5">   
 
-                <h5 >Datos del alumno</h5>
+                <h5 >Datos del Guardia</h5>
                 <div class="contenedor margenes-contenedor">
                     
                     <form action="{{ url('admin-alta-guardia') }}" method="POST" >

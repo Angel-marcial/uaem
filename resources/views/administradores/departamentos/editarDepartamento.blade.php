@@ -43,7 +43,7 @@
                 <h5 >Editar Departamento</h5>
                 <div class="contenedor margenes-contenedor">
 
-                    <form action="{{ url('admin-nuevo-departamento/'.'editar') }}" method="POST" >
+                    <form action="{{ url('admin-edita-departamento/'.$departamento->id_departamento.'/'.$departamento->id_usuario) }}" method="POST" >
                         @csrf
 
                         <div class="margenes-contenedor">
