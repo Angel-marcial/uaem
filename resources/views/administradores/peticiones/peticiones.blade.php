@@ -42,27 +42,29 @@
 
         @foreach ($peticiones as $peticion)
 
-        <div class="card">
-            <div class="card-header">
-                {{ $peticion->nombre_completo }}
-                <span class="float-end">Fecha: {{ $peticion->fecha_visita }} </span> <!-- Fecha alineada a la derecha -->
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">{{ $peticion->motivo}}</h4>
-                <h6 class="card-text">Datos de contacto</h6>
-                <p class="card-text">Correo: {{$peticion->correo}}</p>
-                <p class="card-text">Telefono: {{$peticion->telefono}}</p>
-                <p class="card-text">Hora Solicitada: {{$peticion->hora_visita}}</p>
+            @if($peticion->estatus == false)
 
-                <div class="d-flex justify-content-end gap-2 btn-contenedor">
-                    <a href="#" class="btn btn-success">Aceptar</a>
-                    <a href="#" class="btn btn-danger">Rechazar</a>
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <div class="col text-start">{{ $peticion->nombre_completo }}</div>
+                        <div class="col text-center">Fecha: {{ $peticion->fecha_visita }}</div>
+                        <div class="col text-end">Hora: {{ $peticion->hora_visita }}</div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{ $peticion->motivo }}</h4>
+                        <div class="d-flex justify-content-end gap-2 btn-contenedor">
+                            <a href="#" class="btn btn-success">Aceptar</a>
+                            <a href="#" class="btn btn-danger">Rechazar</a>
+                        </div>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        <p class="card-text">Correo: {{ $peticion->correo }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teléfono: {{ $peticion->telefono }}</p>
+                    </div>
                 </div>
-                
-            </div>
-        </div>
 
-        <div class="card-vw"></div>
+            @endif
+        
+            <div class="card-vw"></div>
         
         @endforeach
     </div>
