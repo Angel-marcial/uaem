@@ -77,7 +77,7 @@ if (!$tipo)
                         <a href="{{ url('maestros-horarios') }}" data-url="{{ url('maestros/horarios') }}" class="ajax-link"><i class=""></i>Registros</a>
                         <a href="{{ url('maestros-horarios') }}" data-url="{{ url('maestros/horarios') }}" class="ajax-link"><i class=""></i>Horarios</a>
                         <a data-url="{{ url('admin-consulta-maestros') }}" class="ajax-link"><i class=""></i>Agregar Horarios</a>
-                        <a data-url="{{ url('admin-consulta-guardias') }}" class="ajax-link"></i>Cuenta</a>
+                        <a href="{{url('maestros-cuenta')}}"  data-url="{{ url('maestros/cuenta') }}" class="ajax-link"></i>Cuenta</a>
                 </div>
             </div>
         <?php

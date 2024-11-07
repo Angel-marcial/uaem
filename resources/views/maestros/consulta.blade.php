@@ -77,6 +77,10 @@
                             <label for="telefono" class="form-label titulos margenes-contenedor">Telefono</label>
                             <input type="number" class="form-control text-contenedor " id="telefono" name="telefono" value="{{ old('telefono', $maestro->telefono?? '') }}" required disabled oninput="validarTelefono(this)">
                         </div>
+
+                        <div>
+                            <button class="btn btn-success">CAMBIAR TU INFORMACION</button>
+                        </div>
                     </div>
 
                 </form>
