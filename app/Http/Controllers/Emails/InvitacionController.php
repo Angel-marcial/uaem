@@ -16,6 +16,7 @@ class InvitacionController extends Controller
         $datos = Invitados::where('id', $id)->first();
         $area = Departamentos::where('id', $datos->area_visita)->first();
 
+        $correo = $datos->correo;
         $nombre = $datos->nombre_completo;
         $fecha = $datos->fecha_visita;
         $hora = $datos->hora_visita;
@@ -32,7 +33,7 @@ class InvitacionController extends Controller
         file_put_contents($qrFilePath, $qrCode);
     
         // Enviar el correo con el QR adjunto
-        //Mail::to('skatepanuco@gmail.com')->send(new Invitaciones($nombre, $fecha, $hora, $departamento, $rol, $qrFilePath));
+        Mail::to($correo)->send(new Invitaciones($nombre, $fecha, $hora, $departamento, $rol, $qrFilePath));
 
         Invitados::where('id', $id)->update([
             'estatus' => true,

@@ -37,9 +37,13 @@
 
     <div class="margenes">
 
+        
+    
         <h1>Peticiónes</h1>
 
             @foreach ($peticiones as $peticion)
+
+                @if( $peticion->fecha_visita >  $date = date('Y-m-d') )
                 
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
@@ -51,26 +55,28 @@
                             <h4 class="card-title">{{ $peticion->motivo }}</h4>
                             <div class="d-flex justify-content-end gap-2 btn-contenedor">
                                 @if($peticion->estatus == false)
+
                                     <form id="postForm-{{ $peticion->id }}" action="{{ url('enviar-correo-invitacion/'. $peticion->id) }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+
                                     <a href="javascript:void(0);" onclick="document.getElementById('postForm-{{ $peticion->id }}').submit();" class="btn btn-success">Aceptar</a>
-                               
+                                    <a href="#" class="btn btn-danger">Rechazar</a>
+
                                 @else
-
+ 
                                     <a href="javascript:void(0);" onclick="document.getElementById('postForm-{{ $peticion->id }}').submit();" class="btn btn-success disabled">Aceptar</a>
-                                
+                                    
                                 @endif
-            
 
-                                
-                                <a href="#" class="btn btn-danger">Rechazar</a>
                             </div>
                         </div>
                         <div class="card-footer text-body-secondary">
                             <p class="card-text">Correo: {{ $peticion->correo }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teléfono: {{ $peticion->telefono }}</p>
                         </div>
                     </div>
+
+                @endif
                 
             <div class="card-vw"></div>
         @endforeach
