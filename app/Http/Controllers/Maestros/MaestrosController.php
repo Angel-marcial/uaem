@@ -73,6 +73,7 @@ class MaestrosController extends Controller
     
             $usuario = DB::table('usuarios')->where('no_cuenta', $noCuenta)->value('id');
     
+            
             Horario::create([
                 'id_usuario' => $usuario,
                 'entrada_lunes' => $entradaLunes,
