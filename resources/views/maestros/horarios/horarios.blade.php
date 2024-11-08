@@ -67,6 +67,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Telefono</th>
                         <th scope="col">Fecha</th>
+                        <th scope="col">Rol</th>
                         <th scope="col">Hora de Entrada</th>
                         <th scope="col">Hora de Salida</th>
                         <th scope="col">Dia</th>
@@ -79,6 +80,7 @@
                             <td>{{ $row->nombre }}</td>
                             <td>{{ $row->telefono }}</td>
                             <td>{{ $row->fecha }}</td>
+                            <td>{{ $row->rol}}</td>
                             <td>{{ $row->{"Hora de entrada"} }}</td>
                             <td>{{ $row->{"Hora de salida"} }}</td>
                             <td>{{ $row->dia }}</td>

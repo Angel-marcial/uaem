@@ -12,10 +12,47 @@
 
 $tipo = session('rol');
 
-?>
-<?php 
 
-switch ($tipo){
+if (!$tipo)
+{
+    $nombreArchivo = basename(__FILE__);
+
+    echo $nombreArchivo;
+
+    switch($nombreArchivo)
+    {
+        case '7070cf28d5a4595fbbdda560792a19b7.php':
+                ?>
+                <div class="container mt-5">
+                <nav class="navbar custom-bg  fixed-top "> <!--navbar-expand-lg        -->
+                <div class="container-fluid "> 
+            
+                    <img src="{{ asset('logo.png') }}" alt="Logo" class="img-fluid" style="height: 50px;">
+        
+            
+                    <form action="{{ url('cerrar-session') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button class="navbar-toggler btn-cabecera" type="submit" aria-label="Cerrar sesión">
+                            <h3><</h3>
+                        </button>
+                    </form>
+                    
+                </div>
+                </nav>
+            </div>
+                <?php
+            break;
+        default:
+        // Código a ejecutar si $variable no coincide con ninguno de los casos anteriores
+        echo "Valor no encontrado";
+        break;            
+    }
+
+
+} else 
+{
+	switch ($tipo)
+	{
     case 'administrador':
         ?>
             <div class="container mt-5">
@@ -113,6 +150,5 @@ switch ($tipo){
         // Código a ejecutar si $variable no coincide con ninguno de los casos anteriores
         echo "Valor no encontrado";
         break;
+	}
 }
-
-?>

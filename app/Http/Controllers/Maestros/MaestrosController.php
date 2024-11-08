@@ -73,6 +73,7 @@ class MaestrosController extends Controller
     
             $usuario = DB::table('usuarios')->where('no_cuenta', $noCuenta)->value('id');
     
+            
             Horario::create([
                 'id_usuario' => $usuario,
                 'entrada_lunes' => $entradaLunes,
@@ -167,186 +168,66 @@ class MaestrosController extends Controller
         return view('maestros.horarios.horarios', compact('maestro', 'horario', 'query_principal', 'option', 'day', 'startDate', 'endDate'));
     }
 
-
-    function editarMaestro(Request $request, $id)
+    public function informacionMaestros(Request $request)
     {
-        //campos de entrada
-        $nombre = $request->input('nombres');
-        $paterno = $request->input('apellidoPaterno');
-        $materno = $request->input('apellidoMaterno');
-        $telefono = $request->input('telefono'); 
-        //mensaje para los errores de los campos de texto 
-        $alumnosController = new AlumnosController();
-        $mensajeNombre = $alumnosController->validacionesTextos($nombre, "Nombre");
-        $mensajePaterno = $alumnosController->validacionesTextos($paterno, "Apellido Paterno");
-        $mensajeMaterno = $alumnosController->validacionesTextos($materno, "Apellido Materno");
-        $mensajeTelefono = $alumnosController->validarNumero($telefono);
-        //campos de entrda para los dias y mensajes para los errores de las horas 
-        //lunes
-        $entradaLunes = $request->input('entradaLunes');
-        $salidaLunes = $request->input('salidaLunes');
-        $lunesMensaje = $this->validarHoras($entradaLunes,$salidaLunes);
-        // Martes
-        $entradaMartes = $request->input('entradaMartes');
-        $salidaMartes = $request->input('salidaMartes');
-        $martesMensaje = $this->validarHoras($entradaMartes, $salidaMartes);
-        // Miércoles
-        $entradaMiercoles = $request->input('entradaMiercoles');
-        $salidaMiercoles = $request->input('salidaMiercoles');
-        $miercolesMensaje = $this->validarHoras($entradaMiercoles, $salidaMiercoles);
-        // Jueves
-        $entradaJueves = $request->input('entradaJueves');
-        $salidaJueves = $request->input('salidaJueves');
-        $juevesMensaje = $this->validarHoras($entradaJueves, $salidaJueves);
-        // Viernes
-        $entradaViernes = $request->input('entradaViernes');
-        $salidaViernes = $request->input('salidaViernes');
-        $viernesMensaje = $this->validarHoras($entradaViernes, $salidaViernes);
-        // Sábado
-        $entradaSabado = $request->input('entradaSabado');
-        $salidaSabado = $request->input('salidaSabado');
-        $sabadoMensaje = $this->validarHoras($entradaSabado, $salidaSabado);
+        //obtenemos el id de la session 
+        $id = $request->session()->get('id');
+  
+        //ejecutamos la consulta
+        $query_principal = DB::select('
+        SELECT a.id, a.no_cuenta, a.nombre, a.apellido_paterno, a.apellido_materno,
+        a.telefono, b.correo, b.password
+        FROM usuarios a
+        INNER JOIN credenciales b ON a.id = b.id_usuario
+        WHERE a.id = ?
+        ', [$id]);
+        
+        //dd($query_principal);
+        //die();
 
-
-        if(!$mensajeNombre == "")
+        //ASEGURAMOS QUE LA CONSULTA CUENTA CON INFORMACION
+        if(empty($query_principal))
         {
-            return back()->with('status', $mensajeNombre);
+            return redirect()->back()->withErrors('Usuario o credenciales no encontrado.');
         }
 
-        if(!$mensajePaterno == "")
-        {
-            return back()->with('status', $mensajePaterno);
-        }
-
-        if(!$mensajeMaterno == "")
-        {
-            return back()->with('status', $mensajeMaterno);
-        }
-
-        if(!$mensajeTelefono == "")
-        {
-            return back()->with('status', $mensajeTelefono);
-        }
-        //lunes 
-        if($lunesMensaje === "vacio")
-        {
-
-        }
-        else if($lunesMensaje != "") 
-        {
-            return back()->with('status', 'Lunes: ' . $lunesMensaje)
-            ->with('error',false)->withInput();
-        }
-        //martes 
-        if($martesMensaje === "vacio")
-        {
-
-        }
-        else if($martesMensaje != "") 
-        {
-            return back()->with('status', 'Martes: ' . $martesMensaje)
-            ->with('error',false)->withInput();
-        }
-        //miercoles
-        if($miercolesMensaje === "vacio")
-        {
-
-        }
-        else if($miercolesMensaje != "") 
-        {
-            return back()->with('status', 'Miercoles: ' . $miercolesMensaje)
-            ->with('error',false)->withInput();
-        }
-        //jueves 
-        if($juevesMensaje === "vacio")
-        {
-
-        }
-        else if($juevesMensaje != "") 
-        {
-            return back()->with('status', 'Jueves: ' . $juevesMensaje)
-            ->with('error',false)->withInput();
-        }
-        //viernes
-        if($viernesMensaje === "vacio")
-        {
-
-        }
-        else if($viernesMensaje != "") 
-        {
-            return back()->with('status', 'Viernes: ' . $viernesMensaje)
-            ->with('error',false)->withInput();
-        }
-        //sabado
-        if($sabadoMensaje === "vacio")
-        {
-
-        }
-        else if($sabadoMensaje != "") 
-        {
-            return back()->with('status', 'Sabado: ' . $sabadoMensaje)
-            ->with('error',false)->withInput();
-        }
-
-        $usuarioExistente = Usuarios::find($id);
-    
-        if (!$usuarioExistente) 
-        {
-            return back()->with('status', 'No se puedo actializar los datos, contacta con soporte tecnico')
-            ->with('error',false)->withInput();
-        }
-
-        //Verificamos si el teléfono ya existen para otro usuario
-        $usuarioDuplicado = Usuarios::where('telefono', $telefono)
-        ->where('id', '!=', $id)
-        ->first();
-    
-        if ($usuarioDuplicado) 
-        {
-            $mensaje = '';
-            
-            if ($usuarioDuplicado->telefono == $telefono) 
-            {
-                $mensaje .= 'El número de teléfono ' . $telefono . ' ya está registrado.';
-            }
-
-            return back()->with('status', $mensaje)
-            ->with('error',false)->withInput();
-        }
-        else
-        {
-
-            Usuarios::where('id', $id)->update([
-                'nombre' => $nombre,
-                'apellido_paterno' => $paterno,
-                'apellido_materno' => $materno,
-                'telefono' => $telefono,
-            ]);
-
-            Horario::where('id_usuario',$id)->update([
-                'entrada_lunes' => $entradaLunes,
-                'salida_lunes' => $salidaLunes,
-                'entrada_martes' => $entradaMartes,
-                'salida_martes' => $salidaMartes,
-                'entrada_miercoles' => $entradaMiercoles ,
-                'salida_miercoles' => $salidaMiercoles,
-                'entrada_jueves' => $entradaJueves,
-                'salida_jueves' => $salidaJueves,
-                'entrada_viernes' => $entradaViernes,
-                'salida_viernes' => $salidaViernes,
-                'entrada_sabado' => $entradaSabado,
-                'salida_sabado' => $salidaSabado,
-            ]);
-
-            return redirect('/consulta-maestros')->with('status', 'Datos actualizado exitosamente.')
-            ->with('error',true)->withInput();
-        }
-
-
-
-
+        //pasamos los datos a la vista 
+        return view('maestros.cuenta.cuenta', ['maestro' => $query_principal[0]]);
 
     }
+
+    public function editarMaestro(Request $request, $id)
+    {
+        // Validar los datos recibidos
+        $request->validate([
+            'nombres' => 'required|string|max:255',
+            'apellidoPaterno' => 'required|string|max:255',
+            'apellidoMaterno' => 'required|string|max:255',
+            'telefono' => 'required|numeric',
+            'correo' => 'required|email|max:255',
+        ]);
+
+        // Actualizar los datos en la base de datos
+        DB::table('usuarios')
+            ->where('id', $id)
+            ->update([
+                'nombre' => $request->input('nombres'),
+                'apellido_paterno' => $request->input('apellidoPaterno'),
+                'apellido_materno' => $request->input('apellidoMaterno'),
+                'telefono' => $request->input('telefono'),
+            ]);
+
+        DB::table('credenciales')
+            ->where('id_usuario', $id)
+            ->update([
+                'correo' => $request->input('correo'),
+            ]);
+
+        return redirect()->back()->with('status', 'Información actualizada correctamente');
+    }
+
+
+    
 
 
     function validarHoras($entrada, $salida)
