@@ -332,6 +332,7 @@ function textos(input) {
   }
 }
 
+/*
 document.addEventListener('DOMContentLoaded', function() 
 {
   
@@ -393,4 +394,4 @@ document.addEventListener('DOMContentLoaded', function()
     document.getElementById("cancelarMaestro").addEventListener("click", cancelar);
 });
 
-
+*/

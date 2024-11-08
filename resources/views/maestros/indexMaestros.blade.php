@@ -15,12 +15,22 @@
 
 <div class="margenes-contenedor">
 
-    @if (session('status'))
+    @if (session('status') || session('status2'))
 
-        @if (session('correoEnviado') || session('codigoAprobado'))
+        @if (session('correoEnviado') || session('codigoAprobado') && session('error') == false)
             <div class="alert alert-success">
                 {{ session('status') }}
             </div>
+        
+
+        @elseif(session('error'))
+        
+            <div id="divCerrar1" class="alert alert-danger">
+                {{ session('status') }}
+
+                <button type="button" class="cerrar"  id="cerrar1" onclick="cerrarMensaje()">X</button>
+            </div>
+        
         @else
             <div class="alert alert-danger">
                 {{ session('status') }}

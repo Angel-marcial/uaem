@@ -58,10 +58,107 @@ class MaestrosController extends Controller
                 $mensaje .= 'El número de teléfono ' . $telefono . ' ya está registrado.';
             }
     
-            return back()->with('status', $mensaje)->with('correoEnviado', false)->withInput();
+            return back()->with('status', $mensaje)
+            ->with('correoEnviado', false)
+            ->with('codigoAprobado', true)
+            ->with('error', true)
+            ->withInput();
         }
         else
         {
+
+            //lunes
+            $lunesMensaje = $this->validarHoras($entradaLunes,$salidaLunes);
+            // Martes
+            $martesMensaje = $this->validarHoras($entradaMartes, $salidaMartes);
+            // Miércoles
+            $miercolesMensaje = $this->validarHoras($entradaMiercoles, $salidaMiercoles);
+            // Jueves
+            $juevesMensaje = $this->validarHoras($entradaJueves, $salidaJueves);
+            // Viernes
+            $viernesMensaje = $this->validarHoras($entradaViernes, $salidaViernes);
+            // Sábado
+            $sabadoMensaje = $this->validarHoras($entradaSabado, $salidaSabado);
+
+            //lunes 
+            if($lunesMensaje === "vacio")
+            {
+
+            }
+            else if($lunesMensaje != "") 
+            {
+                return back()->with('status', 'Lunes: ' . $lunesMensaje)
+                ->with('correoEnviado', false)
+                ->with('codigoAprobado', true)
+                ->with('error', true)
+                ->withInput();
+            }
+            //martes 
+            if($martesMensaje === "vacio")
+            {
+
+            }
+            else if($martesMensaje != "") 
+            {
+                return back()->with('status', 'Martes: ' . $martesMensaje)
+                ->with('correoEnviado', false)
+                ->with('codigoAprobado', true)
+                ->with('error', true)
+                ->withInput();
+            }
+            //miercoles
+            if($miercolesMensaje === "vacio")
+            {
+
+            }
+            else if($miercolesMensaje != "") 
+            {
+                return back()->with('status', 'Miercoles: ' . $miercolesMensaje)
+                ->with('correoEnviado', false)
+                ->with('codigoAprobado', true)
+                ->with('error', true)
+                ->withInput();
+            }
+            //jueves 
+            if($juevesMensaje === "vacio")
+            {
+
+            }
+            else if($juevesMensaje != "") 
+            {
+                return back()->with('status', 'Jueves: ' . $juevesMensaje)
+                ->with('correoEnviado', false)
+                ->with('codigoAprobado', true)
+                ->with('error', true)
+                ->withInput();
+            }
+            //viernes
+            if($viernesMensaje === "vacio")
+            {
+
+            }
+            else if($viernesMensaje != "") 
+            {
+                return back()->with('status', 'Viernes: ' . $viernesMensaje)
+                ->with('correoEnviado', false)
+                ->with('codigoAprobado', true)
+                ->with('error', true)
+                ->withInput();
+            }
+            //sabado
+            if($sabadoMensaje === "vacio")
+            {
+
+            }
+            else if($sabadoMensaje != "") 
+            {
+                return back()->with('status', 'Sabado: ' . $sabadoMensaje)
+                ->with('correoEnviado', false)
+                ->with('codigoAprobado', true)
+                ->with('error', true)
+                ->withInput();
+            }
+
             Usuarios::create([
                 'no_cuenta' => $noCuenta,
                 'nombre' => $nombre,
@@ -101,7 +198,8 @@ class MaestrosController extends Controller
                 'rol' => 'maestro',
             ]);
             
-            return redirect('/index')->with('status', 'Maestro creado exitosamente. !Se ha enviando un correo con los datos de inicio de sesión!');
+            return redirect('/index')->with('status', 'Maestro creado exitosamente. !Se ha enviando un correo con los datos de inicio de sesión!')
+            ->with('error', true);
         }
     }
 
