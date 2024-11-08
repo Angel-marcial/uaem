@@ -56,6 +56,9 @@ Route::post('guardar-maestros', [MaestrosController::class,'guardarMaestros']);
 Route::get('consulta-maestros', [MaestrosController::class, 'consultaMaestros'])->middleware('auth.guard')->name('consulta.maestros');
 Route::post('editar-maestro/{id}', [MaestrosController::class,'editarMaestro']); 
 Route::get('maestros-horarios', [MaestrosController::class, 'consultaMaestrosHorarios'])->name('maestros.horarios.horarios');
+Route::get('maestros-cuenta', [MaestrosController::class, 'informacionMaestros']);
+Route::post('editar-maestro/{id}', [MaestrosController::class, 'editarMaestro'])->name('editar-maestro');
+
 
 //rutas administrador 
 Route::get('index-admin',[AdminController::class, 'consultaAdmin'])->middleware('auth.guard')->name('guardias.index');
@@ -76,7 +79,7 @@ Route::get('admin-elimina-maestro/{cuenta}', [AdminMaestrosController::class,'el
 Route::get('admin-consulta-guardias', [AdminGuardiasController::class,'tablaGuardias'])->middleware('auth.guard');
 Route::get('admin-buscar-guardias', [AdminGuardiasController::class,'buscarGuardias'])->middleware('auth.guard'); 
 Route::get('admin-elimina-guardia/{cuenta}', [AdminGuardiasController::class,'eliminarGuardia'])->middleware('auth.guard');
-Route::get('admin-nuevo-alumno', [AdminGuardiasController::class,'adminNuevoGuardia'])->middleware('auth.guard');
+Route::get('admin-nuevo-guardia', [AdminGuardiasController::class,'adminNuevoGuardia'])->middleware('auth.guard');  //editando
 Route::post('admin-alta-guardia', [AdminGuardiasController::class,'nuevoMaestro'])->middleware('auth.guard');
 Route::get('admin-ver-guardia/{cuenta}', [AdminGuardiasController::class,'datosGuardia'])->middleware('auth.guard'); 
 Route::post('editar-guardia/{id}', [AdminGuardiasController::class,'editarGuardia'])->middleware('auth.guard');
@@ -94,13 +97,7 @@ Route::post('admin-edita-departamento/{id}/{idUsuario}', [AdminDepartamentosCont
 
 Route::get('admin-consulta-peticiones', [AdminPeticionesController::class,'adminVerPeticiones'])->middleware('auth.guard'); //--trabajando
 Route::post('enviar-correo-invitacion/{id}', [InvitacionController::class,'EnviarQr']);
-
-
-
-
-
-
-
+Route::get('admin-cancela-invitacion/{id}', [InvitacionController::class,'cancelaInvitacion']);
 
 
 //rutas invitados
