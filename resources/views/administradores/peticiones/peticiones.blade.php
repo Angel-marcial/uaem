@@ -43,7 +43,7 @@
 
             @foreach ($peticiones as $peticion)
 
-                @if( $peticion->fecha_visita >  $date = date('Y-m-d') )
+               
                 
                     <div class="card">
                         <div class="card-header d-flex align-items-center">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
 
-                @endif
+                
                 
             <div class="card-vw"></div>
         @endforeach

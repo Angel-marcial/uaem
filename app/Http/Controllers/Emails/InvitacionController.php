@@ -40,13 +40,13 @@ class InvitacionController extends Controller
             'estatus' => true,
         ]);
 
-        return back()->with('status', 'Se ha notificado al invitado'. $data)->with('error',true)->withInput();
+        return back()->with('status', 'Se ha notificado al invitado')->with('error',true)->withInput();
 
     }
 
 
     //eliminar guardia
-    public function eliminarGuardia(Request $request, $id)
+    public function cancelaInvitacion(Request $request, $id)
     {
         
 
