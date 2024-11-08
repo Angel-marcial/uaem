@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\Invitaciones;
 use App\Models\Departamentos;
 use App\Models\Invitados;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -41,6 +42,26 @@ class InvitacionController extends Controller
 
         return back()->with('status', 'Se ha notificado al invitado'. $data)->with('error',true)->withInput();
 
+    }
+
+
+    //eliminar guardia
+    public function eliminarGuardia(Request $request, $id)
+    {
+        
+
+        $eliminarInvitado = Invitados::where('id', $id)->first();
+
+        // Verificar si el maestro existe
+        if (!$eliminarInvitado) {
+            return redirect()->back()->with('status', 'El Invitado no fue encontrado.')->with('error',false);
+        }
+        else
+        {
+            $eliminarInvitado->delete();
+
+            return redirect()->back()->with('status', 'El Invitado no fue aceptado, Se le notificara.')->with('error',true);
+        }
     }
 
 }

@@ -54,7 +54,7 @@
                         <div class="card-body">
                             <h4 class="card-title">{{ $peticion->motivo }}</h4>
                             <div class="d-flex justify-content-end gap-2 btn-contenedor">
-                                @if($peticion->estatus == false)
+                                @if( $peticion->estatus == false )
 
                                     <form id="postForm-{{ $peticion->id }}" action="{{ url('enviar-correo-invitacion/'. $peticion->id) }}" method="POST" style="display: none;">
                                         @csrf

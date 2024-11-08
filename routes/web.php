@@ -94,7 +94,7 @@ Route::post('admin-edita-departamento/{id}/{idUsuario}', [AdminDepartamentosCont
 
 Route::get('admin-consulta-peticiones', [AdminPeticionesController::class,'adminVerPeticiones'])->middleware('auth.guard'); //--trabajando
 Route::post('enviar-correo-invitacion/{id}', [InvitacionController::class,'EnviarQr']);
-
+Route::get('admin-elimina-invitacion/{id}', [InvitacionController::class,'eliminarGuardia']);
 
 
 
