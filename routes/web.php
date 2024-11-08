@@ -27,6 +27,8 @@ use App\Http\Controllers\Maestros\MaestrosController;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\IngresoSalidaExport;
+use App\Http\Controllers\Emails\InvitacionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -93,6 +95,13 @@ Route::post('admin-edita-departamento/{id}/{idUsuario}', [AdminDepartamentosCont
 
 
 Route::get('admin-consulta-peticiones', [AdminPeticionesController::class,'adminVerPeticiones'])->middleware('auth.guard'); //--trabajando
+Route::post('enviar-correo-invitacion/{id}', [InvitacionController::class,'EnviarQr']);
+
+
+
+
+
+
 
 
 
