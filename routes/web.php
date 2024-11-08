@@ -56,8 +56,6 @@ Route::post('guardar-maestros', [MaestrosController::class,'guardarMaestros']);
 Route::get('consulta-maestros', [MaestrosController::class, 'consultaMaestros'])->middleware('auth.guard')->name('consulta.maestros');
 Route::post('editar-maestro/{id}', [MaestrosController::class,'editarMaestro']); 
 Route::get('maestros-horarios', [MaestrosController::class, 'consultaMaestrosHorarios'])->name('maestros.horarios.horarios');
-Route::get('maestros-cuenta', [MaestrosController::class, 'informacionMaestros']);
-Route::post('editar-maestro/{id}', [MaestrosController::class, 'editarMaestro'])->name('editar-maestro');
 
 //rutas administrador 
 Route::get('index-admin',[AdminController::class, 'consultaAdmin'])->middleware('auth.guard')->name('guardias.index');
@@ -96,7 +94,7 @@ Route::post('admin-edita-departamento/{id}/{idUsuario}', [AdminDepartamentosCont
 
 Route::get('admin-consulta-peticiones', [AdminPeticionesController::class,'adminVerPeticiones'])->middleware('auth.guard'); //--trabajando
 Route::post('enviar-correo-invitacion/{id}', [InvitacionController::class,'EnviarQr']);
-
+Route::get('admin-cancela-invitacion/{id}', [InvitacionController::class,'cancelaInvitacion']);
 
 
 

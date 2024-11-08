@@ -133,26 +133,26 @@ class MaestrosController extends Controller
         $id = $request->session()->get('id');
         $rol = $request->session()->get('rol');
         $ruta = $request->session()->get('ruta');
-
+ 
         // Validación de rol y redirección
         if ($rol !== 'maestro') {
             return redirect($ruta ?? 'index');
         }
-
+ 
         // Obtener el maestro y su horario, en caso de ser necesario para la vista
         $maestro = Usuarios::find($id);
         $horario = Horario::where('id_usuario', $id)->first();
-
+ 
         // Obtener los parámetros de búsqueda
         $option = $request->input('option');
         $day = $request->input('day');
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
-
+ 
         // Consulta base para el maestro actual
         $query = DB::table('ingreso_salida')->where('id', $id);
-
-        // Aplicar filtros según la opción seleccionada
+ 
+        // Aplicar filtros solo si se ha seleccionado una opción válida
         if ($option == '1' && $day) {
             // Filtro por día específico
             $query->whereDate('fecha', $day);
@@ -160,10 +160,10 @@ class MaestrosController extends Controller
             // Filtro por rango de fechas
             $query->whereBetween('fecha', [$startDate, $endDate]);
         }
-
-        // Paginación de los resultados
+ 
+        // Ejecutar la consulta con o sin filtros
         $query_principal = $query->paginate(5);
-
+ 
         // Pasar las variables a la vista
         return view('maestros.horarios.horarios', compact('maestro', 'horario', 'query_principal', 'option', 'day', 'startDate', 'endDate'));
     }
@@ -206,7 +206,7 @@ class MaestrosController extends Controller
             'telefono' => 'required|numeric',
             'correo' => 'required|email|max:255',
         ]);
-
+   
         // Actualizar los datos en la base de datos
         DB::table('usuarios')
             ->where('id', $id)
@@ -216,19 +216,23 @@ class MaestrosController extends Controller
                 'apellido_materno' => $request->input('apellidoMaterno'),
                 'telefono' => $request->input('telefono'),
             ]);
-
+   
+        // Actualizar correo y contraseña
+        $credenciales = [
+            'correo' => $request->input('correo'),
+        ];
+   
+        // Solo actualizar la contraseña si se ha ingresado una nueva
+        if ($request->filled('password')) {
+            $credenciales['password'] = $request->input('password');
+        }
+   
         DB::table('credenciales')
             ->where('id_usuario', $id)
-            ->update([
-                'correo' => $request->input('correo'),
-            ]);
-
+            ->update($credenciales);
+   
         return redirect()->back()->with('status', 'Información actualizada correctamente');
     }
-
-
-    
-
 
     function validarHoras($entrada, $salida)
     {
