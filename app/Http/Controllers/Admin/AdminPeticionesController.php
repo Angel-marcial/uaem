@@ -22,6 +22,5 @@ class AdminPeticionesController extends Controller
         return view('administradores.peticiones.peticiones',compact('admin', 'peticiones'));
     }
 
-
-
+    
 }

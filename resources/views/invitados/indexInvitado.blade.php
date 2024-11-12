@@ -96,7 +96,7 @@ $fecha_actual = date("Y-m-d");
 
                             <div>
                                 <label for="motivo" class="form-label titulos margenes-contenedor">Motivo de la visita</label>
-                                <textarea class="form-control text-contenedor" id="motivo" name="motivo" placeholder="Escriba el motivo de su visita" rows="3" required >{{ old('motivo') }}</textarea>
+                                <textarea class="form-control text-contenedor" id="motivo" name="motivo" placeholder="Escriba el motivo de su visita" rows="3"  maxlength="255" required >{{ old('motivo') }} </textarea>
                             </div>
 
                             <div class="btn-contenedor">

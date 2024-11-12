@@ -129,6 +129,7 @@ class InvitadosController extends Controller
     public function rechazarInvitacion()
     {
 
+
     }
 
 
