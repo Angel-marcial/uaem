@@ -124,5 +124,12 @@ class InvitadosController extends Controller
         }
         
         return back()->with('status', 'Esto no deveria de pasar contactate con soporte tecnico')->with('error',false)->withInput();
-    }   
+    } 
+    
+    public function rechazarInvitacion()
+    {
+
+    }
+
+
 }
