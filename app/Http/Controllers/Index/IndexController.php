@@ -2,6 +2,8 @@
 ///hola mundo
 namespace App\Http\Controllers\Index;
 use App\Http\Controllers\Controller;
+use App\Models\Departamentos;
+use App\Models\Usuarios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,6 +11,7 @@ class  IndexController extends Controller
 {
     public function indexAlumnos()
     {
+        session(['rol' => 'altaAlumno']);
         return view('alumnos.indexAlumnos');
     }
 
@@ -19,7 +22,10 @@ class  IndexController extends Controller
   
     public function IndexInvitados()
     {
-        return view('invitados.indexInvitado');
+
+        $departamentos = Departamentos::all();
+
+        return view('invitados.indexInvitado', compact('departamentos'));
     }
 
     public function login(Request $request)
@@ -35,27 +41,35 @@ class  IndexController extends Controller
 
         if($usuario)
         {
-            if($usuario->rol == "guardia")
-            {
-                session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'index-guardia']);
-                return redirect('index-guardia');
-            }
-            else if($usuario->rol == "alumno")
-            {
-                session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'consulta-alumnos']);
-                return redirect('consulta-alumnos');
-            }
-            else if($usuario->rol == "maestro")
-            {
-                session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'consulta-maestros']);
-                return redirect('consulta-maestros');
-            }
-            else if($usuario->rol == "administrador")
-            {
-                session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'index-admim']);
-                return redirect('index-admin');
-            }
+            $usuarioPermitido = Usuarios::where('id', $usuario->id_usuario)->first();
 
+            if($usuarioPermitido->estatus == true)
+            {
+                if($usuario->rol == "guardia" )
+                {
+                    session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'index-guardia']);
+                    return redirect('index-guardia');
+                }
+                else if($usuario->rol == "alumno")
+                {
+                    session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'consulta-alumnos']);
+                    return redirect('consulta-alumnos');
+                }
+                else if($usuario->rol == "maestro")
+                {
+                    session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'consulta-maestros']);
+                    return redirect('consulta-maestros');
+                }
+                else if($usuario->rol == "administrador")
+                {
+                    session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'index-admim']);
+                    return redirect('index-admin');
+                }
+            }
+            else
+            {
+                return back()->with('status', 'No tienes acceso a tu cuenta. Contacta el departamento de administracion.')->with('error',false);
+            }   
         }
         else
         {

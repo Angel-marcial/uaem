@@ -63,14 +63,14 @@
 
                                 <label for="carreras" class="form-label titulos margenes-contenedor">Selecciona una carrera:</label>
                                 <select class="form-control text-contenedor btn-contenedor" id="carreras" name="carreras">
-                                    <option value="ingenieria-software">Ingeniería de Software</option>
-                                    <option value="ingenieria-industrial">Producción Industrial</option>
-                                    <option value="ingenieria-plasticos">Ingeniería de Plasticos</option>
-                                    <option value="ingenieria-sistemas">Ingeniería de Sistemas</option>
-                                    <option value="ingenieria-mecanica">Ingeniería Mecanica</option>
-                                    <option value="seguridad-ciudadana">Seguridad Ciudadana</option>
+                                    <option value="ingenieria-software" {{ old('carrera', $alumno->carrera) == 'ingenieria-software' ? 'selected' : '' }}>Ingeniería de Software</option>
+                                    <option value="ingenieria-industrial" {{ old('carrera', $alumno->carrera) == 'ingenieria-industrial' ? 'selected' : '' }}>Producción Industrial</option>
+                                    <option value="ingenieria-plasticos" {{ old('carrera', $alumno->carrera) == 'ingenieria-plasticos' ? 'selected' : '' }}>Ingeniería de Plásticos</option>
+                                    <option value="ingenieria-sistemas" {{ old('carrera', $alumno->carrera) == 'ingenieria-sistemas' ? 'selected' : '' }}>Ingeniería de Sistemas</option>
+                                    <option value="ingenieria-mecanica" {{ old('carrera', $alumno->carrera) == 'ingenieria-mecanica' ? 'selected' : '' }}>Ingeniería Mecánica</option>
+                                    <option value="seguridad-ciudadana" {{ old('carrera', $alumno->carrera) == 'seguridad-ciudadana' ? 'selected' : '' }}>Seguridad Ciudadana</option>
                                 </select>
-                                
+
                             </div>
                             <div class="col-6 col-md-4">
 

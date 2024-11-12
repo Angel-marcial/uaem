@@ -54,6 +54,10 @@ h5{
     min-width: 350px; /* Define el ancho mínimo del formulario */
 }
 
+.card-vw{
+    margin-top: 40px;
+}
+
 .alto{
     margin-top: 40px;
 }

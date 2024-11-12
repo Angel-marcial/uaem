@@ -1,6 +1,6 @@
 FROM php:8.1-cli
 
-# Instalar extensiones necesarias
+# Instalar extensiones necesarias, incluyendo Imagick
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     libzip-dev \
@@ -8,10 +8,14 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
+    libmagickwand-dev \
     zip \
     unzip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pdo_pgsql pgsql gd
+    && docker-php-ext-install pdo_pgsql pgsql gd zip \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
+    && rm -rf /var/lib/apt/lists/*
 
 # Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -30,6 +34,9 @@ RUN composer install
 
 # Instalar la dependencia de Firebase para Laravel
 RUN composer require kreait/laravel-firebase
+
+# Instalar la dependencia para Excel, ignorando la plataforma si falta sodium
+RUN composer require maatwebsite/excel --ignore-platform-req=ext-sodium
 
 # Publicar los archivos de configuración de Firebase para Laravel
 RUN php artisan vendor:publish --provider="Kreait\Laravel\Firebase\ServiceProvider" --tag=config

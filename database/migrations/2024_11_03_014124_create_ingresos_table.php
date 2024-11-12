@@ -38,11 +38,14 @@ return new class extends Migration
      */
     public function down(): void
     {
+        DB::statement('DROP TABLE IF EXISTS ingresos CASCADE');
+        /*
         Schema::table('ingresos', function (Blueprint $table) {
             $table->dropForeign(['id_usuario']);
             //$table->dropForeign(['id_guardia']);
         });
     
         Schema::dropIfExists('ingresos');
+        */
     }
 };
