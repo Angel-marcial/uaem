@@ -29,8 +29,10 @@
         
         <!--Estilos-->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
 
         <script src=" {{ asset('js/alumnos/alumno.js' )}}"></script>
+
 
     </head> 
 

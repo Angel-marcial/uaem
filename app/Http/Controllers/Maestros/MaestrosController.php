@@ -152,7 +152,7 @@ class MaestrosController extends Controller
         // Consulta base para el maestro actual
         $query = DB::table('ingreso_salida')->where('id', $id);
 
-        // Aplicar filtros según la opción seleccionada
+        // Aplicar filtros solo si se ha seleccionado una opción válida
         if ($option == '1' && $day) {
             // Filtro por día específico
             $query->whereDate('fecha', $day);
@@ -161,12 +161,13 @@ class MaestrosController extends Controller
             $query->whereBetween('fecha', [$startDate, $endDate]);
         }
 
-        // Paginación de los resultados
+        // Ejecutar la consulta con o sin filtros
         $query_principal = $query->paginate(5);
 
         // Pasar las variables a la vista
         return view('maestros.horarios.horarios', compact('maestro', 'horario', 'query_principal', 'option', 'day', 'startDate', 'endDate'));
     }
+
 
     public function informacionMaestros(Request $request)
     {
@@ -196,6 +197,78 @@ class MaestrosController extends Controller
 
     }
 
+    public function consultaClases(Request $request)
+    {
+        $id = $request->session()->get('id');
+    
+        $query_principal = DB::select('
+            SELECT horario.*, usuarios.nombre, usuarios.apellido_paterno
+            FROM horario
+            JOIN usuarios ON horario.id_usuario = usuarios.id
+            WHERE horario.id_usuario = ?
+        ', [$id]);
+        
+        //por si requerimos ver el resultado
+        //print_r($query_principal);
+        //die();
+
+        if (empty($query_principal)) {
+            return redirect()->back()->withErrors('El Docente no cuenta con horarios.');
+        }
+        
+        return view('maestros.clases.clases', ['maestro' => $query_principal[0]]);
+    }
+
+    public function editarHorario(Request $request, $id)
+{
+    // Validación de los datos
+    $request->validate([
+        'entrada_lunes' => 'nullable|date_format:H:i',
+        'salida_lunes' => 'nullable|date_format:H:i',
+        'entrada_martes' => 'nullable|date_format:H:i',
+        'salida_martes' => 'nullable|date_format:H:i',
+        'entrada_miercoles' => 'nullable|date_format:H:i',
+        'salida_miercoles' => 'nullable|date_format:H:i',
+        'entrada_jueves' => 'nullable|date_format:H:i',
+        'salida_jueves' => 'nullable|date_format:H:i',
+        'entrada_viernes' => 'nullable|date_format:H:i',
+        'salida_viernes' => 'nullable|date_format:H:i',
+        'entrada_sabado' => 'nullable|date_format:H:i',
+        'salida_sabado' => 'nullable|date_format:H:i',
+    ]);
+
+    // Crear un array con los datos a actualizar
+    $datosActualizar = [];
+    $dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+
+    // Recorremos los días para verificar qué campos actualizar
+    foreach ($dias as $dia) {
+        $entrada = $request->input("entrada_$dia");
+        $salida = $request->input("salida_$dia");
+
+        if (!is_null($entrada)) {
+            $datosActualizar["entrada_$dia"] = $entrada;
+        }
+        if (!is_null($salida)) {
+            $datosActualizar["salida_$dia"] = $salida;
+        }
+    }
+
+    // Verifica qué datos se van a actualizar
+    dd($datosActualizar); // Esto es para depuración, verás los datos en la pantalla antes de la actualización
+
+    // Si hay datos para actualizar, realiza el update en la base de datos
+    if (!empty($datosActualizar)) {
+        DB::table('horario')
+            ->where('id_usuario', $id)
+            ->update($datosActualizar);
+    }
+
+    // Redirige de nuevo con un mensaje de éxito
+    return redirect()->back()->with('status', 'Horario actualizado exitosamente');
+}
+
+    
     public function editarMaestro(Request $request, $id)
     {
         // Validar los datos recibidos
@@ -206,7 +279,7 @@ class MaestrosController extends Controller
             'telefono' => 'required|numeric',
             'correo' => 'required|email|max:255',
         ]);
-
+    
         // Actualizar los datos en la base de datos
         DB::table('usuarios')
             ->where('id', $id)
@@ -216,19 +289,23 @@ class MaestrosController extends Controller
                 'apellido_materno' => $request->input('apellidoMaterno'),
                 'telefono' => $request->input('telefono'),
             ]);
-
+    
+        // Actualizar correo y contraseña
+        $credenciales = [
+            'correo' => $request->input('correo'),
+        ];
+    
+        // Solo actualizar la contraseña si se ha ingresado una nueva
+        if ($request->filled('password')) {
+            $credenciales['password'] = $request->input('password');
+        }
+    
         DB::table('credenciales')
             ->where('id_usuario', $id)
-            ->update([
-                'correo' => $request->input('correo'),
-            ]);
-
+            ->update($credenciales);
+    
         return redirect()->back()->with('status', 'Información actualizada correctamente');
     }
-
-
-    
-
 
     function validarHoras($entrada, $salida)
     {

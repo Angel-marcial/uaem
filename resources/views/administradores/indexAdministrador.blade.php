@@ -44,7 +44,7 @@
     <div class="btn-contenedor">   
         <div class="col-md-7">   
 
-            <h5>Datos del Administrador</h5>
+            <h5>(Datos del Administrador)</h5>
 
             <div class="contenedor margenes-contenedor">
                 <form action="{{ url('editar-admin/'.$admin->id) }}" method="POST" onsubmit="return maestro(this)">
