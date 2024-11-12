@@ -222,6 +222,10 @@ class MaestrosController extends Controller
     public function editarHorario(Request $request)
     {
         $id = $request->session()->get('id');
+
+        // Verifica los datos enviados en la solicitud
+
+
         // Validación de los datos
         $request->validate([
             'entrada_lunes' => 'nullable|date_format:H:i:s',
@@ -237,16 +241,16 @@ class MaestrosController extends Controller
             'entrada_sabado' => 'nullable|date_format:H:i:s',
             'salida_sabado' => 'nullable|date_format:H:i:s',
         ]);
-    
+        
         // Crear un array con los datos a actualizar
         $datosActualizar = [];
         $dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
-    
+
         // Recorremos los días para verificar qué campos actualizar
         foreach ($dias as $dia) {
             $entrada = $request->input("entrada_$dia");
             $salida = $request->input("salida_$dia");
-    
+
             if (!is_null($entrada)) {
                 $datosActualizar["entrada_$dia"] = $entrada;
             }
@@ -254,7 +258,7 @@ class MaestrosController extends Controller
                 $datosActualizar["salida_$dia"] = $salida;
             }
         }
-    
+
         // Si hay datos para actualizar, mostrar la consulta SQL simulada
         if (!empty($datosActualizar)) {
             // Construye la consulta manualmente para inspección
@@ -265,18 +269,18 @@ class MaestrosController extends Controller
             }
             $updateQuery .= implode(", ", $setParts);
             $updateQuery .= " WHERE id_usuario = $id";
-    
-            //dd([
-            //    'generated_query' => $updateQuery,
-            //    'datosActualizar' => $datosActualizar
-            //]);
 
-            // Realiza la actualización después de depurar la consulta
-            DB::table('horario')
-                ->where('id_usuario', $id)
-                ->update($datosActualizar);
+            //dd([
+            //   'generated_query' => $updateQuery,
+            //   'datosActualizar' => $datosActualizar
+            //]);
         }
-    
+        
+        // Realiza la actualización después de depurar la consulta
+        DB::table('horario')
+            ->where('id_usuario', $id)
+            ->update($datosActualizar);
+
         // Redirige de nuevo con un mensaje de éxito
         return redirect()->back()->with('status', 'Horario actualizado exitosamente');
     }

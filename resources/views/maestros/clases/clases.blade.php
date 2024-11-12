@@ -7,7 +7,8 @@
     Modificaciones:
 
     Descripción: Este archivo PHP contiene las dependencias, fuentes y links que usuara la interfaz maestros
--->@extends('maestros.contenido')
+-->
+@extends('maestros.contenido')
 @section('content')
 
 @if (session('status'))
@@ -45,7 +46,7 @@
                             </thead>
                             <tbody>
                                 @php
-                                    $dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+                                    $dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sabado'];
                                     $entradas = [
                                         $maestro->entrada_lunes ?? '', 
                                         $maestro->entrada_martes ?? '', 
