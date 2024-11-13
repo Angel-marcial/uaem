@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Emails;
 use App\Http\Controllers\Controller;
 use App\Mail\Invitaciones;
+use App\Mail\RechazarInvitacion;
 use App\Models\Departamentos;
 use App\Models\Invitados;
 use Illuminate\Http\Request;
@@ -46,21 +47,21 @@ class InvitacionController extends Controller
 
 
     //eliminar guardia
-    public function cancelaInvitacion(Request $request, $id)
+    public function cancelaInvitacion($id)
     {
         
+        $cancelarInvitacion = Invitados::where('id', $id)->first();
 
-        $eliminarInvitado = Invitados::where('id', $id)->first();
-
-        // Verificar si el maestro existe
-        if (!$eliminarInvitado) {
-            return redirect()->back()->with('status', 'El Invitado no fue encontrado.')->with('error',false);
+        if (!$cancelarInvitacion) {
+            return redirect('admin-consulta-peticiones')->with('status', 'El Invitado no fue encontrado.')->with('error',false);
         }
         else
         {
-            $eliminarInvitado->delete();
+            $cancelarInvitacion->update(['estatus' => 2]);
 
-            return redirect()->back()->with('status', 'El Invitado no fue aceptado, Se le notificara.')->with('error',true);
+            Mail::to($cancelarInvitacion->correo)->send(new RechazarInvitacion($cancelarInvitacion->nombre_completo));
+
+            return redirect('admin-consulta-peticiones')->with('status', 'El Invitado no fue aceptado, Se le notificara al correo: ' . $cancelarInvitacion->correo)->with('error',false);
         }
     }
 

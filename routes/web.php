@@ -92,14 +92,16 @@ Route::get('admin-elimina-departamento/{id}', [AdminDepartamentosController::cla
 Route::get('admin-ver-departamento/{cuenta}', [AdminDepartamentosController::class,'datosDepartamento'])->middleware('auth.guard');
 Route::post('admin-edita-departamento/{id}/{idUsuario}', [AdminDepartamentosController::class,'editarDepartamento'])->middleware('auth.guard'); 
 //admin peticiones
+Route::get('admin-consulta-peticiones', [AdminPeticionesController::class,'adminVerPeticiones'])->middleware('auth.guard');  //--trabajando
+Route::post('enviar-correo-invitacion/{id}', [InvitacionController::class,'EnviarQr'])->middleware('auth.guard'); 
+Route::post('admin-cancela-invitacion/{id}', [InvitacionController::class,'cancelaInvitacion'])->middleware('auth.guard');
 
-Route::get('admin-consulta-peticiones', [AdminPeticionesController::class,'adminVerPeticiones'])->middleware('auth.guard'); //--trabajando
-Route::post('enviar-correo-invitacion/{id}', [InvitacionController::class,'EnviarQr']);
-Route::get('admin-cancela-invitacion/{id}', [InvitacionController::class,'cancelaInvitacion']);
+
 
 //rutas invitados
 Route::get('index-invitado', [IndexController::class,'indexInvitados']);
 Route::post('crear-invitado', [InvitadosController::class,'crearInvitacion']);  
+
 
 
 

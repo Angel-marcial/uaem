@@ -31,57 +31,77 @@
         @endif
 
     @else
+
         <div class="display:none;"></div>
 
     @endif
 
     <div class="margenes">
 
-        
-    
-        <h1>Peticiónes</h1>
+        @php
+            $date = date('Y-m-d');
+        @endphp
 
-            @foreach ($peticiones as $peticion)
+        <div class="d-flex align-items-center justify-content-between">
+            <h1 class="mb-0">Peticiones</h1>
+            
+            <div class="btn-group btn-grupo" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                <label class="btn btn btn-success" for="btnradio1">Aceptadas</label>
+            
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn btn btn-success" for="btnradio2">Pendientes</label>
+            
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                <label class="btn btn btn-success" for="btnradio3">Rechazadas</label>
+            </div>
+        </div>
 
-                @if( $peticion->fecha_visita =>  $date = date('Y-m-d') )
-                
-                    <div class="card">
-                        <div class="card-header d-flex align-items-center">
-                            <div class="col text-start">{{ $peticion->nombre_completo }}</div>
-                            <div class="col text-center">Fecha: {{ $peticion->fecha_visita }}</div>
-                            <div class="col text-end">Hora: {{ $peticion->hora_visita }}</div>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">{{ $peticion->motivo }}</h4>
-                            <div class="d-flex justify-content-end gap-2 btn-contenedor">
-                                @if( $peticion->estatus == false )
+        @foreach ($peticiones as $peticion)
 
-                                    <form id="postForm-{{ $peticion->id }}" action="{{ url('enviar-correo-invitacion/'. $peticion->id) }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+            @if($peticion->fecha_visita >= $date && $peticion->estatus == 0)
 
-                                    <a href="javascript:void(0);" onclick="document.getElementById('postForm-{{ $peticion->id }}').submit();" class="btn btn-success">Aceptar</a>
-                                    <a href="#" class="btn btn-danger">Rechazar</a>
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <div class="col text-start">{{ $peticion->nombre_completo }}</div>
+                        <div class="col text-center">Fecha: {{ $peticion->fecha_visita }}</div>
+                        <div class="col text-end">Hora: {{ $peticion->hora_visita }}</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ $peticion->motivo }}</p>
+                        <div class="d-flex justify-content-end gap-2 btn-contenedor">
+                            @if( $peticion->estatus == 0 ) <!--invitacion pendiente-->
+                                <!--boton aceptar-->
+                                <form id="postForm-{{ $peticion->id }}" action="{{ url('enviar-correo-invitacion/'. $peticion->id) }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                <a href="javascript:void(0);" onclick="document.getElementById('postForm-{{ $peticion->id }}').submit();" class="btn btn-success">Aceptar</a>
+                                <!--boton rechazar-->
+                                <form id="postForm2-{{ $peticion->id }}" action="{{ url('admin-cancela-invitacion/'. $peticion->id) }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                <a href="javascript:void(0);" onclick="document.getElementById('postForm2-{{ $peticion->id }}').submit();" class="btn btn-danger">Rechazar</a>
 
-                                @else
- 
-                                    <a href="javascript:void(0);" onclick="document.getElementById('postForm-{{ $peticion->id }}').submit();" class="btn btn-success disabled">Aceptar</a>
-                                    
-                                @endif
+                            @else
+                            
+                                <a href="javascript:void(0);" onclick="document.getElementById('postForm-{{ $peticion->id }}').submit();" class="btn btn-success disabled">Aceptar</a>
+                            
+                            @endif
 
-                            </div>
-                        </div>
-                        <div class="card-footer text-body-secondary">
-                            <p class="card-text">Correo: {{ $peticion->correo }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teléfono: {{ $peticion->telefono }}</p>
                         </div>
                     </div>
+                    <div class="card-footer text-body-secondary">
+                        <p class="card-text">Correo: {{ $peticion->correo }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Teléfono: {{ $peticion->telefono }}</p>
+                    </div>
+                </div>
 
-                @endif
-                
-            <div class="card-vw"></div>
-        @endforeach
-    
+            @endif
+            
+        <div class="card-vw"></div>
+    @endforeach
+
     </div>
+</div>
 
 @endsection
 

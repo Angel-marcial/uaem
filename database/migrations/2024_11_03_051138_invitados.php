@@ -21,7 +21,7 @@ return new class extends Migration
             $table->time('hora_visita');
             $table->date('fecha_visita');
             $table->string('motivo');  
-            $table->boolean('estatus');
+            $table->integer('estatus');
             $table->timestamps(); 
             
             $table->foreign('area_visita')

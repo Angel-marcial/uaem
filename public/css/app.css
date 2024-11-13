@@ -58,6 +58,14 @@ h5{
     margin-top: 40px;
 }
 
+.btn-grupo{
+    margin-top: 40px;
+}
+
+btn-fondo{
+    background-color: var(--color-amarillo);
+}
+
 .alto{
     margin-top: 40px;
 }

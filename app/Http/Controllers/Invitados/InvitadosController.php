@@ -103,7 +103,7 @@ class InvitadosController extends Controller
                         'hora_visita' => $hora,
                         'fecha_visita' => $fecha,
                         'motivo' => $motivo,
-                        'estatus' => false,
+                        'estatus' => 0,
                     ]);
 
                     if ($invitacionCreada) 
@@ -125,12 +125,4 @@ class InvitadosController extends Controller
         
         return back()->with('status', 'Esto no deveria de pasar contactate con soporte tecnico')->with('error',false)->withInput();
     } 
-    
-    public function rechazarInvitacion()
-    {
-
-
-    }
-
-
 }
