@@ -82,8 +82,7 @@ if (!$tipo)
                         <hr>
                         <a class="active" href="{{ url('index-admin') }}" data-url="{{ url('index-admin') }}" class="ajax-link"><i class="bi bi-house-door"></i>Home</a>
                         <a href="{{ url('maestros-horarios') }}" data-url="{{ url('maestros/horarios') }}" class="ajax-link"><i class=""></i>Registros</a>
-                        <a href="{{ url('maestros-horarios') }}" data-url="{{ url('maestros/horarios') }}" class="ajax-link"><i class=""></i>Horarios</a>
-                        <a data-url="{{ url('admin-consulta-maestros') }}" class="ajax-link"><i class=""></i>Agregar Horarios</a>
+                        <a href="{{ url('maestros-clases') }}" data-url="{{ url('maestros/clases') }}" class="ajax-link"><i class=""></i>Horarios</a>
                         <a href="{{url('maestros-cuenta')}}"  data-url="{{ url('maestros/cuenta') }}" class="ajax-link"></i>Cuenta</a>
                 </div>
             </div>

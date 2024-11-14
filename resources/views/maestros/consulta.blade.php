@@ -78,9 +78,11 @@
                             <input type="number" class="form-control text-contenedor " id="telefono" name="telefono" value="{{ old('telefono', $maestro->telefono?? '') }}" required disabled oninput="validarTelefono(this)">
                         </div>
 
-                        <div>
-                            <button class="btn btn-success">CAMBIAR TU INFORMACION</button>
-                        </div>
+                    <div style="text-align: right;">
+                        <a href="{{ url('maestros-cuenta') }}" class="btn btn-success btn-editar">
+                            CAMBIAR TU INFORMACION
+                        </a>
+                    </div>
                     </div>
 
                 </form>

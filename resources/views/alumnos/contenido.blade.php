@@ -33,6 +33,7 @@
 
         <script src=" {{ asset('js/alumnos/alumno.js' )}}"></script>
 
+
     </head> 
 
     <body>
