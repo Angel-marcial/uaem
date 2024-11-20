@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Models\Credenciales1;
 use App\Models\Carrera_usuarios;
 use App\Models\Usuarios;
+use App\Models\Horario;
+use Illuminate\Support\Facades\DB;
 
 class AlumnosController extends Controller
 {
@@ -179,7 +181,7 @@ class AlumnosController extends Controller
         }
     }
 
-    function editarAlumno(Request $request, $id , $interfaz)
+    function editarAlumnos(Request $request, $id , $interfaz)
     {
         $GlobalController = new GlobalController();
 
@@ -334,11 +336,109 @@ class AlumnosController extends Controller
         return "";
     }
 
-
-    public function adminConsultaAlumnos()
+    public function alumnosRegistros(Request $request)
     {
+        $id = $request->session()->get('id');
+        $rol = $request->session()->get('rol');
+        $ruta = $request->session()->get('ruta');
+ 
+        // Validación de rol y redirección
+        if ($rol !== 'alumno') {
+            return redirect($ruta ?? 'index');
+        }
 
+        // Obtener el maestro y su horario, en caso de ser necesario para la vista
+        $alumno = Usuarios::find($id);
+        $horario = Horario::where('id_usuario', $id)->first();
+
+        // Obtener los parámetros de búsqueda
+        $option = $request->input('option');
+        $day = $request->input('day');
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        // Consulta base para el maestro actual
+        $query = DB::table('ingreso_salida')->where('id', $id);
+
+        // Aplicar filtros según la opción seleccionada
+        if ($option == '1' && $day) {
+            // Filtro por día específico
+            $query->whereDate('fecha', $day);
+        } elseif ($option == '2' && $startDate && $endDate) {
+            // Filtro por rango de fechas
+            $query->whereBetween('fecha', [$startDate, $endDate]);
+        }
+
+        // Paginación de los resultados
+        $query_principal = $query->paginate(5);
+        return view('alumnos.registros.registro',compact('alumno', 'horario', 'query_principal', 'option', 'day', 'startDate', 'endDate'));
     }
 
+    public function informacionAlumno(Request $request)
+    {
+        //obtenemos el id de la session 
+        $id = $request->session()->get('id');
+        $rol = $request->session()->get('rol');
+
+        //ejecutamos la consulta
+        $query_principal = DB::select('
+        SELECT a.id, a.no_cuenta, a.nombre, a.apellido_paterno, a.apellido_materno,
+        a.telefono, b.correo, b.password
+        FROM usuarios a
+        INNER JOIN credenciales b ON a.id = b.id_usuario
+        WHERE a.id = ?
+        ', [$id]);
+
+         
+        // Validación de rol y redirección
+        if ($rol !== 'alumno') {
+            return redirect($ruta ?? 'index');
+        }
+
+        //ASEGURAMOS QUE LA CONSULTA CUENTA CON INFORMACION
+        if(empty($query_principal))
+        {
+            return redirect()->back()->withErrors('Usuario o credenciales no encontrado.');
+        }
+
+        //pasamos los datos a la vista 
+        return view('alumnos.cuentas.cuenta', ['alumno' => $query_principal[0]]);
+    }
+
+    public function editarAlumno(Request $request, $id)
+    {
+        $rol = $request->session()->get('rol');
+        
+        // Validar los datos recibidos
+        $request->validate([
+            'nombres' => 'required|string|max:255',
+            'apellidoPaterno' => 'required|string|max:255',
+            'apellidoMaterno' => 'required|string|max:255',
+            'telefono' => 'required|numeric',
+            'correo' => 'required|email|max:255',
+        ]);
+
+        // Validación de rol y redirección
+        if ($rol !== 'alumno') {
+            return redirect($ruta ?? 'index');
+        }
+        // Actualizar los datos en la base de datos
+        DB::table('usuarios')
+            ->where('id', $id)
+            ->update([
+                'nombre' => $request->input('nombres'),
+                'apellido_paterno' => $request->input('apellidoPaterno'),
+                'apellido_materno' => $request->input('apellidoMaterno'),
+                'telefono' => $request->input('telefono'),
+            ]);
+
+        DB::table('credenciales')
+            ->where('id_usuario', $id)
+            ->update([
+                'correo' => $request->input('correo'),
+            ]);
+
+        return redirect()->back()->with('status', 'Información actualizada correctamente');
+    }
 
 }

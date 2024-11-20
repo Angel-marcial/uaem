@@ -49,6 +49,10 @@ Route::get('index-alumnos', [IndexController::class,'indexAlumnos']);
 Route::post('guardar-alumnos', [AlumnosController::class,'guardarAlumnos']);
 Route::get('consulta-alumnos', [AlumnosController::class,'consultaAlumnos'])->middleware('auth.guard')->name('consulta.alumno');
 Route::post('editar-alumno/{id}/{usuario}', [AlumnosController::class,'editarAlumno']);
+Route::get('alumnos-ingresos', [AlumnosController::class, 'alumnosRegistros'])->name('alumnos.ingresos');
+Route::get('alumno-cuenta', [AlumnosController::class, 'informacionAlumno'])->name('alumno-cuenta');
+Route::post('editar-alumno/{id}', [AlumnosController::class, 'editarAlumno'])->name('editar.alumno');
+
 
 //rutas maestros
 Route::get('index-maestros', [IndexController::class, 'indexMaestros']);
@@ -72,6 +76,7 @@ Route::get('admin-ver-alumnos/{cuenta}', [AdminController::class,'datosAlumno'])
 Route::get('admin-nuevo-alumno', [AdminAlumnosController::class,'adminNuevoAlumno'])->middleware('auth.guard');
 Route::post('admin-alta-alumno', [AdminAlumnosController::class,'nuevoAlumno'])->middleware('auth.guard');
 Route::post('actualizar-estatus-alumno/{id}', [AdminAlumnosController::class, 'actualizarEstatus']); 
+
 //admin maestros 
 Route::get('admin-consulta-maestros', [AdminMaestrosController::class,'tablaMaestros'])->middleware('auth.guard');
 Route::get('admin-buscar-maestros', [AdminMaestrosController::class,'buscarMaestros'])->middleware('auth.guard'); 

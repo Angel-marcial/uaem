@@ -88,10 +88,9 @@
                             <input type="number" class="form-control text-contenedor " id="telefono" name="telefono" placeholder="7200000000" value="{{ old('telefono', $alumno->telefono ?? '') }}" required disabled oninput="validarTelefono(this)">
                         </div>
 
+
                         <div class="d-flex justify-content-end gap-2 btn-contenedor">
-                            <button type="button" class="btn-editar" id="editarAlumno">Editar</button>
-                            <button type="submit" class="btn-custom" id="guardarAlumno" style="display: none;">Guardar</button>
-                            <button type="button" class="btn-cancelar" id="cancelarAlumno" style="display: none;">Cancelar</button>
+                            <button type="button" class="btn-editar" id="editarAdminAlumno" onclick="location.href='{{ route('alumno-cuenta') }}'">Editar</button>
                         </div>
 
                     </div>
