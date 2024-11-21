@@ -13,7 +13,7 @@ class ApiPeticionesController extends Controller
     {
         //$usuarios = Usuarios::all();
 
-        $departamentoSolicitado = Peticiones::where('id_usuario', $id)->get();
+        $departamentoSolicitado = Peticiones::where('id_cordinador', $id)->get();
 
 
         return response()->json($departamentoSolicitado);

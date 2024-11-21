@@ -9,25 +9,18 @@ class Peticiones extends Model
 {
     use HasFactory;
 
-    protected $table = 'peticionmes'; // Define el nombre de la tabla
+    protected $table = 'peticiones'; // Define el nombre de la tabla
     protected $fillable = [
-        'nombre_completo',
+        'nombre_invitado',
         'correo_invitado',
         'telefono',
-        'area_visita',
         'hora_visita',
         'fecha_visita',
         'motivo',
         'estatus',
-        'id_usuario',
-        'id_departamento',
-        'no_cuenta',
-        'nombre',
-        'apellido_paterno',
-        'apellido_materno',
+        'id_cordinador',
         'nombre_departamento',
         'edificio',
         'aula',
-        'correo_admin',
     ];
 }
