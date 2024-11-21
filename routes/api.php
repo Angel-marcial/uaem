@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Apis\ApiController;
 use App\Http\Controllers\Apis\ApiLoginController;
+use App\Http\Controllers\Apis\ApiPeticionesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/prueba', [ApiController::class, 'index']);
 Route::post('/login', [ApiLoginController::class, 'login']);
+Route::get('/peticiones/{id}', [ApiPeticionesController::class, 'peticiones']);
+

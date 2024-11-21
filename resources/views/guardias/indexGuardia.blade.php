@@ -12,8 +12,16 @@
 
 @section('content')
 
-<div class="btn-contenedor ">
-    <h1>Bienvenido</h1>
+<div class="btn-contenedor2">
+    <h1 class="bienvenido-texto2">Bienvenido</h1>
+
+    <div class="btn-group btn-grupo2" role="group" aria-label="Basic radio toggle button group">
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="Ingresos" autocomplete="off" checked>
+        <label class="btn btn-success" for="btnradio1">Ingresos</label>
+    
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="Salidas" autocomplete="off">
+        <label class="btn btn-success" for="btnradio2">Salidas</label>
+    </div>
 </div>
 
 <div class="margenes-grandes">
@@ -36,8 +44,8 @@
             </div>
 
             <div> 
-                <label for="carrera" class="form-label titulos margenes-contenedor">Carrera</label>
-                <label class="form-control text-contenedor btn-contenedor" id="carrera" name="carrera">Carrera</label>
+                <label for="carrera" class="form-label titulos margenes-contenedor">Rol</label>
+                <label class="form-control text-contenedor btn-contenedor" id="carrera" name="carrera">Rol</label>
             </div>
 
             <div> 
