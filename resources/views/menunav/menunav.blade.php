@@ -59,10 +59,8 @@ if (!$tipo)
                     <h5><i class=""></i>{{ old('numeroCuenta', $alumno->nombre." ".$alumno->apellido_paterno ?? '') }}</h5>
                         <hr>
                         <a class="active" href="{{ url('index-admin') }}" data-url="{{ url('index-admin') }}" class="ajax-link"><i class="bi bi-house-door"></i>Home</a>
-                        <a href="#"><i class="" id="dashboard"></i>Dashboard</a>
-                        <a href="#" data-url="{{ url('admin-consulta-alumnos') }}" class="ajax-link"><i class=""></i>MIS HORARIOS</a>
-                        <a data-url="{{ url('admin-consulta-maestros') }}" class="ajax-link"><i class=""></i>AGREGAR HORARIOS</a>
-                        <a data-url="{{ url('admin-consulta-guardias') }}" class="ajax-link"></i>PETICIONES</a>
+                        <a href="{{url('alumnos-ingresos')}}" data-url="{{ url('index-admin') }}" class="ajax-link"><i class="" id="dashboard"></i>Registros</a>
+                        <a href="{{url('alumno-cuenta')}}"  data-url="{{ url('alumno/cuenta') }}" class="ajax-link"></i>Cuenta</a>
                 </div>
             </div>
             <?php
