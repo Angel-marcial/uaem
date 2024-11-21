@@ -47,13 +47,13 @@
             
             <div class="btn-group btn-grupo" role="group" aria-label="Basic radio toggle button group">
                 <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                <label class="btn btn btn-success" for="btnradio1">Aceptadas</label>
+                <label class="btn btn btn-success" for="btnradio1">Pendientes</label>
             
                 <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                <label class="btn btn btn-success" for="btnradio2">Pendientes</label>
+                <label class="btn btn btn-success" for="btnradio2">En construccion</label>
             
                 <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                <label class="btn btn btn-success" for="btnradio3">Rechazadas</label>
+                <label class="btn btn btn-success" for="btnradio3">En construccion</label>
             </div>
         </div>
 

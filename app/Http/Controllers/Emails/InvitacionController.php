@@ -14,19 +14,35 @@ class InvitacionController extends Controller
 {
     public function EnviarQr($id)
     {
+        /*
+            const idQr = resultText.match(/Id:\s*(.*)/)[1];
+            const nombreQr = resultText.match(/Nombre:\s*(.*)/)[1];
+            const noCuentaQr = resultText.match(/No\. Cuenta:\s*(\d+)/)[1];
+            const statusQr = resultText.match(/Status:\s*(\w+)/)[1];
+            const rolQr = resultText.match(/Rol:\s*(\w+)/)[1];
+            const fechaQr = resultText.match(/Fecha:\s*(\d{2}\/\d{2}\/\d{4})/)[1];
+            hora
+        */
 
         $datos = Invitados::where('id', $id)->first();
         $area = Departamentos::where('id', $datos->area_visita)->first();
 
         $correo = $datos->correo;
         $nombre = $datos->nombre_completo;
-        $fecha = $datos->fecha_visita;
+        $fecha = date('d/m/Y', strtotime($datos->fecha_visita));
         $hora = $datos->hora_visita;
-        $departamento = $area->nombre_departamento;
         $rol = "invitado";
+        $departamento = $area->nombre_departamento;
+        
 
-        $data = 'nombre: ' . $nombre . 'fecha: ' . $fecha . 'hora: ' . $hora . 'departamento: ' . $departamento . 'rol: ' . $rol;
-    
+        $data = 'Id: 0' . "\n" .
+        'Nombre: ' . $nombre . "\n" .
+        'No. Cuenta: 0000000' . "\n" .
+        'Status: true' . "\n" .
+        'Rol: ' . $rol . "\n" .
+        'Fecha: ' . $fecha . "\n" .
+        'Hora: ' . $hora;
+
         // Generar el código QR y guardarlo en el almacenamiento
         $qrCode = QrCode::format('png')->size(300)->generate($data);
     
