@@ -1,16 +1,13 @@
 <!--
-    @author Vladimir Lemus
     Codice
-    Nombre del Código: contenido.blade.php
-    Fecha de Creación: 01/11/2024 revisado por Angel Geovanni Marcial Morales
+    Nombre del Código: indexCoordinador.blade.php
+    Fecha de Creación: 21/11/2024 revisado por Angel Geovanni Marcial Morales
 
     Modificaciones:
 
-    Descripción: Este archivo PHP contiene las dependencias, fuentes y links que usuara la interfaz maestros
+    Descripción: Este archivo PHP contiene lainformacion del cordinador
 -->
-
-
-@extends('maestros.contenido')
+@extends('coordinador.contenido')
 @section('content')
 
     @if (session('status'))
@@ -40,7 +37,7 @@
             <h1>REGISTRO DE ENTRADAS Y SALIDAS</h1>
 
             <!-- Formulario de Búsqueda -->
-            <form action="{{ route('maestros.horarios.horarios') }}" method="GET">
+            <form action="{{ route('coordinador.registros.registro') }}" method="GET">
                 <div class="input-group mb-3 form-min-size alto">
                     <select name="option" id="searchOption" class="form-control" onchange="toggleSearchFields()">
                         <option value="" {{ $option == '' ? 'selected' : '' }}>--SELECCIONA UNA OPCIÓN--</option>
@@ -127,8 +124,4 @@
                     }
                 }
             </script>
-    
-    
-
-
 @endsection
