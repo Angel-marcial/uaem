@@ -34,17 +34,18 @@ if (!$tipo)
 {
     case 'cordinador':
         ?>
-            <div class="sidebar">
-                <div class="p-3">
-                    <h5><i class=""></i>{{ old('numeroCuenta', $cordinador->nombre." ".$cordinador->apellido_paterno ?? '') }}</h5>
-                        <hr>
-                        <a class="active" href="{{ url('index-admin') }}" data-url="{{ url('index-admin') }}" class="ajax-link"><i class="bi bi-house-door"></i>Home</a>
-                        <a href="{{url('')}}" data-url="{{ url('') }}" class="ajax-link"><i class="" id="dashboard"></i>Registros</a>
-                        <a href="{{ url('') }}" data-url="{{ url('') }}" class="ajax-link"><i class=""></i>Horarios</a>
-                        <a href="{{url('')}}"  data-url="{{ url('') }}" class="ajax-link"></i>Cuenta</a>
-                        <a data-url="{{ url('coordinador-consulta-peticiones') }}" data-url="{{ url('coordinadores/consulta') }}" class="ajax-link"></i>Peticiones</a>   
-                </div>
+        <div class="sidebar">
+            <div class="p-3">
+                <h5><i class=""></i>{{ old('numeroCuenta', $cordinador->nombre." ".$cordinador->apellido_paterno ?? '') }}</h5>
+                
+                <hr>
+                <a class="active" href="{{ url('index-admin') }}"><i class="bi bi-house-door"></i> Home</a>
+                <a href="{{ url('cordinador-registros') }}"><i class="" id="dashboard"></i> Registros</a>
+                <a href="{{ url('cordinador-horarios') }}"><i class=""></i> Horarios</a>
+                <a href="{{ url('cordinador-cuenta') }}"></i> Cuenta</a>
+                <a href="{{ url('coordinador-consulta-peticiones') }}"></i> Peticiones</a>   
             </div>
+        </div>
             
         <?php
         break;

@@ -78,7 +78,7 @@
                     </div>
 
                     <div style="text-align: right;">
-                        <a href="{{ url('maestros-cuenta') }}" class="btn btn-success btn-editar">
+                        <a href="{{ url('cordinador-cuenta') }}" class="btn btn-success btn-editar">
                             CAMBIAR TU INFORMACION
                         </a>
                     </div>
