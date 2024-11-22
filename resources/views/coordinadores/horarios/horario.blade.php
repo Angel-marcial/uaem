@@ -30,7 +30,7 @@
         <h5>MIS HORARIOS</h5>
 
         <div class="contenedor margenes-contenedor">
-            <form action="{{route('editar-horarioC', ['id' => $cordinadores->id])}}" method="POST">
+            <form action="{{ route('editar-horario') }}" method="POST">
                 @csrf
                 <div class="margenes-contenedor">
                     <!-- Tabla de horarios -->

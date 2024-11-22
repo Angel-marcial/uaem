@@ -15,7 +15,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Invitados</title>
+        <title>Cordinador</title>
         <link href="{{ asset('logo.png') }}" rel="icon" type="image/png">
 
         <!--Bootstrap-->

@@ -61,8 +61,10 @@ Route::get('consulta-maestros', [MaestrosController::class, 'consultaMaestros'])
 Route::post('editar-maestro/{id}', [MaestrosController::class,'editarMaestro']); 
 Route::get('maestros-horarios', [MaestrosController::class, 'consultaMaestrosHorarios'])->name('maestros.horarios.horarios');
 Route::get('maestros-cuenta', [MaestrosController::class, 'informacionMaestros']);
-Route::get('maestro-clases', [MaestrosController::class, 'consultaClases'])->name('maestros.clases.clases');
+Route::get('maestros-clases',[MaestrosController::class, 'consultaClases']);
 Route::post('editar-maestro/{id}', [MaestrosController::class, 'editarMaestro'])->name('editar-maestro');
+Route::post('editar-horario/{id}', [MaestrosController::class, 'editarHorario'])->name('editar-horario');
+
 
 //rutas Coordinador
 Route::get('consulta-coordinadores', [CoordinadoresController::class,'consultaCoordinadores'])->middleware('auth.guard');
@@ -70,7 +72,8 @@ Route::get('coordinador-consulta-peticiones', [CoordinadoresController::class,'c
 Route::get('cordinador-registros', [CoordinadoresController::class, 'coordinadoresRegistros'])->name('coordinador.registros.registro');
 Route::get('cordinador-horarios',[CoordinadoresController::class, 'coordinadoresHorarios'])->name('coordinador.horarios.horario');
 Route::get('cordinador-cuenta',[CoordinadoresController::class, 'coordinadoresCuenta'])->name('coordinador.cuentas.cuenta');
-
+Route::post('editar-horarioC', [CoordinadoresController::class, 'editarHorarioC'])->name('editar-horario');
+Route::post('editar-cuenta', [CoordinadoresController::class, 'editarCordinador'])->name('editar-cordinador');
 //rutas administrador 
 Route::get('index-admin',[AdminController::class, 'consultaAdmin'])->middleware('auth.guard')->name('guardias.index');
 Route::post('editar-admin/{id}', [AdminController::class,'editarAdmin'])->middleware('auth.guard');
