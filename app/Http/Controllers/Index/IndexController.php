@@ -65,6 +65,11 @@ class  IndexController extends Controller
                     session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'index-admim']);
                     return redirect('index-admin');
                 }
+                else if($usuario->rol == "cordinador")
+                {
+                    session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'consulta-coordinadores']);
+                    return redirect('consulta-coordinadores');
+                }
             }
             else
             {

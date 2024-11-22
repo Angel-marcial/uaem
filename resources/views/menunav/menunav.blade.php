@@ -32,6 +32,23 @@ if (!$tipo)
 {
     switch ($tipo)
 {
+    case 'cordinador':
+        ?>
+            <div class="sidebar">
+                <div class="p-3">
+                    <h5><i class=""></i>{{ old('numeroCuenta', $cordinador->nombre." ".$cordinador->apellido_paterno ?? '') }}</h5>
+                        <hr>
+                        <a class="active" href="{{ url('index-admin') }}" data-url="{{ url('index-admin') }}" class="ajax-link"><i class="bi bi-house-door"></i>Home</a>
+                        <a href="{{url('')}}" data-url="{{ url('') }}" class="ajax-link"><i class="" id="dashboard"></i>Registros</a>
+                        <a href="{{ url('') }}" data-url="{{ url('') }}" class="ajax-link"><i class=""></i>Horarios</a>
+                        <a href="{{url('')}}"  data-url="{{ url('') }}" class="ajax-link"></i>Cuenta</a>
+                        <a data-url="{{ url('coordinador-consulta-peticiones') }}" data-url="{{ url('coordinadores/consulta') }}" class="ajax-link"></i>Peticiones</a>   
+                </div>
+            </div>
+            
+        <?php
+        break;
+
     case 'administrador':
         ?>
             <div class="sidebar">
@@ -40,7 +57,7 @@ if (!$tipo)
                         <hr>
                         <a class="active" href="{{ url('index-admin') }}" data-url="{{ url('index-admin') }}" class="ajax-link"><i class="bi bi-house-door"></i>Home</a>
             
-                        <a href="#"><i class="" id="dashboard"></i>Dashboard</a>
+                        <a href="#"><i class="" id="En Construccion"></i>Dashboard</a>
                         <a href="#" data-url="{{ url('admin-consulta-alumnos') }}" class="ajax-link"><i class=""></i>Alumnos</a>
                         <a data-url="{{ url('admin-consulta-maestros') }}" class="ajax-link"><i class=""></i>Maestros</a>
                         <a data-url="{{ url('admin-consulta-guardias') }}" class="ajax-link"></i>Guardias</a>

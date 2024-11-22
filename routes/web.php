@@ -27,6 +27,7 @@ use App\Http\Controllers\Maestros\MaestrosController;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\IngresoSalidaExport;
+use App\Http\Controllers\Coordinadores\CoordinadoresController;
 use App\Http\Controllers\Emails\InvitacionController;
 
 /*
@@ -53,7 +54,6 @@ Route::get('alumnos-ingresos', [AlumnosController::class, 'alumnosRegistros'])->
 Route::get('alumno-cuenta', [AlumnosController::class, 'informacionAlumno'])->name('alumno-cuenta');
 Route::post('editar-alumno/{id}', [AlumnosController::class, 'editarAlumno'])->name('editar.alumno');
 
-
 //rutas maestros
 Route::get('index-maestros', [IndexController::class, 'indexMaestros']);
 Route::post('guardar-maestros', [MaestrosController::class,'guardarMaestros']);
@@ -62,6 +62,15 @@ Route::post('editar-maestro/{id}', [MaestrosController::class,'editarMaestro']);
 Route::get('maestros-horarios', [MaestrosController::class, 'consultaMaestrosHorarios'])->name('maestros.horarios.horarios');
 Route::get('maestros-cuenta', [MaestrosController::class, 'informacionMaestros']);
 Route::post('editar-maestro/{id}', [MaestrosController::class, 'editarMaestro'])->name('editar-maestro');
+
+//rutas Coordinador
+Route::get('consulta-coordinadores', [CoordinadoresController::class,'consultaCoordinadores'])->middleware('auth.guard');
+
+Route::get('coordinador-consulta-peticiones', [CoordinadoresController::class,'coordinadorVerPeticiones'])->middleware('auth.guard');
+
+
+
+
 
 
 //rutas administrador 
