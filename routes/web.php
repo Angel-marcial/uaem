@@ -132,7 +132,9 @@ Route::post('login', [IndexController::class, 'login']);
 
 //rutas guardia
 Route::get('index-guardia', [GuardiasController::class, 'indexGuardias'])->middleware('auth.guard')->name('guardias.index');
-Route::post('guardar-entradas-salidas', [GuardiasController::class, 'guardarEntradasSalidas']);//--trabajando
+//Route::post('guardar-entradas-salidas', [GuardiasController::class, 'guardarEntradasSalidas']);//--trabajando
+Route::post('guardar-entradas-salidas', [GuardiasController::class, 'guardarEntradasSalidas'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+
 
 //ruta para cerrar session
 Route::post('cerrar-session', [IndexController::class, 'cerrarSession']);   

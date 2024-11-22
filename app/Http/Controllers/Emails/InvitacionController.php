@@ -35,9 +35,9 @@ class InvitacionController extends Controller
         $departamento = $area->nombre_departamento;
         
 
-        $data = 'Id: 0' . "\n" .
+        $data = 'Id: ' . $datos->id .   "\n" .
         'Nombre: ' . $nombre . "\n" .
-        'No. Cuenta: 0000000' . "\n" .
+        'No. Cuenta: 1111111' . "\n" .
         'Status: true' . "\n" .
         'Rol: ' . $rol . "\n" .
         'Fecha: ' . $fecha . "\n" .

@@ -78,9 +78,14 @@ function onScanSuccess(decodedText, decodedResult)
         // Formatear la fecha en formato día/mes/año
         const fechaFormateada = `${dia}/${mes}/${anio}`;
 
-        if(fechaFormateada === fechaQr && statusQr === "true")
+
+        const logMessage = `Id: ${idQr} | Nombre: ${nombreQr} | No. Cuenta: ${noCuentaQr} | Status: ${statusQr} | Rol: ${rolQr} | Fecha: ${fechaQr} | Hora: ${horaQr}`;
+        console.log(logMessage);
+
+        if("20/11/2024" === fechaQr && statusQr === "true")
         {
-            if (!audioPlayed) {
+            if (!audioPlayed) 
+            {
                 bien.play();
                 audioPlayed = true; // Marcar como reproducido
             }
@@ -93,6 +98,7 @@ function onScanSuccess(decodedText, decodedResult)
 
             if(selectedOption == "Ingresos" && !infoEnviada)
             {
+
                 infoEnviada = true;
                 console.log('Opción seleccionada:', selectedOption + ": hola ingreso");
                 enviarDatos(selectedOption, idQr, fechaQr, hora, diaDeLaSemana, rolQr);
@@ -122,7 +128,8 @@ function onScanSuccess(decodedText, decodedResult)
 
     } catch (error) 
     {
-        if (!audioPlayed) {
+        if (!audioPlayed) 
+        {
             fatal.play();
             audioPlayed = true; // Marcar como reproducido
         }
