@@ -7,6 +7,7 @@ use App\Models\IngresosInvitados;
 use App\Models\Salidas;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class GuardiasController extends Controller
 {
@@ -40,26 +41,40 @@ class GuardiasController extends Controller
         $fecha = $request->input('fecha');
         $hora = $request->input('hora_ingreso');
         $dia = $request->input('dia');
-        $rol = $request->input('rol');
-
+        $rol2 = $request->input('rol');
 
         $fecha_objeto = DateTime::createFromFormat('d/m/Y', $fecha);
         $fecha_transformada = $fecha_objeto->format('Y-m-d');
 
         if($tipo == "Ingresos")
         {
-            if($rol == "invitado")
+            if($rol2 == "invitado")
             {
+
+                try 
+                {
+                    $invitadoExistente = IngresosInvitados::where('id_invitado', $id_usuario)->first();
+
+                    if(!$invitadoExistente)
+                    {
+                        IngresosInvitados::create([
+                            'id_invitado' => $id_usuario,
+                            'hora_ingreso' => $hora,
+                        ]);
+
+                        return response()->json(['status' => 'success', 'message' => 'Datos procesados correctamente invitado: '], 200);
+                    }
+                    else
+                    {
+                        return response()->json(['status' => 'error', 'message' => 'No se encontraron registros de entrada para este invitado.'], 400);
+                    }
+
+                } catch (\Exception $e) 
+                {
+                    Log::error('Error al insertar registro: ' . $e->getMessage());
+                    return response()->json(['status' => 'error', 'message' => 'Error al procesar la solicitud'], 500);
+                }
                 
-                IngresosInvitados::create([
-                    'id_invitado' => $id_usuario,
-                    'hora_ingreso' => $hora,
-                    'hora_salida' => null,
-                ]);
-
-
-                return response()->json(['status' => 'success g', 'message' => 'Datos procesados correctamente'], 200);
-
             }
             else
             {
@@ -70,21 +85,34 @@ class GuardiasController extends Controller
                     'dia' => $dia
                 ]);
 
-                return response()->json(['status' => 'success', 'message' => 'Datos procesados correctamente'], 200);
+                return response()->json(['status' => 'success', 'message' => 'Datos procesados correctamente personal'], 200);
 
             }
 
 
         }else if($tipo == "Salidas")
         {
-            if($rol == "invitado")
+            if($rol2 == "invitado")
             {
-                $ingres = IngresosInvitados::where('id_invitado', $id_usuario)->update([
-                    'id_invitado' => $id_usuario,
-                    'hora_salida' => $hora,
-                ]);
+                $invitadoExistente = IngresosInvitados::where('id_invitado', $id_usuario)
+                ->whereNull('hora_salida')
+                ->first();
 
-                return response()->json(['status' => 'success', 'message' => 'Datos procesados correctamente'], 200);
+                if($invitadoExistente)
+                {
+                    IngresosInvitados::where('id_invitado', $id_usuario)->update([
+                        'id_invitado' => $id_usuario,
+                        'hora_salida' => $hora,
+                    ]);
+
+                    return response()->json(['status' => 'success', 'message' => 'Datos procesados correctamente'], 200);
+                }
+                else
+                {
+                    return response()->json(['status' => 'no se encuentran coincidencias'], 400);
+                }
+
+
 
             }
             else

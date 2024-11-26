@@ -15,15 +15,14 @@ return new class extends Migration
         Schema::create('registro_invitados', function(Blueprint $table)
         {
             $table->id();
-            $table->Integer('id_invitado');
+            $table->bigInteger('id_invitado');
             $table->time('hora_ingreso')->nullable();
             $table->time('hora_salida')->nullable();
             $table->timestamps(); 
             
             $table->foreign('id_invitado')
             ->references('id')
-            ->on('invitados')
-            ->onDelete('cascade');
+            ->on('invitados');
         });
     }
 

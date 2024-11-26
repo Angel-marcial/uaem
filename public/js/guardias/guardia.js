@@ -58,7 +58,6 @@ function onScanSuccess(decodedText, decodedResult)
         const fechaQr = resultText.match(/Fecha:\s*(\d{2}\/\d{2}\/\d{4})/)[1];
         const horaQr = resultText.match(/Hora:\s*(\d{2}:\d{2}:\d{2})/)[1];
         
-
         const hoy = new Date();
         //horas
         const horas = hoy.getHours().toString().padStart(2, '0'); // Asegura que tenga 2 dígitos
@@ -82,7 +81,7 @@ function onScanSuccess(decodedText, decodedResult)
         const logMessage = `Id: ${idQr} | Nombre: ${nombreQr} | No. Cuenta: ${noCuentaQr} | Status: ${statusQr} | Rol: ${rolQr} | Fecha: ${fechaQr} | Hora: ${horaQr}`;
         console.log(logMessage);
 
-        if("20/11/2024" === fechaQr && statusQr === "true")
+        if("26/11/2024" === fechaQr && statusQr === "true")
         {
             if (!audioPlayed) 
             {
@@ -101,6 +100,18 @@ function onScanSuccess(decodedText, decodedResult)
 
                 infoEnviada = true;
                 console.log('Opción seleccionada:', selectedOption + ": hola ingreso");
+
+
+                console.log(`
+                    ID: ${idQr}
+                    Nombre: ${nombreQr}
+                    Número de Cuenta: ${noCuentaQr}
+                    Estado: ${statusQr}
+                    Rol: ${rolQr}
+                    Fecha: ${fechaQr}
+                    Hora: ${horaQr}
+                  `);
+                  
                 enviarDatos(selectedOption, idQr, fechaQr, hora, diaDeLaSemana, rolQr);
 
             }

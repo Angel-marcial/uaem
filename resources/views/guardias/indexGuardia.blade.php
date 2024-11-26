@@ -12,52 +12,74 @@
 
 @section('content')
 
-<div class="btn-contenedor2">
-    <h1 class="bienvenido-texto2">Bienvenido</h1>
+    @if (session('status'))
 
-    <div class="btn-group btn-grupo2" role="group" aria-label="Basic radio toggle button group">
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="Ingresos" autocomplete="off" checked>
-        <label class="btn btn-success" for="btnradio1">Ingresos</label>
-    
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="Salidas" autocomplete="off">
-        <label class="btn btn-success" for="btnradio2">Salidas</label>
-    </div>
-</div>
+    @if (!session('error'))
+        <div id="divCerrar1" class="alert alert-danger">
+            {{ session('status') }}
 
-<div class="margenes-grandes">
-
-    <div class="row g-0">
-
-        <div class="col-sm-6 col-md-6">
-
-            <div class="reader" id="reader"></div>
-            <div id="result"></div>
-            <div class="fuente" id="status">Iniciando cámara...</div> <!-- Mensaje de estado -->
-
+            <button type="button" class="cerrar"  id="cerrar1" onclick="cerrarMensaje()">X</button>
         </div>
+    @else
+        <div id="divCerrar2" class="alert alert-success">
+            {{ session('status') }}
+
+            <button type="button" class="cerrar"  id="cerrar2" onclick="cerrarMensaje2()">X</button>
+        </div>
+    @endif
+
+    @else
+    <div class="display:none;"></div>
+
+    @endif
+
+
+    <div class="btn-contenedor2">
+        <h1 class="bienvenido-texto2">Bienvenido</h1>
+
+        <div class="btn-group btn-grupo2" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="Ingresos" autocomplete="off" checked>
+            <label class="btn btn-success" for="btnradio1">Ingresos</label>
         
-        <div class="col-6 col-md-6">
-    
-            <div> 
-                <label for="numeroCuenta" class="form-label titulos margenes-contenedor">No de cuenta</label>
-                <label class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta">Numero de Cuenta</label>
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" value="Salidas" autocomplete="off">
+            <label class="btn btn-success" for="btnradio2">Salidas</label>
+        </div>
+    </div>
+
+    <div class="margenes-grandes">
+
+        <div class="row g-0">
+
+            <div class="col-sm-6 col-md-6">
+
+                <div class="reader" id="reader"></div>
+                <div id="result"></div>
+                <div class="fuente" id="status">Iniciando cámara...</div> <!-- Mensaje de estado -->
+
+            </div>
+            
+            <div class="col-6 col-md-6">
+        
+                <div> 
+                    <label for="numeroCuenta" class="form-label titulos margenes-contenedor">No de cuenta</label>
+                    <label class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta">Numero de Cuenta</label>
+                </div>
+
+                <div> 
+                    <label for="carrera" class="form-label titulos margenes-contenedor">Rol</label>
+                    <label class="form-control text-contenedor btn-contenedor" id="carrera" name="carrera">Rol</label>
+                </div>
+
+                <div> 
+                    <label for="estatus" class="form-label titulos margenes-contenedor">Estatus</label>
+                    <label class="form-control text-contenedor btn-contenedor" id="estatus" name="estatus">Estatus</label>
+                </div>
+        
             </div>
 
-            <div> 
-                <label for="carrera" class="form-label titulos margenes-contenedor">Rol</label>
-                <label class="form-control text-contenedor btn-contenedor" id="carrera" name="carrera">Rol</label>
-            </div>
-
-            <div> 
-                <label for="estatus" class="form-label titulos margenes-contenedor">Estatus</label>
-                <label class="form-control text-contenedor btn-contenedor" id="estatus" name="estatus">Estatus</label>
-            </div>
-    
         </div>
 
     </div>
-
-</div>
 
 
 
