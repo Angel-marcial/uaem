@@ -65,14 +65,7 @@ Route::post('editar-maestro/{id}', [MaestrosController::class, 'editarMaestro'])
 
 //rutas Coordinador
 Route::get('consulta-coordinadores', [CoordinadoresController::class,'consultaCoordinadores'])->middleware('auth.guard');
-
 Route::get('coordinador-consulta-peticiones', [CoordinadoresController::class,'coordinadorVerPeticiones'])->middleware('auth.guard');
-
-
-
-
-
-
 //rutas administrador 
 Route::get('index-admin',[AdminController::class, 'consultaAdmin'])->middleware('auth.guard')->name('guardias.index');
 Route::post('editar-admin/{id}', [AdminController::class,'editarAdmin'])->middleware('auth.guard');
@@ -109,19 +102,9 @@ Route::post('admin-edita-departamento/{id}/{idUsuario}', [AdminDepartamentosCont
 Route::get('admin-consulta-peticiones', [AdminPeticionesController::class,'adminVerPeticiones'])->middleware('auth.guard');  //--trabajando
 Route::post('enviar-correo-invitacion/{id}', [InvitacionController::class,'EnviarQr'])->middleware('auth.guard'); 
 Route::post('admin-cancela-invitacion/{id}', [InvitacionController::class,'cancelaInvitacion'])->middleware('auth.guard');
-
-
-
 //rutas invitados
 Route::get('index-invitado', [IndexController::class,'indexInvitados']);
 Route::post('crear-invitado', [InvitadosController::class,'crearInvitacion']);  
-
-
-
-
-
-
-
 //rutas validar correos
 Route::post('enviar-correo-alumnos', [EmailsController::class,'enviarCorreoAlumnos']);
 Route::post('enviar-correo-maestros', [EmailsController::class,'enviarCorreoMaestros']);
