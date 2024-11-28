@@ -81,10 +81,6 @@ class AdminController extends Controller
         return view('administradores.alumnos.editarAlumno', compact('admin', 'alumno'));
     }
 
-
-
-
-    
     //administrador
     public function consultaAdmin(Request $request)
     {
@@ -171,6 +167,14 @@ class AdminController extends Controller
             return redirect('/index-admin')->with('status', 'Datos actualizado exitosamente.')
             ->with('error',true)->withInput();
         }
+    }
+
+    public function dashboard(Request $request)
+    {
+        $id = $request->session()->get('id');
+        $admin = Usuarios::find($id);
+
+        return view('administradores.dashboard.dashboard', compact('admin'));
     }
 
 }
