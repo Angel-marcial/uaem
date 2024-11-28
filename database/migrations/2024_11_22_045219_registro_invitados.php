@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('id_invitado');
             $table->time('hora_ingreso')->nullable();
             $table->time('hora_salida')->nullable();
+            $table->date('fecha_ingreso');
             $table->timestamps(); 
             
             $table->foreign('id_invitado')

@@ -60,6 +60,7 @@ class GuardiasController extends Controller
                         IngresosInvitados::create([
                             'id_invitado' => $id_usuario,
                             'hora_ingreso' => $hora,
+                            'fecha_ingreso' => $fecha
                         ]);
 
                         return response()->json(['status' => 'success', 'message' => 'Datos procesados correctamente invitado: '], 200);

@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Alumnos\AlumnosController;
 use App\Http\Controllers\Controller;
 use App\Models\Alumnos;
+use App\Models\Ingresos;
+use App\Models\IngresosInvitados;
+use App\Models\Invitados;
+use App\Models\Salidas;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
 
@@ -171,10 +175,35 @@ class AdminController extends Controller
 
     public function dashboard(Request $request)
     {
+        date_default_timezone_set('America/Mexico_City');
+        $date = date('Y-m-d');
+
         $id = $request->session()->get('id');
         $admin = Usuarios::find($id);
 
-        return view('administradores.dashboard.dashboard', compact('admin'));
+
+        // Consultar datos de la base de datos
+        $data = [
+            'labels' => ['Entrada', 'Salida', 'Invitados que ingresaron'], // Etiquetas
+            'barData' => [   
+                Ingresos::where('fecha', $date)->count(), //total de ingresos
+                Salidas::where('fecha', $date)->count(), //total de salidas
+                Invitados::where('fecha_visita', $date)->count(), // invitados para el dia
+                IngresosInvitados::where('fecha_ingreso', $date)->count(), //invitados que han ingresado.           
+            ],
+            'pieData' => [   // Datos para la gráfica de pastel 
+                Ingresos::where('fecha', $date)->count(),
+                Salidas::where('fecha', $date)->count(),
+                IngresosInvitados::where('fecha_ingreso', $date)->count(),
+            ],
+        ];
+
+
+        //return view('dashboard.index', compact('data'));
+
+
+
+        return view('administradores.dashboard.dashboard', compact('admin','data'));
     }
 
 }

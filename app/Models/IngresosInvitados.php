@@ -14,5 +14,6 @@ class IngresosInvitados extends Model
         'id_invitado',
         'hora_ingreso',
         'hora_salida',
+        'fecha_ingreso',
     ];
 }

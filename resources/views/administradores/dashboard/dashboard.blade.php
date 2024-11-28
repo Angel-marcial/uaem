@@ -33,55 +33,67 @@
         <h1>Dashboard</h1>  
 
          @php
-            $ingresos = 10; 
-            $salidas = 8;  
-            $visitas = 2;
+            $ingresos = $data['barData'][0];
+            $salidas = $data['barData'][1];  
+            $visitas = $data['barData'][2];
+            $visitasArribadas = $data['barData'][2];
         @endphp
 
         @include('administradores.dashboard.cards', compact('ingresos', 'salidas', 'visitas'))
 
-        <!-- Gráfica de Barras -->
-        <div class="mb-5">
-            <h3>Gráfica de Barras</h3>
-            <canvas id="barChart"></canvas>
-        </div>
+        <div class="card-vw"></div>
 
-        <!-- Gráfica de Pastel -->
-        <div class="mb-5">
-            <h3>Gráfica de Pastel</h3>
-            <canvas id="pieChart"></canvas>
+        <!-- Gráfica de Barras -->
+        <div class="row">
+            
+            <div class="col-md-6">
+                <div class="mb-5">
+                    <h3>Ingresos </h3>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+    
+            <!-- Columna para la Gráfica de Pastel -->
+            <div class="col-md-6">
+                <div class="mb-5">
+                    <h3>Ingresos</h3>
+                    <canvas id="pieChart"></canvas>
+                </div>
+            </div>
         </div>
 
     </div>
+
+    
+
+
     
 
     <script>
-        // Datos para ambas gráficas
-        const labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'];
-        const dataBar = [12, 19, 3, 5, 2];
-        const dataPie = [30, 15, 25, 20, 10];
-    
+
+        const labels = @json($data['labels']);
+        const dataBar = @json($data['barData']);
+        const dataPie = @json($data['pieData']);
+
         // Configuración de la Gráfica de Barras
         const barChart = new Chart(document.getElementById('barChart').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Ventas Mensuales',
+                    label: 'Ingresos',
                     data: dataBar,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(150, 136, 27)',
+                        'rgba(96, 134, 109)',
+                        'rgba(248, 249, 253)',
+
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
+                        'rgba(96, 134, 109)',
+                        'rgba(150, 136, 27)',
+                        'rgba(150, 136, 27)',
+
                     ],
                     borderWidth: 1
                 }]
@@ -99,22 +111,20 @@
         const pieChart = new Chart(document.getElementById('pieChart').getContext('2d'), {
             type: 'pie',
             data: {
-                labels: ['Producto A', 'Producto B', 'Producto C', 'Producto D', 'Producto E'],
+                labels: ['Entrada', 'salida', 'Invitados que ingresaron'],
                 datasets: [{
                     data: dataPie,
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(150, 136, 27)',
+                        'rgba(96, 134, 109)',
+                        'rgba(248, 249, 253)',
+
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
+                        'rgba(96, 134, 109)',
+                        'rgba(150, 136, 27)',
+                        'rgba(150, 136, 27)',
+
                     ],
                     borderWidth: 1
                 }]
