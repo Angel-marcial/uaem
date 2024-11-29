@@ -103,9 +103,11 @@
                         </div>
 
                         <div class="d-flex justify-content-end gap-2 btn-contenedor">
-                            <button type="button" class="btn-editar" id="editarAdminAlumno" onclick="location.href='{{ route('alumno-cuenta') }}'">Editar</button>
+                            <button type="button" class="btn-editar" id="editarAdminAlumno">Editar</button>
+                            <button type="submit" class="btn-custom" id="guardarAdminAlumno" style="display: none;">Guardar</button>
+                            <button type="button" class="btn-cancelar" id="cancelarAdminAlumno" style="display: none;">Cancelar</button>
                         </div>
-
+                        
                     </div>
                 </form>
             </div>
