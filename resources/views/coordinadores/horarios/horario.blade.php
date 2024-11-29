@@ -84,11 +84,15 @@
                             </tbody>
                         </table>
                     </div>
-            
+        
                     <!-- Botones de acción -->
-                    <div class="mt-3 d-flex">
-                        <button type="button" class="btn btn-warning me-2" onclick="habilitarEdicion()">Editar</button>
+                    <div class="mt-3">
+                        <!-- Botón para habilitar los campos de edición -->
+                        <button type="button" class="btn btn-warning" id="editarBtn" onclick="habilitarEdicion()">Editar</button>
+                        <!-- Botón para guardar los cambios -->
                         <button type="submit" class="btn btn-success" id="guardarBtn" style="display: none;">Guardar Cambios</button>
+                        <!-- Botón para cancelar los cambios -->
+                        <button type="button" class="btn btn-secondary" id="cancelarBtn" style="display: none;" onclick="cancelarEdicion()">Cancelar</button>
                     </div>
                 </div>
             </form>
@@ -98,20 +102,51 @@
 </div>
 
 <script>
-    // Función para habilitar los campos de edición de horarios
-    function habilitarEdicion() {
-        console.log("Función habilitarEdicion ejecutada");
+    // Variables para almacenar los valores originales
+    let valoresOriginales = {};
 
-        // Habilita todos los inputs de entrada y salida
+    // Función para habilitar los campos de edición
+    function habilitarEdicion() {
+        // Guardar los valores originales
         document.querySelectorAll('.entrada, .salida').forEach(input => {
-            input.disabled = false;
+            valoresOriginales[input.id] = input.value; // Guardar valores originales
+            input.disabled = false; // Habilitar campos
         });
 
-        // Muestra el botón de "Guardar Cambios"
-        document.getElementById('guardarBtn').style.display = 'block';
+        // Mostrar los botones "Guardar Cambios" y "Cancelar"
+        document.getElementById('guardarBtn').style.display = 'inline-block';
+        document.getElementById('cancelarBtn').style.display = 'inline-block';
+
+        // Ocultar el botón "Editar"
+        document.getElementById('editarBtn').style.display = 'none';
     }
 
-    // Función para formatear automáticamente los campos en formato HH:MM:SS
+    // Función para cancelar la edición y restaurar los valores originales
+    function cancelarEdicion() {
+        // Restaurar los valores originales en los campos
+        document.querySelectorAll('.entrada, .salida').forEach(input => {
+            input.value = valoresOriginales[input.id]; // Restaurar valores originales
+            input.disabled = true; // Deshabilitar campos
+        });
+
+        // Ocultar los botones "Guardar Cambios" y "Cancelar"
+        document.getElementById('guardarBtn').style.display = 'none';
+        document.getElementById('cancelarBtn').style.display = 'none';
+
+        // Mostrar el botón "Editar"
+        document.getElementById('editarBtn').style.display = 'inline-block';
+    }
+
+    // Validar que solo se ingresen letras en los campos de texto
+    function validarTexto(element) {
+        const valor = element.value;
+        const regex = /^[a-zA-ZÀ-ÿ\s]+$/;
+        if (!regex.test(valor)) {
+            element.value = valor.replace(/[^a-zA-ZÀ-ÿ\s]/g, "");
+        }
+    }
+
+    // Formatear automáticamente los campos de hora (HH:MM:SS)
     function formatearHora(input) {
         let valor = input.value.replace(/[^0-9]/g, ''); // Eliminar caracteres no numéricos
         if (valor.length >= 3 && valor.length <= 4) {
@@ -122,13 +157,11 @@
         input.value = valor.slice(0, 8); // Limitar el valor al formato HH:MM:SS
     }
 
-    // Deshabilitar los campos al cargar la página
+    // Deshabilitar los campos de entrada al cargar la página y aplicar validación
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.entrada, .salida').forEach(input => {
-            input.disabled = true;
-
-            // Validar y formatear el campo mientras se escribe
-            input.addEventListener('input', () => formatearHora(input));
+            input.disabled = true; // Deshabilitar campos por defecto
+            input.addEventListener('input', () => formatearHora(input)); // Validar formato HH:MM:SS
         });
     });
 </script>

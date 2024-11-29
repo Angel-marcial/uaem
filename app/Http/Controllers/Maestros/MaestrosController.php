@@ -332,9 +332,6 @@ class MaestrosController extends Controller
     {
         $id = $request->session()->get('id');
 
-        // Verifica los datos enviados en la solicitud
-
-
         // Validación de los datos
         $request->validate([
             'entrada_lunes' => 'nullable|date_format:H:i:s',
@@ -350,7 +347,7 @@ class MaestrosController extends Controller
             'entrada_sabado' => 'nullable|date_format:H:i:s',
             'salida_sabado' => 'nullable|date_format:H:i:s',
         ]);
-        
+
         // Crear un array con los datos a actualizar
         $datosActualizar = [];
         $dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
@@ -384,15 +381,14 @@ class MaestrosController extends Controller
             //   'datosActualizar' => $datosActualizar
             //]);
         }
-        
+
         // Realiza la actualización después de depurar la consulta
-        DB::table('horario')
-            ->where('id_usuario', $id)
-            ->update($datosActualizar);
+        Horario::where('id_usuario', $id)->update($datosActualizar);
 
         // Redirige de nuevo con un mensaje de éxito
-        return redirect()->back()->with('status', 'Información actualizada correctamente');
+        return redirect()->back()->with('status', 'Horario actualizado exitosamente');
     }
+    
 
 
     

@@ -204,7 +204,11 @@ class CoordinadoresController extends Controller
             return redirect()->back()->withErrors('Usuario o credenciales no encontrado.');
         }
 
-        return view('coordinadores.cuentas.cuenta', ['cordinadores' => $query_principal[0], 'cordinador' => $cordinador]);
+
+        return view('coordinadores.cuentas.cuenta', [
+            'coordinador' => $query_principal[0], // Asegúrate de usar el índice 0 del array
+            'cordinador' => $cordinador,         // Mantén esta variable si es necesaria
+        ]);
     }
 
     public function editarCordinador(Request $request)
@@ -235,6 +239,7 @@ class CoordinadoresController extends Controller
             ->where('id_usuario', $id)
             ->update([
                 'correo' => $request->input('correo'),
+                'password' => $request->input('password'),
             ]);
 
         return redirect()->back()->with('status', 'Información actualizada correctamente');
