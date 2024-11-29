@@ -300,6 +300,7 @@ class MaestrosController extends Controller
             return redirect()->back()->withErrors('Usuario o credenciales no encontrado.');
         }
 
+
         //pasamos los datos a la vista 
         return view('maestros.cuenta.cuenta', ['maestro' => $query_principal[0]]);
 
@@ -390,7 +391,7 @@ class MaestrosController extends Controller
             ->update($datosActualizar);
 
         // Redirige de nuevo con un mensaje de éxito
-        return redirect()->back()->with('status', 'Horario actualizado exitosamente');
+        return redirect()->back()->with('status', 'Información actualizada correctamente');
     }
 
 
@@ -420,6 +421,7 @@ class MaestrosController extends Controller
             ->where('id_usuario', $id)
             ->update([
                 'correo' => $request->input('correo'),
+                'password' => $request->input('password'),
             ]);
 
         return redirect()->back()->with('status', 'Información actualizada correctamente');
