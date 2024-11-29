@@ -51,7 +51,7 @@
                             <div class="col-6 col-md-4">
                                 <div> 
                                     <label for="numeroCuenta" class="form-label titulos margenes-contenedor">No de cuenta</label>
-                                    <label class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta"> {{ old('carrera', $alumno->no_cuenta ?? '') }}</label>
+                                    <label class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta"> {{ old('carrera', $coordinador->no_cuenta ?? '') }}</label>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                                    class="form-control text-contenedor" 
                                    id="nombres" 
                                    name="nombres" 
-                                   value="{{ old('nombres', $alumno->nombre ?? '') }}" 
+                                   value="{{ old('nombres', $coordinador->nombre ?? '') }}" 
                                    required 
                                    disabled 
                                    oninput="validarTexto(this)">
@@ -74,7 +74,7 @@
                                    class="form-control text-contenedor" 
                                    id="apellidoPaterno" 
                                    name="apellidoPaterno" 
-                                   value="{{ old('apellidoPaterno', $alumno->apellido_paterno ?? '') }}" 
+                                   value="{{ old('apellidoPaterno', $coordinador->apellido_paterno ?? '') }}" 
                                    required 
                                    disabled 
                                    oninput="validarTexto(this)">
@@ -86,7 +86,7 @@
                                    class="form-control text-contenedor" 
                                    id="apellidoMaterno" 
                                    name="apellidoMaterno" 
-                                   value="{{ old('apellidoMaterno', $alumno->apellido_materno ?? '') }}" 
+                                   value="{{ old('apellidoMaterno', $coordinador->apellido_materno ?? '') }}" 
                                    required 
                                    disabled 
                                    oninput="validarTexto(this)">
@@ -98,7 +98,7 @@
                                    class="form-control text-contenedor" 
                                    id="telefono" 
                                    name="telefono" 
-                                   value="{{ old('telefono', $alumno->telefono ?? '') }}" 
+                                   value="{{ old('telefono', $coordinador->telefono ?? '') }}" 
                                    required 
                                    disabled 
                                    oninput="validarTelefono(this)">
@@ -110,7 +110,7 @@
                                    class="form-control text-contenedor" 
                                    id="correo" 
                                    name="correo" 
-                                   value="{{ old('correo', $alumno->correo ?? '') }}" 
+                                   value="{{ old('correo', $coordinador->correo ?? '') }}" 
                                    required 
                                    disabled>
                         </div>
@@ -122,7 +122,7 @@
                                        class="form-control text-contenedor" 
                                        id="password" 
                                        name="password" 
-                                       value="{{ old('password', $alumno->password ?? '') }}" 
+                                       value="{{ old('password', $coordinador->password ?? '') }}" 
                                        required 
                                        disabled>
                                 <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">Mostrar</button>

@@ -110,6 +110,27 @@
         // Muestra el botón de "Guardar Cambios"
         document.getElementById('guardarBtn').style.display = 'block';
     }
+
+    // Función para formatear automáticamente los campos en formato HH:MM:SS
+    function formatearHora(input) {
+        let valor = input.value.replace(/[^0-9]/g, ''); // Eliminar caracteres no numéricos
+        if (valor.length >= 3 && valor.length <= 4) {
+            valor = valor.replace(/^(\d{2})(\d{1,2})/, '$1:$2');
+        } else if (valor.length > 4) {
+            valor = valor.replace(/^(\d{2})(\d{2})(\d{1,2})/, '$1:$2:$3');
+        }
+        input.value = valor.slice(0, 8); // Limitar el valor al formato HH:MM:SS
+    }
+
+    // Deshabilitar los campos al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.entrada, .salida').forEach(input => {
+            input.disabled = true;
+
+            // Validar y formatear el campo mientras se escribe
+            input.addEventListener('input', () => formatearHora(input));
+        });
+    });
 </script>
 
 @endsection
