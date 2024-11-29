@@ -266,7 +266,9 @@ class MaestrosController extends Controller
         
         // Verificar si la consulta no devuelve resultados
         if ($query_principal->isEmpty()) {
-            return view('maestros.horarios.horarios');
+            return view('maestros.consulta', compact('maestro'))
+            ->with('status', 'Sin Datos')
+            ->with('error',true);
         }
  
         // Pasar las variables a la vista
