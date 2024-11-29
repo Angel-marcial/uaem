@@ -43,7 +43,7 @@
             <div class="input-group mb-3 form-min-size alto">
                 <input type="text" class="form-control" name="search" placeholder="Numero de cuenta..." value="{{ request('search') }}">
                 <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-                <a class="btn btn-success" href="{{ url('admin-nuevo-alumno') }}">Nuevo</a>
+                <!--<a class="btn btn-success" href="{{ url('admin-nuevo-alumno') }}">Nuevo</a>-->
             </div>
         </form>
 
@@ -56,7 +56,7 @@
                     <th scope="col">Telefono</th>
                     <th scope="col">Correo</th>
                     <th scope="col">Estatus</th>
-                    <th scope="col">Editar</th>
+                    <!--<th scope="col">Editar</th>-->
                     <th scope="col">Eliminar</th>
                 </tr>
             </thead>
@@ -77,7 +77,7 @@
                             </div>
                             
                         </td>
-                        <td><a href="{{ url('admin-ver-alumnos/'.$maestro->no_cuenta) }}" class="btn btn-warning">Editar</a></td>
+                        <!--<td><a href="{{ url('admin-ver-alumnos/'.$maestro->no_cuenta) }}" class="btn btn-warning">Editar</a></td>-->
                         <td><a href="{{ url('admin-elimina-maestro/'.$maestro->no_cuenta) }}" class="btn btn-danger" >Eliminar</a></td>
                     </tr>
                 @endforeach
