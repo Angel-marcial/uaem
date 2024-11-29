@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Alumnos\AlumnosController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\GlobalController;
 use App\Models\Alumnos;
+use App\Models\Credenciales1;
 use App\Models\Ingresos;
 use App\Models\IngresosInvitados;
 use App\Models\Invitados;
 use App\Models\Salidas;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
+use PHPUnit\Util\GlobalState;
 
 class AdminController extends Controller
 {
@@ -96,7 +99,8 @@ class AdminController extends Controller
         {
             //$alumnos = Alumno::with('credenciales')->get(); 
             $admin = Usuarios::find($id);
-            return view('administradores.indexAdministrador', compact('admin'));
+            $adminCredencial = Credenciales1::find($id);
+            return view('administradores.indexAdministrador', compact('admin', 'adminCredencial'));
         }
         else if($rol !== 'administrador')
         {
@@ -115,8 +119,11 @@ class AdminController extends Controller
         $paterno = $request->input('apellidoPaterno');
         $materno = $request->input('apellidoMaterno');
         $telefono = $request->input('telefono'); 
+        $correo = $request->input('correo');
+        $password = $request->input('password');
         //mensaje para los errores de los campos de texto 
         $alumnosController = new AlumnosController();
+        $globalController = new GlobalController();
         $mensajeNombre = $alumnosController->validacionesTextos($nombre, "Nombre");
         $mensajePaterno = $alumnosController->validacionesTextos($paterno, "Apellido Paterno");
         $mensajeMaterno = $alumnosController->validacionesTextos($materno, "Apellido Materno");
@@ -141,7 +148,13 @@ class AdminController extends Controller
         {
             return back()->with('status', $mensajeTelefono);
         }
+        //validar correo
+        if($globalController->validarCorreo($correo) == true)
+        {
+            return back()->with('status', 'El correo '.$correo. ' ya se encuentra registrado')->with('error',false)->withInput();
+        }
 
+        
         //Verificamos si el teléfono ya existen para otro usuario
         $usuarioDuplicado = Usuarios::where('telefono', $telefono)
         ->where('id', '!=', $id)
@@ -166,6 +179,11 @@ class AdminController extends Controller
                 'apellido_paterno' => $paterno,
                 'apellido_materno' => $materno,
                 'telefono' => $telefono,
+            ]);
+
+            Credenciales1::where('id', $id)->update([
+                'correo' => $correo,
+                'password' => $password,
             ]);
 
             return redirect('/index-admin')->with('status', 'Datos actualizado exitosamente.')

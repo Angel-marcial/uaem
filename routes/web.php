@@ -53,6 +53,7 @@ Route::post('editar-alumno/{id}/{usuario}', [AlumnosController::class,'editarAlu
 Route::get('alumnos-ingresos', [AlumnosController::class, 'alumnosRegistros'])->name('alumnos.ingresos');
 Route::get('alumno-cuenta', [AlumnosController::class, 'informacionAlumno'])->name('alumno-cuenta');
 Route::post('editar-alumno/{id}', [AlumnosController::class, 'editarAlumno'])->name('editar.alumno');
+
 //rutas maestros
 Route::get('index-maestros', [IndexController::class, 'indexMaestros']);
 Route::post('guardar-maestros', [MaestrosController::class,'guardarMaestros']);
@@ -62,13 +63,19 @@ Route::get('maestros-horarios', [MaestrosController::class, 'consultaMaestrosHor
 Route::get('maestros-cuenta', [MaestrosController::class, 'informacionMaestros']);
 Route::get('maestros-clases',[MaestrosController::class, 'consultaClases']);
 Route::post('editar-maestro/{id}', [MaestrosController::class, 'editarMaestro'])->name('editar-maestro');
+Route::post('editar-horario/{id}', [MaestrosController::class, 'editarHorario'])->name('editar-horario');
 //rutas Coordinador
 Route::get('consulta-coordinadores', [CoordinadoresController::class,'consultaCoordinadores'])->middleware('auth.guard');
 Route::get('coordinador-consulta-peticiones', [CoordinadoresController::class,'coordinadorVerPeticiones'])->middleware('auth.guard');
+Route::get('cordinador-registros', [CoordinadoresController::class, 'coordinadoresRegistros'])->name('coordinador.registros.registro');
+Route::get('cordinador-horarios',[CoordinadoresController::class, 'coordinadoresHorarios'])->name('coordinador.horarios.horario');
+Route::get('cordinador-cuenta',[CoordinadoresController::class, 'coordinadoresCuenta'])->name('coordinador.cuentas.cuenta');
+Route::post('editar-horarioC', [CoordinadoresController::class, 'editarHorarioC'])->name('editar-horario');
+Route::post('editar-cuenta', [CoordinadoresController::class, 'editarCordinador'])->name('editar-cordinador');
 //rutas administrador 
 Route::get('index-admin',[AdminController::class, 'consultaAdmin'])->middleware('auth.guard')->name('guardias.index');
 Route::post('editar-admin/{id}', [AdminController::class,'editarAdmin'])->middleware('auth.guard');
-Route::get('admin-dashboard',[AdminController::class,'dashboard'])->middleware('auth.guard'); //editando 
+Route::get('admin-dashboard',[AdminController::class,'dashboard'])->middleware('auth.guard');
 //admin alumnos 
 Route::get('admin-consulta-alumnos', [AdminController::class,'tablaAlumos'])->middleware('auth.guard');
 Route::get('admin-buscar-alumnos', [AdminController::class,'buscarAlumos'])->middleware('auth.guard');
@@ -101,22 +108,38 @@ Route::post('admin-edita-departamento/{id}/{idUsuario}', [AdminDepartamentosCont
 Route::get('admin-consulta-peticiones', [AdminPeticionesController::class,'adminVerPeticiones'])->middleware('auth.guard');  //--trabajando
 Route::post('enviar-correo-invitacion/{id}', [InvitacionController::class,'EnviarQr'])->middleware('auth.guard'); 
 Route::post('admin-cancela-invitacion/{id}', [InvitacionController::class,'cancelaInvitacion'])->middleware('auth.guard');
+
+
+
 //rutas invitados
 Route::get('index-invitado', [IndexController::class,'indexInvitados']);
 Route::post('crear-invitado', [InvitadosController::class,'crearInvitacion']);  
+
+
+
+
+
+
+
 //rutas validar correos
 Route::post('enviar-correo-alumnos', [EmailsController::class,'enviarCorreoAlumnos']);
 Route::post('enviar-correo-maestros', [EmailsController::class,'enviarCorreoMaestros']);
 Route::post('codigo-seguridad', [EmailsController::class,'codigoSeguridad']);
+
 //ruras login
 Route::post('login', [IndexController::class, 'login']);
+
 //rutas guardia
 Route::get('index-guardia', [GuardiasController::class, 'indexGuardias'])->middleware('auth.guard')->name('guardias.index');
 //Route::post('guardar-entradas-salidas', [GuardiasController::class, 'guardarEntradasSalidas']);//--trabajando
 Route::post('guardar-entradas-salidas', [GuardiasController::class, 'guardarEntradasSalidas'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+
+
 //ruta para cerrar session
 Route::post('cerrar-session', [IndexController::class, 'cerrarSession']);   
-//expprtaciones
+
+
+//expprtaciones 
 Route::get('export/ingreso-salida', function (Request $request) {
     return Excel::download(
         new IngresoSalidaExport(

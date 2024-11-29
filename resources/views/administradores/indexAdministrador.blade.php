@@ -84,6 +84,20 @@
                             <label for="telefono" class="form-label titulos margenes-contenedor">Telefono</label>
                             <input type="number" class="form-control text-contenedor " id="telefono" name="telefono" value="{{ old('telefono', $admin->telefono?? '') }}" required disabled oninput="validarTelefono(this)">
                         </div>
+
+                        <div>
+                            <label for="correo" class="form-label titulos margenes-contenedor">Correo</label>
+                            <input type="email" class="form-control text-contenedor " id="correo" name="correo" value="{{ old('correo', $adminCredencial->correo?? '') }}" required disabled>
+                        </div>
+
+                        <div>
+                            <label for="password" class="form-label titulos margenes-contenedor">Contraseña</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control text-contenedor" id="password" name="password" value="{{ old('password', $adminCredencial->password ?? '') }}" required disabled maxlength="10">
+                                <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">Mostrar</button>
+                            </div>
+                        </div>
+
                         
                         <div class="d-flex justify-content-end gap-2 btn-contenedor">
                             <button type="button" class="btn-editar" id="editarAdminGuardia">Editar</button>

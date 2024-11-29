@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', function()
         document.getElementById("nombres").disabled = false;
         document.getElementById("apellidoPaterno").disabled = false;
         document.getElementById("apellidoMaterno").disabled = false;
+        document.getElementById("correo").disabled = false;
+        document.getElementById("password").disabled = false;        
 
         document.getElementById("editarAdminGuardia").style.display = "none";
         document.getElementById("guardarAdminGuardia").style.display = "block";
@@ -32,6 +34,8 @@ document.addEventListener('DOMContentLoaded', function()
         document.getElementById("nombres").disabled = true;
         document.getElementById("apellidoPaterno").disabled = true;
         document.getElementById("apellidoMaterno").disabled = true;
+        document.getElementById("correo").disabled = true;
+        document.getElementById("password").disabled = true;
         
         document.getElementById("editarAdminGuardia").style.display = "block";
         document.getElementById("guardarAdminGuardia").style.display = "none";
@@ -44,3 +48,15 @@ document.addEventListener('DOMContentLoaded', function()
     document.getElementById("editarAdminGuardia").addEventListener("click", editar);
     document.getElementById("cancelarAdminGuardia").addEventListener("click", cancelar);
 });
+
+function togglePassword() {
+    var passwordField = document.getElementById("password");
+    var button = event.currentTarget;
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        button.textContent = "Ocultar";
+    } else {
+        passwordField.type = "password";
+        button.textContent = "Mostrar";
+    }
+}

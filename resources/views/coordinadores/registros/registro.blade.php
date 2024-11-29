@@ -7,7 +7,7 @@
 
     Descripción: Este archivo PHP contiene lainformacion del cordinador
 -->
-@extends('coordinador.contenido')
+@extends('coordinadores.contenido')
 @section('content')
 
     @if (session('status'))
@@ -124,4 +124,5 @@
                     }
                 }
             </script>
+
 @endsection
