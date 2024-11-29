@@ -228,6 +228,8 @@ class MaestrosController extends Controller
 
     public function consultaMaestrosHorarios(Request $request)
     {
+        ini_set('memory_limit', '512M');
+
         $id = $request->session()->get('id');
         $rol = $request->session()->get('rol');
         $ruta = $request->session()->get('ruta');
@@ -261,9 +263,17 @@ class MaestrosController extends Controller
 
         // Paginación de los resultados
         $query_principal = $query->paginate(5);
- 
-        // Pasar las variables a la vista
-        return view('maestros.horarios.horarios', compact('maestro', 'horario', 'query_principal', 'option', 'day', 'startDate', 'endDate'));
+
+        if ($query_principal->isEmpty()) 
+        {
+            return view('maestros.horarios.horario');
+        }
+        else
+        {
+            // Pasar las variables a la vista
+            return view('maestros.horarios.horario', compact('maestro', 'horario', 'query_principal', 'option', 'day', 'startDate', 'endDate'));
+        }
+
     }
 
 

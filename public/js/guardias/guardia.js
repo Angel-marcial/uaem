@@ -81,7 +81,7 @@ function onScanSuccess(decodedText, decodedResult)
         const logMessage = `Id: ${idQr} | Nombre: ${nombreQr} | No. Cuenta: ${noCuentaQr} | Status: ${statusQr} | Rol: ${rolQr} | Fecha: ${fechaQr} | Hora: ${horaQr}`;
         console.log(logMessage);
 
-        if("26/11/2024" === fechaQr && statusQr === "true")
+        if(fechaFormateada === fechaQr && statusQr === "true")
         {
             if (!audioPlayed) 
             {

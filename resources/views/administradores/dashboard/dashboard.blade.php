@@ -35,8 +35,8 @@
          @php
             $ingresos = $data['barData'][0];
             $salidas = $data['barData'][1];  
-            $visitas = $data['barData'][2];
             $visitasArribadas = $data['barData'][2];
+            $visitas = $data['barData'][3];
         @endphp
 
         @include('administradores.dashboard.cards', compact('ingresos', 'salidas', 'visitas'))
@@ -65,10 +65,6 @@
     </div>
 
     
-
-
-    
-
     <script>
 
         const labels = @json($data['labels']);
