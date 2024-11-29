@@ -73,9 +73,9 @@ class EmailsController extends Controller
             $request->session()->put('codigo', $codigo);
             $nombre = 'Profesor'; 
             $request->session()->put('destinatario', $destinatario);
-            //Mail::to($destinatario)->send(new MiCorreo($nombre, $codigo));
+            Mail::to($destinatario)->send(new MiCorreo($nombre, $codigo));
 
-            return redirect('index-maestros')->with('status', 'se ha enviado un codigo de verificacion al correo: '. $destinatario . '--' . $codigo)
+            return redirect('index-maestros')->with('status', 'se ha enviado un codigo de verificacion al correo: '. $destinatario)
             ->with('correoEnviado',true);
 
         }

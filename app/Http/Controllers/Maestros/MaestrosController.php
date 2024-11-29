@@ -228,6 +228,8 @@ class MaestrosController extends Controller
 
     public function consultaMaestrosHorarios(Request $request)
     {
+        ini_set('memory_limit', '512M');
+
         $id = $request->session()->get('id');
         $rol = $request->session()->get('rol');
         $ruta = $request->session()->get('ruta');
@@ -269,6 +271,7 @@ class MaestrosController extends Controller
  
         // Pasar las variables a la vista
         return view('maestros.horarios.horario', compact('maestro', 'horario', 'query_principal', 'option', 'day', 'startDate', 'endDate'));
+
     }
 
 

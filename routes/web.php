@@ -108,9 +108,6 @@ Route::post('admin-edita-departamento/{id}/{idUsuario}', [AdminDepartamentosCont
 Route::get('admin-consulta-peticiones', [AdminPeticionesController::class,'adminVerPeticiones'])->middleware('auth.guard');  //--trabajando
 Route::post('enviar-correo-invitacion/{id}', [InvitacionController::class,'EnviarQr'])->middleware('auth.guard'); 
 Route::post('admin-cancela-invitacion/{id}', [InvitacionController::class,'cancelaInvitacion'])->middleware('auth.guard');
-
-
-
 //rutas invitados
 Route::get('index-invitado', [IndexController::class,'indexInvitados']);
 Route::post('crear-invitado', [InvitadosController::class,'crearInvitacion']);  

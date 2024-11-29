@@ -206,8 +206,8 @@ class AdminController extends Controller
             'barData' => [   
                 Ingresos::where('fecha', $date)->count(), //total de ingresos
                 Salidas::where('fecha', $date)->count(), //total de salidas
-                Invitados::where('fecha_visita', $date)->count(), // invitados para el dia
-                IngresosInvitados::where('fecha_ingreso', $date)->count(), //invitados que han ingresado.           
+                IngresosInvitados::where('fecha_ingreso', $date)->count(), //invitados que han ingresado.      
+                Invitados::where('fecha_visita', $date)->count(), // invitados para el dia     
             ],
             'pieData' => [   // Datos para la gráfica de pastel 
                 Ingresos::where('fecha', $date)->count(),
