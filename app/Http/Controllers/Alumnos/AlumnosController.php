@@ -405,7 +405,7 @@ class AlumnosController extends Controller
         return view('alumnos.cuentas.cuenta', ['alumno' => $query_principal[0]]);
     }
 
-    public function editarAlumno(Request $request, $id)
+    public function editarAlumno2(Request $request, $id)
     {
         $rol = $request->session()->get('rol');
         
@@ -436,6 +436,7 @@ class AlumnosController extends Controller
             ->where('id_usuario', $id)
             ->update([
                 'correo' => $request->input('correo'),
+                'password' => $request->input('password'),
             ]);
 
         return redirect()->back()->with('status', 'Información actualizada correctamente');

@@ -19,7 +19,7 @@
         <h5>ACTUALIZAR INFORMACIÓN</h5>
 
         <div class="contenedor margenes-contenedor">
-            <form action="{{ url('editar-alumno/'.$alumno->id) }}" method="POST" onsubmit="return alumno(this)">
+            <form action="{{ url('editar-alumno2/'.$alumno->id) }}" method="POST" onsubmit="return alumno(this)">
                 @csrf
                 <div class="margenes-contenedor">
 

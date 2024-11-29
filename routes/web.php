@@ -52,7 +52,7 @@ Route::get('consulta-alumnos', [AlumnosController::class,'consultaAlumnos'])->mi
 Route::post('editar-alumno/{id}/{usuario}', [AlumnosController::class,'editarAlumno']);
 Route::get('alumnos-ingresos', [AlumnosController::class, 'alumnosRegistros'])->name('alumnos.ingresos');
 Route::get('alumno-cuenta', [AlumnosController::class, 'informacionAlumno'])->name('alumno-cuenta');
-Route::post('editar-alumno/{id}', [AlumnosController::class, 'editarAlumno'])->name('editar.alumno');
+Route::post('editar-alumno2/{id}', [AlumnosController::class, 'editarAlumno2'])->name('editar.alumno');
 
 //rutas maestros
 Route::get('index-maestros', [IndexController::class, 'indexMaestros']);
