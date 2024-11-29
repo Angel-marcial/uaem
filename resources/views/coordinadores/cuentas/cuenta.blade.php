@@ -1,11 +1,11 @@
 <!--
     Codice
-    Nombre del Código: indexCoordinador.blade.php
+    Nombre del Código: indexcoordinador.blade.php
     Fecha de Creación: 21/11/2024 revisado por Angel Geovanni Marcial Morales
 
     Modificaciones:
 
-    Descripción: Este archivo PHP contiene lainformacion del cordinador
+    Descripción: Este archivo PHP contiene lainformacion del coordinador
 -->
 
 @extends('coordinadores.contenido')
@@ -40,29 +40,29 @@
             <h5>ACTUALIZAR INFORMACIÓN</h5>
     
             <div class="contenedor margenes-contenedor">
-                <form  action="{{ url('editar-cuenta') }}" method="POST" onsubmit="return cordinadores(this)">
+                <form  action="{{ url('editar-cuenta') }}" method="POST" onsubmit="return coordinadores(this)">
                     @csrf
                     <div class="margenes-contenedor">
 
                         <div class="row g-0">
-                            <div class="col-sm-6 col-md-8">
-    
-                            </div>
+                            <div class="col-sm-6 col-md-8"></div>
                             <div class="col-6 col-md-4">
-                                <div> 
+                                <div>
                                     <label for="numeroCuenta" class="form-label titulos margenes-contenedor">No de cuenta</label>
-                                    <label class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta"> {{ old('carrera', $coordinador->no_cuenta ?? '') }}</label>
+                                    <label class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta">
+                                        {{ old('no_cuenta', $coordinador->no_cuenta ?? '') }}
+                                    </label>
                                 </div>
                             </div>
                         </div>
-    
+                        
                         <div>
                             <label for="nombres" class="form-label titulos margenes-contenedor">Nombres</label>
                             <input type="text" 
                                    class="form-control text-contenedor" 
                                    id="nombres" 
                                    name="nombres" 
-                                   value="{{ old('nombres', $coordinador->nombre ?? '') }}" 
+                                   value="{{ old('nombre', $coordinador->nombre ?? '') }}" 
                                    required 
                                    disabled 
                                    oninput="validarTexto(this)">
@@ -74,7 +74,7 @@
                                    class="form-control text-contenedor" 
                                    id="apellidoPaterno" 
                                    name="apellidoPaterno" 
-                                   value="{{ old('apellidoPaterno', $coordinador->apellido_paterno ?? '') }}" 
+                                   value="{{ old('apellido_paterno', $coordinador->apellido_paterno ?? '') }}" 
                                    required 
                                    disabled 
                                    oninput="validarTexto(this)">
@@ -86,7 +86,7 @@
                                    class="form-control text-contenedor" 
                                    id="apellidoMaterno" 
                                    name="apellidoMaterno" 
-                                   value="{{ old('apellidoMaterno', $coordinador->apellido_materno ?? '') }}" 
+                                   value="{{ old('apellido_materno', $coordinador->apellido_materno ?? '') }}" 
                                    required 
                                    disabled 
                                    oninput="validarTexto(this)">

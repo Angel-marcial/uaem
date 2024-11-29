@@ -30,7 +30,7 @@
         <h5>MIS HORARIOS</h5>
 
         <div class="contenedor margenes-contenedor">
-            <form action="{{ route('editar-horario', ['id' => $maestro->id]) }}" method="POST">
+            <form action="{{ url('editar-horario')}}" method="POST">
                 @csrf
                 <div class="margenes-contenedor">
                     <!-- Tabla de horarios -->
@@ -65,18 +65,22 @@
                                     ];
                                 @endphp
                                 @foreach($dias as $index => $dia)
+                                    @php
+                                        // Normalizamos el nombre del día quitando caracteres especiales
+                                        $dia_normalizado = strtolower(str_replace(['á', 'é', 'í', 'ó', 'ú'], ['a', 'e', 'i', 'o', 'u'], $dia));
+                                    @endphp
                                     <tr>
                                         <td>{{ $dia }}</td>
                                         <td>
-                                            <input type="text" class="form-control entrada" id="entrada_{{ strtolower($dia) }}" 
-                                                   name="entrada_{{ strtolower($dia) }}" 
-                                                   value="{{ old('entrada_'.strtolower($dia), $entradas[$index]) }}" 
+                                            <input type="text" class="form-control entrada" id="entrada_{{ $dia_normalizado }}" 
+                                                   name="entrada_{{ $dia_normalizado }}" 
+                                                   value="{{ old('entrada_'.$dia_normalizado, $entradas[$index]) }}" 
                                                    pattern="\d{2}:\d{2}:\d{2}" placeholder="HH:MM:SS">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control salida" id="salida_{{ strtolower($dia) }}" 
-                                                   name="salida_{{ strtolower($dia) }}" 
-                                                   value="{{ old('salida_'.strtolower($dia), $salidas[$index]) }}" 
+                                            <input type="text" class="form-control salida" id="salida_{{ $dia_normalizado }}" 
+                                                   name="salida_{{ $dia_normalizado }}" 
+                                                   value="{{ old('salida_'.$dia_normalizado, $salidas[$index]) }}" 
                                                    pattern="\d{2}:\d{2}:\d{2}" placeholder="HH:MM:SS">
                                         </td>
                                     </tr>
@@ -94,10 +98,8 @@
                         <!-- Botón para cancelar los cambios -->
                         <button type="button" class="btn btn-secondary" id="cancelarBtn" style="display: none;" onclick="cancelarEdicion()">Cancelar</button>
                     </div>
-                    
                 </div>
             </form>
-            
         </div>
     </div>
 </div>
