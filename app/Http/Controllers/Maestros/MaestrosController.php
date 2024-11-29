@@ -261,9 +261,14 @@ class MaestrosController extends Controller
 
         // Paginación de los resultados
         $query_principal = $query->paginate(5);
+        
+        // Verificar si la consulta no devuelve resultados
+        if ($query_principal->isEmpty()) {
+            return view('maestros.horarios.horarios');
+        }
  
         // Pasar las variables a la vista
-        return view('maestros.horarios.horarios', compact('maestro', 'horario', 'query_principal', 'option', 'day', 'startDate', 'endDate'));
+        return view('maestros.horarios.horario', compact('maestro', 'horario', 'query_principal', 'option', 'day', 'startDate', 'endDate'));
     }
 
 
