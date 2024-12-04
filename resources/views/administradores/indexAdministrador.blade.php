@@ -57,7 +57,7 @@
 
                                 <div> 
                                     <label for="numeroCuenta" class="form-label titulos margenes-contenedor">No de cuenta</label>
-                                    <label class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta"> {{ old('numeroCuenta', $admin->no_cuenta?? '') }}</label>
+                                    <label class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta" maxlength="7"> {{ old('numeroCuenta', $admin->no_cuenta?? '') }} </label>
                                 </div>
 
                             </div>

@@ -67,7 +67,7 @@
 
                                     <div> 
                                         <label for="numeroCuenta" class="form-label titulos margenes-contenedor">No de cuenta</label>
-                                        <input type="number" class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta" placeholder="0000000" value="{{ old('numeroCuenta') }}" required>
+                                        <input type="number" class="form-control text-contenedor btn-contenedor" id="numeroCuenta" name="numeroCuenta" placeholder="0000000" value="{{ old('numeroCuenta') }}" required >
                                     </div>
 
                                 </div>
