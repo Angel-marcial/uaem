@@ -54,7 +54,7 @@ class InvitacionController extends Controller
         Mail::to($correo)->send(new Invitaciones($nombre, $fecha, $hora, $departamento, $rol, $qrFilePath));
 
         Invitados::where('id', $id)->update([
-            'estatus' => true,
+            'estatus' => 1,
         ]);
 
         return back()->with('status', 'Se ha notificado al invitado')->with('error',true)->withInput();

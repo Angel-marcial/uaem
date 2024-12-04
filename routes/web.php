@@ -53,7 +53,6 @@ Route::post('editar-alumno/{id}/{usuario}', [AlumnosController::class,'editarAlu
 Route::get('alumnos-ingresos', [AlumnosController::class, 'alumnosRegistros'])->name('alumnos.ingresos');
 Route::get('alumno-cuenta', [AlumnosController::class, 'informacionAlumno'])->name('alumno-cuenta');
 Route::post('editar-alumno2/{id}', [AlumnosController::class, 'editarAlumno2'])->name('editar.alumno');
-
 //rutas maestros
 Route::get('index-maestros', [IndexController::class, 'indexMaestros']);
 Route::post('guardar-maestros', [MaestrosController::class,'guardarMaestros']);
@@ -111,31 +110,17 @@ Route::post('admin-cancela-invitacion/{id}', [InvitacionController::class,'cance
 //rutas invitados
 Route::get('index-invitado', [IndexController::class,'indexInvitados']);
 Route::post('crear-invitado', [InvitadosController::class,'crearInvitacion']);  
-
-
-
-
-
-
-
 //rutas validar correos
 Route::post('enviar-correo-alumnos', [EmailsController::class,'enviarCorreoAlumnos']);
 Route::post('enviar-correo-maestros', [EmailsController::class,'enviarCorreoMaestros']);
 Route::post('codigo-seguridad', [EmailsController::class,'codigoSeguridad']);
-
 //ruras login
 Route::post('login', [IndexController::class, 'login']);
-
 //rutas guardia
 Route::get('index-guardia', [GuardiasController::class, 'indexGuardias'])->middleware('auth.guard')->name('guardias.index');
-//Route::post('guardar-entradas-salidas', [GuardiasController::class, 'guardarEntradasSalidas']);//--trabajando
 Route::post('guardar-entradas-salidas', [GuardiasController::class, 'guardarEntradasSalidas'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
-
-
 //ruta para cerrar session
 Route::post('cerrar-session', [IndexController::class, 'cerrarSession']);   
-
-
 //expprtaciones 
 Route::get('export/ingreso-salida', function (Request $request) {
     return Excel::download(
@@ -149,3 +134,4 @@ Route::get('export/ingreso-salida', function (Request $request) {
         'ingreso_salida.xlsx'
     );
 })->name('export.ingreso_salida');
+

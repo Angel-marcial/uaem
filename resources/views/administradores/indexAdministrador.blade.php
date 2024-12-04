@@ -39,8 +39,6 @@
 
 <div class="margenes form-min-size">
 
-
-
     <div class="btn-contenedor">   
         <div class="col-md-7">   
 
@@ -67,17 +65,17 @@
 
                         <div>
                             <label for="nombres" class="form-label titulos margenes-contenedor">Nombres</label>
-                            <input type="text" class="form-control text-contenedor" id="nombres" name="nombres" value="{{ old('nombres', $admin->nombre ?? '') }}" required disabled oninput="textos(this)">
+                            <input type="text" class="form-control text-contenedor" id="nombres" name="nombres" value="{{ old('nombres', $admin->nombre ?? '') }}" required disabled oninput="textos(this)" maxlength="20">
                         </div>
 
                         <div>
                             <label for="apellidoPaterno" class="form-label titulos margenes-contenedor">Apellido Paterno</label>
-                            <input type="text" class="form-control text-contenedor " id="apellidoPaterno" name="apellidoPaterno" value="{{ old('apellidoPaterno', $admin->apellido_paterno ?? '') }}" required disabled oninput="textos(this)">
+                            <input type="text" class="form-control text-contenedor " id="apellidoPaterno" name="apellidoPaterno" value="{{ old('apellidoPaterno', $admin->apellido_paterno ?? '') }}" required disabled oninput="textos(this)" maxlength="20">
                         </div>
 
                         <div>
                             <label for="apellidoMaterno" class="form-label titulos margenes-contenedor">Apellido Materno</label>
-                            <input type="text" class="form-control text-contenedor " id="apellidoMaterno" name="apellidoMaterno" value="{{ old('apellidoMaterno', $admin->apellido_materno ?? '') }}" required disabled oninput="textos   (this)">
+                            <input type="text" class="form-control text-contenedor " id="apellidoMaterno" name="apellidoMaterno" value="{{ old('apellidoMaterno', $admin->apellido_materno ?? '') }}" required disabled oninput="textos(this)" maxlength="20">
                         </div>
 
                         <div>

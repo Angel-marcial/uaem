@@ -12,8 +12,8 @@ use Illuminate\Http\Request;
 
 class AdminAlumnosController extends Controller
 {
-    public function adminNuevoAlumno(Request $request)
-    {
+    public function adminNuevoAlumno(Request $request){
+
         $id = $request->session()->get('id');
         $rol = $request->session()->get('rol');
         $ruta = $request->session()->get('ruta');
@@ -25,8 +25,8 @@ class AdminAlumnosController extends Controller
 
 
     //trabajando aqui ------------------------
-    public function nuevoAlumno(Request $request)
-    {
+    public function nuevoAlumno(Request $request){
+
         $id = $request->session()->get('id');
         $admin = Usuarios::find($id);
         $alumnos = Alumnos::where('id', 'like', '%'.$request->input('search').'%')->paginate(4);
@@ -53,31 +53,26 @@ class AdminAlumnosController extends Controller
 
         $match = null;
 
-        foreach($carreras as $nombreCarrera => $idCarrera)
-        {
-            if(strpos($nombreCarrera, $carrera) !== false)
-            {
+        foreach($carreras as $nombreCarrera => $idCarrera){
+
+            if(strpos($nombreCarrera, $carrera) !== false){
                 $match = (int)$idCarrera;
                 break;
             }
         }
         //cuenta
-        if($GlobalController->validarCuenta($noCuenta ,0) == true)
-        {
+        if($GlobalController->validarCuenta($noCuenta ,0) == true){
             return back()->with('status', 'El numero de cuenta ya se encuentra registrado')->with('error',false)->withInput();
         }
-        if($GlobalController->tamanioCuenta($noCuenta) == true)
-        {
+        if($GlobalController->tamanioCuenta($noCuenta) == true){
             return back()->with('status', 'El numero de cuenta no cumple con el formato adecuado')->with('error',false)->withInput();
         }   
         //validar correo
-        if($GlobalController->validarCorreo($correo) == true)
-        {
+        if($GlobalController->validarCorreo($correo) == true){
             return back()->with('status', 'El correo '.$correo. ' ya se encuentra registrado')->with('error',false)->withInput();
         }
         //numero de telefono 
-        if($GlobalController->buscarNumero($telefono, 0) == true)
-        {
+        if($GlobalController->buscarNumero($telefono, 0) == true){
             return back()->with('status', 'El numero de telefono ya se encuentra registrado')->with('error',false)->withInput();
         }        
         //mensajes para los campos 
@@ -86,26 +81,21 @@ class AdminAlumnosController extends Controller
         $mensajeMaterno = $GlobalController->validacionesTextos($materno, "Apellido Materno");
         $mensajeTelefono = $GlobalController->validarNumero($telefono);
 
-        if(!$mensajeNombre == "")
-        {
+        if(!$mensajeNombre == ""){
             return back()->with('status', $mensajeNombre)->with('error',false)->withInput();
         }
 
-        if(!$mensajePaterno == "")
-        {
+        if(!$mensajePaterno == ""){
             return back()->with('status', $mensajePaterno)->with('error',false)->withInput();
         }
 
-        if(!$mensajeMaterno == "")
-        {
+        if(!$mensajeMaterno == ""){
             return back()->with('status', $mensajeMaterno)->with('error',false)->withInput();
         }
 
-        if(!$mensajeTelefono == "")
-        {
+        if(!$mensajeTelefono == ""){
             return back()->with('status', $mensajeTelefono)->with('error',false)->withInput();
         }
-
 
         $nuevoUsuario = Usuarios::create([
             'no_cuenta' => $request->input('numeroCuenta'),
@@ -138,8 +128,8 @@ class AdminAlumnosController extends Controller
     }
 
 
-    public function actualizarEstatus(Request $request, $id)
-    {
+    public function actualizarEstatus(Request $request, $id){
+        
         $usuario = Usuarios::find($id);
 
         if ($usuario) {
