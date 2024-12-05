@@ -14,8 +14,9 @@ class EmailsController extends Controller
     //return back()->with('status', '')->with('error',false)->withInput();
     public function enviarCorreoAlumnos(Request $request)
     {
-        //'/^[a-zA-Z0-9._%+-]+@gmail\.com$/';
-        $correoAlumno = '/^[\w.-]+@alumno\.uaemex\.mx$/';        
+        $correoAlumno = '/^[a-zA-Z0-9._%+-]+@gmail\.com$/';
+        
+        //$correoAlumno = '/^[\w.-]+@alumno\.uaemex\.mx$/';        
         $destinatario = $request->input('correo');
         $correos = Credenciales1::pluck('correo');
 

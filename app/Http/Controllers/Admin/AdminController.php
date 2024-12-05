@@ -69,7 +69,11 @@ class AdminController extends Controller
             return redirect()->back()->with('status', 'El alumno no fue encontrado.')->with('error',false);
         }
         else{
-            $alumno->delete();
+
+            //corregir este error. 
+
+
+            $alumno->delete()->delete();
             return redirect()->back()->with('status', 'Alumno eliminado con exito.')->with('error',true);
         }
     }
