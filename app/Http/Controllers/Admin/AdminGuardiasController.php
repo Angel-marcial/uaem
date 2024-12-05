@@ -1,5 +1,15 @@
 <?php
-
+/* 
+*
+*Codice
+*Nombre del Código: AdminGuardiasController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para Guardias 
+*/
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -53,9 +63,7 @@ class AdminGuardiasController extends Controller
                 ->orWhere('nombre', 'like', '%' . $search . '%')
                 ->orWhere('apellido_paterno', 'like', '%' . $search . '%')
                 ->paginate(4); // Paginación con 10 alumnos por página
-        } 
-        else 
-        {
+        } else {
             $guardias = Guardias::paginate(4); // Paginación con 10 alumnos por página si no hay búsqueda
         }
         if ($request->ajax()) 
@@ -74,9 +82,7 @@ class AdminGuardiasController extends Controller
         // Verificar si el maestro existe
         if (!$guardia) {
             return redirect()->back()->with('status', 'El guardia no fue encontrado.')->with('error',false);
-        }
-        else
-        {
+        } else {
             $guardia->delete();
 
             return redirect()->back()->with('status', 'guardia eliminado con exito.')->with('error',true);
@@ -160,8 +166,7 @@ class AdminGuardiasController extends Controller
     
             return back()->with('status', $mensaje)
             ->with('error',false)->withInput();
-        }else
-        {
+        } else {
             $cuenta = $request->input('numeroCuenta');
             $carrera = $request->input('carreras');
 

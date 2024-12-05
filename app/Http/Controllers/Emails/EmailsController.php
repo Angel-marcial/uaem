@@ -1,5 +1,15 @@
 <?php
-
+/* 
+*
+*Codice
+*Nombre del Código: ApiController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones de validacion para emails 
+*/
 namespace App\Http\Controllers\Emails;
 use App\Http\Controllers\Controller;
 use App\Mail\Departamento;
@@ -39,9 +49,7 @@ class EmailsController extends Controller
             return back()->with('status', 'se ha enviado un codigo de verificacion al correo: '. $destinatario)
             ->with('error',true)
             ->with('correoEnviado', true);
-        }
-        else
-        {
+        } else {
             return redirect('index-alumnos')->with('status', 'El correo proporcionado no es valido: '. $destinatario)
             ->with('error',false)
             ->with('correoEnviado',false);
@@ -78,9 +86,7 @@ class EmailsController extends Controller
             return redirect('index-maestros')->with('status', 'se ha enviado un codigo de verificacion al correo: '. $destinatario)
             ->with('correoEnviado',true);
 
-        }
-        else
-        {
+        } else{
             return redirect('index-maestros')->with('status', 'El correo proporcionado no es valido: '. $destinatario)
             ->with('correoEnviado',false);
         } 
@@ -108,9 +114,7 @@ class EmailsController extends Controller
             return redirect($ruta)->with('status', 'Codigo de seguridad aprobado')
             ->with('error', false)
             ->with('codigoAprobado',true);
-        }
-        else
-        {
+        } else {
             return redirect($ruta)->with('status', 'Codigo de seguridad incorrecto')
             ->with('error', false)
             ->with('codigoAprobado',false);

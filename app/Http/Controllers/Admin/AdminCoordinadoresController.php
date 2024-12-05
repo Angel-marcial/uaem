@@ -1,5 +1,15 @@
 <?php
-
+/* 
+*
+*Codice
+*Nombre del Código: AdminCoordinadoresController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para Coordinadores 
+*/
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -42,9 +52,7 @@ class AdminCoordinadoresController extends Controller
                 ->orWhere('nombre', 'like', '%' . $search . '%')
                 ->orWhere('apellido_paterno', 'like', '%' . $search . '%')
                 ->paginate(4); // Paginación con 10 alumnos por página
-        } 
-        else 
-        {
+        } else {
             $coordinadores = Coordinadores::paginate(4); // Paginación con 10 alumnos por página si no hay búsqueda
         }
         if ($request->ajax()) 

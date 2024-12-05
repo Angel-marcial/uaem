@@ -1,5 +1,14 @@
 <?php
+/*
+Codice
+Nombre del Código: Handler.php
+Fecha de Creación: 01/11/2024 revisado por Angel Geovanni Marcial Morales
 
+Modificaciones:
+
+Descripción: Este archivo PHP 
+
+*/
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

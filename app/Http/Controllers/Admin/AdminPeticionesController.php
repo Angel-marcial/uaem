@@ -1,4 +1,15 @@
 <?php
+/* 
+*
+*Codice
+*Nombre del Código: AdminPeticionesController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para Peticiones 
+*/
 
 namespace App\Http\Controllers\Admin;
 

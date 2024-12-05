@@ -1,5 +1,15 @@
 <?php
-
+/* 
+*
+*Codice
+*Nombre del Código: CoordinadoresController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para manejo de informacion de Coordinadores
+*/
 namespace App\Http\Controllers\Coordinadores;
 use App\Http\Controllers\Controller;
 use App\Models\Coordinadores;
@@ -30,9 +40,7 @@ class CoordinadoresController extends Controller
         else if($rol !== 'cordinador')
         {
             return redirect($ruta);
-        }
-        else
-        {
+        } else {
             return redirect('index');
         }
     }

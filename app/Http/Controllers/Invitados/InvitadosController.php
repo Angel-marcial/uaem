@@ -1,5 +1,15 @@
 <?php
-
+/* 
+*
+*Codice
+*Nombre del Código: InvitadosController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para manejo de informacion de las solicitudes de invitados a departamentos
+*/
 namespace App\Http\Controllers\Invitados;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GlobalController;
@@ -75,9 +85,7 @@ class InvitadosController extends Controller
             if ($cordinadorPresente && is_null($cordinadorPresente->$diaBusquedaEntarda)) 
             {
                 return back()->with('status', 'El coordinador no está disponible en la fecha seleccionada. Por favor, programa tu visita para otro día.')->with('error',false)->withInput();
-            } 
-            else 
-            {
+            } else {
 
                 $horaVisita = new DateTime($hora);
                 $horaCoordinadorEntrada = $cordinadorPresente->$diaBusquedaEntarda;
@@ -111,15 +119,11 @@ class InvitadosController extends Controller
                         return redirect('index')->with('status', 'El coordinador del departamento ha sido notificado. Recibirás un correo electrónico informándote si tu visita ha sido aprobada.')
                         ->with('error',true);        
                     }
-                }
-                else
-                {
+                } else {
                     return back()->with('status', 'El coordinador no está disponible en la hora seleccionada. Por favor, programa tu visita en otra hora del dia.')->with('error',false)->withInput();
                 }
             }
-        } 
-        else 
-        {
+        } else {
             return back()->with('status', 'No se encontro el departamento')->with('error',false)->withInput();
         }
         

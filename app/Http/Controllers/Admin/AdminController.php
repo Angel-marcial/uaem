@@ -1,5 +1,15 @@
 <?php
-
+/* 
+*
+*Codice
+*Nombre del Código: AdminController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para Alumnos desde Administrador
+*/
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Alumnos\AlumnosController;
@@ -48,8 +58,7 @@ class AdminController extends Controller
                 ->orWhere('nombre', 'like', '%' . $search . '%')
                 ->orWhere('apellido_paterno', 'like', '%' . $search . '%')
                 ->paginate(4); // Paginación con 10 alumnos por página
-        } 
-        else{
+        } else {
             $alumnos = Alumnos::paginate(4); // Paginación con 10 alumnos por página si no hay búsqueda
         }
         if ($request->ajax()){
@@ -67,8 +76,7 @@ class AdminController extends Controller
         // Verificar si el alumno existe
         if (!$alumno) {
             return redirect()->back()->with('status', 'El alumno no fue encontrado.')->with('error',false);
-        }
-        else{
+        } else {
             $alumno->delete();
             return redirect()->back()->with('status', 'Alumno eliminado con exito.')->with('error',true);
         }
@@ -97,8 +105,7 @@ class AdminController extends Controller
         }
         else if($rol !== 'administrador'){
             return redirect($ruta);
-        }
-        else{
+        } else {
             return redirect('index');
         }
     }
@@ -150,8 +157,7 @@ class AdminController extends Controller
 
             return back()->with('status', $mensaje)
             ->with('error',false)->withInput();
-        }
-        else{
+        } else {
             Usuarios::where('id', $id)->update([
                 'nombre' => $nombre,
                 'apellido_paterno' => $paterno,

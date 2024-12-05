@@ -1,8 +1,7 @@
 <?php
 /*
-@author Vladimir Lemus
 Codice
-Nombre del Código: contenido.blade.php
+Nombre del Código: IngresoSalidaExport.php
 Fecha de Creación: 01/11/2024 revisado por Angel Geovanni Marcial Morales
 
 Modificaciones:

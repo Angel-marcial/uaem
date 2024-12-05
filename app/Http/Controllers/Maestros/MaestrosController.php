@@ -1,5 +1,15 @@
 <?php
-
+/* 
+*
+*Codice
+*Nombre del Código: MaestrosController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para manejo de informacion de los Maestros
+*/
 namespace App\Http\Controllers\Maestros;
 
 use App\Http\Controllers\Alumnos\AlumnosController;
@@ -63,9 +73,7 @@ class MaestrosController extends Controller
             ->with('codigoAprobado', true)
             ->with('error', true)
             ->withInput();
-        }
-        else
-        {
+        } else {
 
             //lunes
             $lunesMensaje = $this->validarHoras($entradaLunes,$salidaLunes);
@@ -219,9 +227,7 @@ class MaestrosController extends Controller
         else if($rol !== 'maestro')
         {
             return redirect($ruta);
-        }
-        else
-        {
+        } else {
             return redirect('index');
         }
     }

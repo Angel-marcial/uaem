@@ -1,5 +1,13 @@
 <?php
-
+/*
+*Codice
+*Nombre del Código: Peticiones.php
+*Fecha de Creación: 18/09/2024 revisado por Angel Geovanni Marcial Morales
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con los campos que tendra la tabla peticiones en la base de datos.  
+*/
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

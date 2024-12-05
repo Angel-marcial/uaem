@@ -1,5 +1,14 @@
 <?php
+/*
+Codice
+Nombre del Código: Kernel.php
+Fecha de Creación: 01/11/2024 revisado por Angel Geovanni Marcial Morales
 
+Modificaciones:
+
+Descripción: Este archivo PHP 
+
+*/
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;

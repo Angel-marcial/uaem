@@ -1,5 +1,15 @@
 <?php
-
+/* 
+*
+*Codice
+*Nombre del Código: ContactsControler.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para la Firebase
+*/
 namespace App\Http\Controllers\Firebase;
 
 use App\Http\Controllers\Controller;
@@ -51,9 +61,7 @@ class ContactsControler extends Controller
         if($postRef)
         {
             return redirect('contacts')->with('status', 'Contact added successfully');
-        }
-        else
-        {
+        } else {
             return redirect('contacts')->with('status','contact error ');
         }
     } 
@@ -68,9 +76,7 @@ class ContactsControler extends Controller
         if($editdata)
         {
             return view('firebase.contact.edit', compact('editdata','key'));
-        }
-        else
-        {
+        } else {
             return redirect('contacts')->with('status','Contac ID not Found');
         }
  
@@ -93,9 +99,7 @@ class ContactsControler extends Controller
         if($res_update)
         {
             return redirect('contacts')->with('status', 'Contac update successful');
-        }
-        else
-        {
+        } else {
             return redirect('contacts')->with('status', 'Contac not update successful');
         }
 
@@ -109,9 +113,7 @@ class ContactsControler extends Controller
         if($del_data)
         {
             return redirect('contacts')->with('status', 'Contac delete successful');
-        }
-        else
-        {
+        } else {
             return redirect('contacts')->with('status', 'Contac not delete successful');
         }
     }

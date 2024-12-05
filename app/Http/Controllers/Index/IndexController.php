@@ -1,5 +1,15 @@
 <?php
-///hola mundo
+/* 
+*
+*Codice
+*Nombre del Código: IndexController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para manejo de informacion del Login
+*/
 namespace App\Http\Controllers\Index;
 use App\Http\Controllers\Controller;
 use App\Models\Departamentos;
@@ -70,14 +80,10 @@ class  IndexController extends Controller
                     session(['id' => $usuario->id_usuario, 'rol' => $usuario->rol, 'ruta' => 'consulta-coordinadores']);
                     return redirect('consulta-coordinadores');
                 }
-            }
-            else
-            {
+            } else {
                 return back()->with('status', 'No tienes acceso a tu cuenta. Contacta el departamento de administracion.')->with('error',false);
             }   
-        }
-        else
-        {
+        } else {
             return redirect()->back()->with('status', 'Correo o Contraseña inconrrectos')->with('error',false);
         }
     }

@@ -1,4 +1,15 @@
 <?php
+/* 
+*
+*Codice
+*Nombre del Código: AdminMaestrosController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para Maestros 
+*/
 
 namespace App\Http\Controllers\Admin;
 
@@ -40,9 +51,7 @@ class AdminMaestrosController extends Controller
                 ->orWhere('nombre', 'like', '%' . $search . '%')
                 ->orWhere('apellido_paterno', 'like', '%' . $search . '%')
                 ->paginate(4); // Paginación con 10 alumnos por página
-        } 
-        else 
-        {
+        } else {
             $maestros = Maestros::paginate(4); // Paginación con 10 alumnos por página si no hay búsqueda
         }
         if ($request->ajax()) 
@@ -62,9 +71,7 @@ class AdminMaestrosController extends Controller
         // Verificar si el maestro existe
         if (!$maestro) {
             return redirect()->back()->with('status', 'El maestro no fue encontrado.')->with('error',false);
-        }
-        else
-        {
+        } else {
             $maestro->delete();
 
             return redirect()->back()->with('status', 'Maestro eliminado con exito.')->with('error',true);
