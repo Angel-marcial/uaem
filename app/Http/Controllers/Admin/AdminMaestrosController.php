@@ -17,6 +17,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Maestros;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminMaestrosController extends Controller
 {
@@ -65,18 +66,26 @@ class AdminMaestrosController extends Controller
     //eliminar alumno
     public function eliminarMaestro(Request $request, $cuenta)
     {
-        
+        // Buscar al maestro por número de cuenta
         $maestro = Usuarios::where('no_cuenta', $cuenta)->first();
-
+    
         // Verificar si el maestro existe
         if (!$maestro) {
-            return redirect()->back()->with('status', 'El maestro no fue encontrado.')->with('error',false);
-        } else {
-            $maestro->delete();
-
-            return redirect()->back()->with('status', 'Maestro eliminado con exito.')->with('error',true);
+            return redirect()->back()->with('status', 'El maestro no fue encontrado.')->with('error', false);
         }
+    
+        // Eliminar registros relacionados en las tablas 'ingresos' y 'salidas'
+        DB::table('ingresos')->where('id_usuario', $maestro->id)->delete();
+        DB::table('salidas')->where('id_usuario', $maestro->id)->delete();
+        
+        // Finalmente, eliminar al maestro
+        $maestro->delete();
+    
+        // Recargar la misma página con un mensaje de éxito
+        return redirect()->back()->with('status', 'Maestro eliminado con éxito.')->with('success', true);
     }
+    
+    
 
 
 

@@ -23,6 +23,7 @@ use App\Models\Invitados;
 use App\Models\Salidas;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use PHPUnit\Util\GlobalState;
 
 class AdminController extends Controller
@@ -68,24 +69,26 @@ class AdminController extends Controller
         return view('administradores.alumnos.alumnos', compact('admin', 'alumnos'));
     }
     //eliminar alumno
-    public function eliminarAlumno(Request $request,$cuenta){
-        
-        // Buscar el alumno por su ID
+    public function eliminarAlumno(Request $request, $cuenta)
+    {
+        // Buscar al alumno por número de cuenta
         $alumno = Usuarios::where('no_cuenta', $cuenta)->first();
-
-        // Verificar si el alumno existe
+    
         if (!$alumno) {
-            return redirect()->back()->with('status', 'El alumno no fue encontrado.')->with('error',false);
+            return redirect()->back()->with('status', 'El alumno no fue encontrado.')->with('error', false);
         }
-        else{
-
-            //corregir este error. 
-
-
-            $alumno->delete()->delete();
-            return redirect()->back()->with('status', 'Alumno eliminado con exito.')->with('error',true);
-        }
+    
+        // Eliminar registros relacionados en las tablas 'ingresos' y 'salidas'
+        DB::table('ingresos')->where('id_usuario', $alumno->id)->delete();
+        DB::table('salidas')->where('id_usuario', $alumno->id)->delete();
+    
+        // Finalmente, eliminar al usuario
+        $alumno->delete();
+    
+        return redirect()->back()->with('status', 'Alumno eliminado correctamente.')->with('success', true);
     }
+    
+
     //editar alumno
     public function datosAlumno(Request $request, $cuenta){
         $id = $request->session()->get('id');
