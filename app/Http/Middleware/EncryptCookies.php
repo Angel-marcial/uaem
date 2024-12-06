@@ -8,7 +8,7 @@ Revisado por: José Ángel Monsalvo Cruz
 *
 *Modificaciones:
 *
-*Descripción: Este archivo PHP
+*Descripción: Este archivo PHP es un middleware de Laravel que se encarga de manejar la cifrado y descifrado de cookies utilizadas en la aplicación. Esto garantiza la seguridad de la información almacenada en las cookies al protegerla contra accesos no autorizados o manipulaciones.
 */
 namespace App\Http\Middleware;
 
