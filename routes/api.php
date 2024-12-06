@@ -21,7 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::get('/prueba', [ApiController::class, 'index']);
 Route::post('/login', [ApiLoginController::class, 'login']);
 Route::get('/peticiones/{id}', [ApiPeticionesController::class, 'peticiones']);
