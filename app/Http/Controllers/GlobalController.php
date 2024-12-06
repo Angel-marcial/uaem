@@ -1,5 +1,15 @@
 <?php
-
+/* 
+*
+*Codice
+*Nombre del Código: GlobalController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las validaciones de diferentes campos
+*/
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -21,15 +31,13 @@ class GlobalController extends Controller
     {
         return Usuarios::where('no_cuenta', $cuenta)->where('id', '!=', $id)->first();
     }
-    //validar que el numero de cuenta tenga 7 dijitos 
+    //validar que el numero de cuenta tenga 7 digitos 
     public function tamanioCuenta($cuenta)
     {
         if(strlen($cuenta) !== 7)
         {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }   

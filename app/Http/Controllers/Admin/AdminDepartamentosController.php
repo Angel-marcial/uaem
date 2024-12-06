@@ -1,5 +1,15 @@
 <?php
-
+/* 
+*
+*Codice
+*Nombre del Código: AdminDepartamentosController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para Departamentos 
+*/
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -86,8 +96,7 @@ class AdminDepartamentosController extends Controller
         } else if($interfaz == "editar") //$buscarMaestro &&
         {
               
-        }else
-        {
+        } else {
             return back()->with('status', 'No se pudo crear el departamento, contacta con soporte tecnico. ')
             ->with('error',false)->withInput();
         }
@@ -158,23 +167,18 @@ class AdminDepartamentosController extends Controller
 
             return redirect('/admin-consulta-coordinador')->with('status', 'Departamento actualizado con exito ')->with('error',true);
 
-        }else// se modifica al cordinador. 
-        {
+        } else { //Se modifica al coordinador
             if(!$buscarMaestro)
             {
                 return back()->with('status', 'El número de cuenta no está asociado a un maestro o no existe.')
                 ->with('error',false)->withInput();
-            }
-            else
-            {
+            } else {
                 $datosDepartamento = Coordinadores::where('id_departamento', $idDepartamento)->first();
 
                 if($datosDepartamento->id_departamento == 1)
                 {
                     $nuevoUsuario = 'administrador';
-                }
-                else
-                {
+                } else {
                     $nuevoUsuario = 'cordinador';
                 }
 
@@ -217,9 +221,7 @@ class AdminDepartamentosController extends Controller
         if (!$departamento) 
         {
             return redirect()->back()->with('status', 'El departamento no fue encontrado.')->with('error',false);
-        }
-        else
-        {
+        } else {
             $departamento->delete();
 
             Credenciales1::where('id_usuario', $idUsuario)->update(['rol' => 'maestro']);

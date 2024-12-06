@@ -6,7 +6,7 @@
 *
 *Modificaciones:
 *
-*Descripción: Este archivo PHP cuenta con los campos que tendra la tabla alumnos en la base de datos.  
+*Descripción: Este archivo PHP cuenta con los campos que tendra la tabla carreras en la base de datos.  
 */
 
 namespace App\Models;

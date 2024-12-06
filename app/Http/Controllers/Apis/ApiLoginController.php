@@ -1,5 +1,15 @@
 <?php
-
+/* 
+*
+*Codice
+*Nombre del Código: ApiController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para manejo de informacion de las apis 
+*/
 namespace App\Http\Controllers\Apis;
 use App\Http\Controllers\Controller;
 use App\Models\Credenciales1;
@@ -56,9 +66,7 @@ class ApiLoginController extends Controller
 
                 return response()->json(['mensaje' => 'Correo o Contraseña inconrrectos'], 401);     
             }
-        }
-        else
-        {
+        } else {
             return response()->json(['mensaje' => 'Correo o Contraseña inconrrectos'], 401);   
         }
     }

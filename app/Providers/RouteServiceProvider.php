@@ -1,5 +1,13 @@
 <?php
-
+/*
+*Codice
+*Nombre del Código: RouteServiceProvider.php
+*Fecha de Creación: 18/09/2024 revisado por Angel Geovanni Marcial Morales
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP .  
+*/
 namespace App\Providers;
 
 use Illuminate\Cache\RateLimiting\Limit;

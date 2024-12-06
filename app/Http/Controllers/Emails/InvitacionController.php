@@ -1,5 +1,15 @@
 <?php
-
+/* 
+*
+*Codice
+*Nombre del Código: ApiController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para manejo de informacion de los invitados
+*/
 namespace App\Http\Controllers\Emails;
 use App\Http\Controllers\Controller;
 use App\Mail\Invitaciones;
@@ -70,9 +80,7 @@ class InvitacionController extends Controller
 
         if (!$cancelarInvitacion) {
             return redirect('admin-consulta-peticiones')->with('status', 'El Invitado no fue encontrado.')->with('error',false);
-        }
-        else
-        {
+        } else{
             $cancelarInvitacion->update(['estatus' => 2]);
 
             Mail::to($cancelarInvitacion->correo)->send(new RechazarInvitacion($cancelarInvitacion->nombre_completo));

@@ -1,4 +1,15 @@
 <?php
+/* 
+*
+*Codice
+*Nombre del Código: AlumnosController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para Alumnos 
+*/
 
 namespace App\Http\Controllers\Alumnos;
 use App\Http\Controllers\Controller;
@@ -122,9 +133,7 @@ class AlumnosController extends Controller
             ->with('error',false)
             ->withInput();
             
-        }
-        else
-        {
+        } else {
             $nuevoUsuario = Usuarios::create([
                 'no_cuenta' => $request->input('numeroCuenta'),
                 'nombre' => $request->input('nombres'),
@@ -174,9 +183,7 @@ class AlumnosController extends Controller
         else if($rol !== 'alumno')
         {
             return redirect($ruta);
-        }
-        else
-        {
+        } else {
             return redirect('index');
         }
     }
@@ -238,8 +245,7 @@ class AlumnosController extends Controller
     
             return back()->with('status', $mensaje)
             ->with('error',false)->withInput();
-        }else
-        {
+        } else {
             
             if($interfaz == "admin")
             {
@@ -283,9 +289,7 @@ class AlumnosController extends Controller
                 ]);
 
                return redirect('/admin-consulta-alumnos')->with('status', 'Alumno actualizado con exito.')->with('error',true);
-            }
-            else
-            {      
+            } else {      
                 Usuarios::where('id', $id)->update([
                     'nombre' => $nombre,
                     'apellido_paterno' => $paterno,

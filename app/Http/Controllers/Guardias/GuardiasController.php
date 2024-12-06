@@ -1,5 +1,15 @@
 <?php
-
+/* 
+*
+*Codice
+*Nombre del Código: GuardiasController.php
+*Fecha de Creación: 15/08/2024 
+Revisado por: José Ángel Monsalvo Cruz
+*
+*Modificaciones:
+*
+*Descripción: Este archivo PHP cuenta con las operaciones para manejo de informacion de los Guardias para manejo de entradas y salidas 
+*/
 namespace App\Http\Controllers\Guardias;
 use App\Http\Controllers\Controller;
 use App\Models\Ingresos;
@@ -24,9 +34,7 @@ class GuardiasController extends Controller
         else if($rol !== 'guardia')
         {
             return redirect($ruta);
-        }
-        else
-        {
+        } else {
             return redirect('index');
         }
     }
@@ -64,9 +72,7 @@ class GuardiasController extends Controller
                         ]);
 
                         return response()->json(['status' => 'success', 'message' => 'Datos procesados correctamente invitado: '], 200);
-                    }
-                    else
-                    {
+                    } else {
                         return response()->json(['status' => 'error', 'message' => 'No se encontraron registros de entrada para este invitado.'], 400);
                     }
 
@@ -76,9 +82,7 @@ class GuardiasController extends Controller
                     return response()->json(['status' => 'error', 'message' => 'Error al procesar la solicitud'], 500);
                 }
                 
-            }
-            else
-            {
+            } else {
                 $ingres =  Ingresos::create([
                     'id_usuario' => $id_usuario,
                     'fecha' => $fecha_transformada,
@@ -107,17 +111,13 @@ class GuardiasController extends Controller
                     ]);
 
                     return response()->json(['status' => 'success', 'message' => 'Datos procesados correctamente'], 200);
-                }
-                else
-                {
+                } else {
                     return response()->json(['status' => 'no se encuentran coincidencias'], 400);
                 }
 
 
 
-            }
-            else
-            {
+            } else {
                 $ingres = Salidas::create([
                     'id_usuario' => $id_usuario,
                     'fecha' => $fecha_transformada,
@@ -129,8 +129,7 @@ class GuardiasController extends Controller
             return response()->json(['status' => 'success', 'message' => 'Datos procesados correctamente'], 200);
 
         
-        }else 
-        {
+        } else {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Tipo inválido'
