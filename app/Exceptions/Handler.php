@@ -6,7 +6,7 @@ Fecha de Creación: 01/11/2024 revisado por Angel Geovanni Marcial Morales
 
 Modificaciones:
 
-Descripción: Este archivo PHP 
+Descripción: Este archivo Handler.php forma parte del sistema de gestión de excepciones de Laravel y se encuentra en el directorio App\Exceptions. Su propósito principal es manejar las excepciones que se producen en la aplicación, proporcionando una estructura para capturarlas, registrarlas y personalizar cómo se responden. 
 
 */
 namespace App\Exceptions;
