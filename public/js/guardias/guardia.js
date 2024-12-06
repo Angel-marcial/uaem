@@ -35,7 +35,7 @@ function onScanSuccess(decodedText, decodedResult)
     //document.getElementById('result').innerText = `${decodedText}`;
     //document.getElementById('status').innerText = '¡Éxito! Código QR detectado.';
 
-    document.getElementById('result').innerText = `${decodedText}`;
+    //document.getElementById('result').innerText = `${decodedText}`;
 
     const estatus = document.getElementById('estatus');
     const numeroCuenta = document.getElementById('numeroCuenta');

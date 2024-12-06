@@ -28,8 +28,7 @@ class CoordinadoresController extends Controller
         $ruta = $request->session()->get('ruta');
 
 
-        if($rol == 'cordinador')
-        {   
+        if($rol == 'cordinador'){   
             //$alumnos = Alumno::with('credenciales')->get(); 
             $cordinador = Coordinadores::where('id_usuario', $id)->first();
             $usuarios = Usuarios::where('id', $id)->first();
@@ -37,8 +36,7 @@ class CoordinadoresController extends Controller
 
             return view('coordinadores.indexCoordinador', compact('cordinador', 'usuarios'));
         }
-        else if($rol !== 'cordinador')
-        {
+        else if($rol !== 'cordinador'){
             return redirect($ruta);
         } else {
             return redirect('index');

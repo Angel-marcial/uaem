@@ -46,17 +46,15 @@ class AdminMaestrosController extends Controller
         $search = $request->input('search');
     
         // Si hay un término de búsqueda, filtrar por él
-        if ($search) 
-        {
+        if ($search){
             $maestros = Maestros::where('no_cuenta', 'like', '%' . $search . '%')
                 ->orWhere('nombre', 'like', '%' . $search . '%')
                 ->orWhere('apellido_paterno', 'like', '%' . $search . '%')
                 ->paginate(4); // Paginación con 10 alumnos por página
-        } else {
+        } else{
             $maestros = Maestros::paginate(4); // Paginación con 10 alumnos por página si no hay búsqueda
         }
-        if ($request->ajax()) 
-        {
+        if ($request->ajax()){
             return response()->json($maestros);
         }
     
