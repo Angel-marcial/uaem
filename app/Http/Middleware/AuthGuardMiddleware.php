@@ -8,7 +8,7 @@ Revisado por: José Ángel Monsalvo Cruz
 *
 *Modificaciones:
 *
-*Descripción: Este archivo PHP  
+*Descripción: Este archivo PHP es un middleware en Laravel. Los middleware actúan como intermediarios para procesar solicitudes HTTP antes de que lleguen a las rutas o controladores de tu aplicación, permitiendo aplicar lógica como verificación de autenticación o permisos. 
 */
 namespace App\Http\Middleware;
 
