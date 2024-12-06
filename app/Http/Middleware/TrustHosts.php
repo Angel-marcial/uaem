@@ -8,7 +8,7 @@ Revisado por: José Ángel Monsalvo Cruz
 *
 *Modificaciones:
 *
-*Descripción: Este archivo PHP
+*Descripción: Este archivo PHP es un middleware en Laravel que se encarga de gestionar los hosts confiables de la aplicación. Es utilizado para asegurarse de que solo se acepten solicitudes provenientes de subdominios o dominios específicos. Esto puede ser útil para reforzar la seguridad y asegurarse de que la aplicación solo reciba solicitudes desde dominios o subdominios que estén explícitamente permitidos.
 */
 namespace App\Http\Middleware;
 

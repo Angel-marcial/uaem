@@ -8,7 +8,7 @@ Revisado por: José Ángel Monsalvo Cruz
 *
 *Modificaciones:
 *
-*Descripción: Este archivo PHP 
+*Descripción: Este archivo PHP es un middleware en Laravel que maneja la autenticación de usuarios. Su función principal es verificar si un usuario está autenticado y, en caso contrario, redirigirlo a una ruta específica
 */
 namespace App\Http\Middleware;
 

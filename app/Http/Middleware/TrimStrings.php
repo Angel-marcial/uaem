@@ -8,7 +8,7 @@ Revisado por: José Ángel Monsalvo Cruz
 *
 *Modificaciones:
 *
-*Descripción: Este archivo PHP
+*Descripción: Este archivo PHP es un middleware en Laravel que se encarga de eliminar los espacios en blanco al inicio y al final de las cadenas de texto enviadas en las solicitudes HTTP, como los datos de formularios. Esto ayuda a garantizar que los datos que se procesan no tengan espacios no deseados, lo que mejora la integridad y consistencia de los datos.
 */
 namespace App\Http\Middleware;
 

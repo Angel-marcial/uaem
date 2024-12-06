@@ -9,7 +9,7 @@ Revisado por: José Ángel Monsalvo Cruz
 *
 *Modificaciones:
 *
-*Descripción: Este archivo PHP
+*Descripción: Este archivo PHP es un middleware en Laravel que maneja la lógica para redirigir a los usuarios ya autenticados a una ruta específica si intentan acceder a una página de inicio de sesión o cualquier otra ruta que esté destinada solo a usuarios no autenticados.
 */
 namespace App\Http\Middleware;
 
