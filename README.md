@@ -1,5 +1,2 @@
-# control_de_accesos
- Unidad Academica
- oscar listo
- nuevo cambio
- hans 
+# control De Accesos
+ Unidad Academica profesional santiago tianguistenco
